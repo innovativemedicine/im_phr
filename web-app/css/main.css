@@ -1,0 +1,21 @@
+
+#homehero {
+    
+    
+    overflow: hidden;
+    padding: 0px;
+    
+}
+
+div#aboutP p {
+font-size: 16px;
+line-height: 1.5em;
+}
+
+#upperNav {
+    
+    background-image: url(../images/custom/dnaBG.png) !important;
+
+
+}
+
