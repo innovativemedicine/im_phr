@@ -10,6 +10,8 @@ class UrlMappings
         }
         //   name about:"/"{view='/index.gsp'}
 
+        name tissues:"/tissues"(view:"/tissues")
+        
         name about:"/about"(view:"/about")
         name team:"/team"(view:"/team")
         name contact:"/contact"(view:"/contact")
@@ -19,6 +21,7 @@ class UrlMappings
         name symposium:"/symposium-2012-MAY-31"(view:"/symposium-2012-MAY-31")
         name tools:"/tools"(view:"/tools")
         name vcflatten:"/tools/vcflatten"(view:"/vcflatten")
+        name login:"/login"(view:"/login")
         "/"(view:"/home")
         "500"(view:'/error')
 		"404"(view:'/404')

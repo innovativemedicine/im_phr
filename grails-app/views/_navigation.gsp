@@ -9,7 +9,7 @@
 				<li class="${g.activePageClass(pageTitle:'Home') }">
 					<g:link mapping="home">Home</g:link>
 				</li>
-
+				
 				<li class="${g.activePageClass(pageTitle:'About') }">
 					<g:link mapping="about">About</g:link>
 				</li>
@@ -28,6 +28,16 @@
 				<li class="${g.activePageClass(pageTitle:'SLRI') }">
 					<g:link mapping="symposium">Symposium: Personalized Health Care</g:link>
 				</li>
+				
+				
+                <li class="${g.activePageClass(pageTitle:'tissues') }">
+                    <g:link mapping="tissues">Tissues</g:link>
+                </li>
+				
+                <li class="${g.activePageClass(pageTitle:'Login') } floatRight">
+                    <g:link mapping="login">Login</g:link>
+                </li>
+                
 			</ul>
 		</div>
 	</div>

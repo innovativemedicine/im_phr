@@ -1,4 +1,3 @@
-/*
 dataSource {
     pooled = true
     driverClassName = "org.h2.Driver"
@@ -14,8 +13,8 @@ hibernate {
 environments {
     development {
         dataSource {
-            dbCreate = "create-drop" // one of 'create', 'create-drop', 'update', 'validate', ''
-            url = "jdbc:h2:mem:devDb;MVCC=TRUE"
+            dbCreate = "update" // one of 'create', 'create-drop', 'update', 'validate', ''
+            url = "jdbc:h2:devDb;MVCC=TRUE"
         }
     }
     test {
@@ -42,4 +41,3 @@ environments {
         }
     }
 }
-*/
