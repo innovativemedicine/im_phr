@@ -5,20 +5,24 @@ import org.springframework.dao.DataIntegrityViolationException
 class LoginController {
     
     def index() {
-        redirect(action: "login", params: params)
+        redirect(action:"login", params: params)
     }
-    def login = {}
+    
+    def login = {
+        if (session.user != null) {
+            redirect(action:"welcome")
+        }
+    }
     
     def authenticate = {
         def user = Login.findByUserNameAndPassword(params.userName, params.password)
         if (user) {
             session.user = user
-            flash.message = "Hello ${user.fullName}!"
-            redirect(action:"login")
+            redirect(action:"welcome")
             
         } else {
-        flash.message = "Sorry, ${params.userName}. Please try again."
-        redirect(action:"login")
+            flash.message = "Sorry. Please try again."
+            redirect(action:"login")
         }
     }
     
@@ -26,6 +30,18 @@ class LoginController {
         flash.message = "Goodbye ${session.user.fullName}"
         session.user = null
         redirect(action:"login")
+    }
+    
+    def welcome =  {
+        if (session.user != null) {
+            
+            def allData = Login.list()
+            
+            [fullName:session.user.fullName, allData: allData]
+            
+        } else {
+            redirect(action: "login");
+        }
     }
     
 }
