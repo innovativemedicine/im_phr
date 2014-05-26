@@ -27,7 +27,7 @@ class LoginController {
     }
     
     def logout = {
-        flash.message = "Goodbye ${session.user.fullName}"
+//        flash.message = "Goodbye ${session.user.fullName}"
         session.user = null
         redirect(action:"login")
     }

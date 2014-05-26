@@ -7,10 +7,9 @@
     <body>
         <div class="nav" role="navigation">
             <div id="welcome-div" class="content scaffold-create" role="main">
-	            <div class="fieldcontain ${hasErrors(bean: loginInstance, field: 'userName', 'error')} ">
-	                <%--<h1>Hello ${fullName}!</h1>--%>
-	                <h1>${allData.email }</h1>
-	            </div>
+                <div class="fieldcontain ${hasErrors(bean: loginInstance, field: 'userName', 'error')} ">
+                    <%--<h1>${allData.email}</h1>--%>
+                </div>
             </div>
         </div>
     </body>

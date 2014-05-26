@@ -7,9 +7,6 @@
     <body>
         <div class="nav" role="navigation">
 	        <div id="create-login" class="content scaffold-create" role="main">
-	            <g:if test="${flash.message}">
-	            <div class="message" role="status">${flash.message}</div>
-	            </g:if>
 	            <g:hasErrors bean="${loginInstance}">
 	            <ul class="errors" role="alert">
 	                <g:eachError bean="${loginInstance}" var="error">
