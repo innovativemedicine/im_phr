@@ -44,4 +44,8 @@ class LoginController {
         }
     }
     
+    def myoscar_login = {
+        redirect (url: "http://localhost:8090/myoscar_client/login.jsf")
+    }
+    
 }

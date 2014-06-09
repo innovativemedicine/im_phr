@@ -26,6 +26,13 @@ class UrlMappings
         name login:"/login"(controller:"login")
         name logout:"/logout"(controller:"login", action:"logout")
         
+        
+        name myoscarlogin:"/myoscar-login/"(controller:"login", action:"myoscar_login")
+        
+        
+//        name myoscarlogin:"http://localhost:8090/myoscar_client/login.jsf"(view:"/about")
+        
+        
 //        name login:"/login"(view:"/login/login", controller:"login")
         
         "/"(view:"/home")
