@@ -95,10 +95,10 @@ log4j = {
 grails.sitemesh.default.layout='basic'
 
 laf =[
-    appName:'Innovative Medicine',
-    siteTitle:'Innovative Medicine',
+    appName:'Innovative Medicine PHR',
+    siteTitle:'Personal Health Record',
     analyticsTitle:'innovativemedicine.ca',
-    appColor: '#ff2b01',
+    appColor: '#01FFEB',
     appCode: 'im'
 ]
 

@@ -19,3 +19,81 @@ line-height: 1.5em;
 
 }
 
+
+
+/*      Custom CSS      */
+
+h1 {
+    font-family: 'Helvetica Neue','Helvetica Neue Light','Lucida Grande', sans-serif;
+    color: black;
+}
+
+.hero-unit {
+    border-radius: 0 !important;
+}
+
+.home-header {
+    font-size: 42px;
+}
+
+.home-body {
+	margin: 0 20px;
+}
+
+.home-header-text {
+	float: left;
+	overflow: hidden;
+	width: 65%;
+	margin-bottom: 15px;
+	font-family: inherit;
+	font-size: 17px;
+	font-style: normal;
+}
+
+.home-header-img {
+	width: 10%;
+	float: right;
+	margin: -25px 35px 0 0;
+}
+
+.block {
+    background-color: #f2eeff;
+    padding: 25px;
+    margin-top: 20px;
+    float: left;
+}
+
+.horizontal-block-3 {
+	width: 27%;
+	height: 250px;
+	margin-right: 20px;
+	font-family: inherit;
+}
+
+.block-header {
+	font-size: 26px;
+}
+
+.block-text {
+	font-size: 15px;
+	font-style: normal;
+}
+
+.wide-block {
+	width: 93%;
+}
+
+.half-text-width {
+	width: 55%;
+	float: left;
+	
+}
+
+.video-small {
+	widht: 40%;
+	float: right;
+}
+
+
+
+
