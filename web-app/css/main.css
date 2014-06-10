@@ -81,6 +81,7 @@ h1 {
 
 .wide-block {
 	width: 93%;
+	clear: both;
 }
 
 .half-text-width {

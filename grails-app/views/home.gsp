@@ -72,7 +72,7 @@
                 <h1 class="block-header">
                     What is PHR
                 </h1>
-                <span class="block-text">
+                <div class="block-text">
                     <p>
                     Lorem ipsum dolor sit amet, consectetur adipisi
                     cing elit, sed do eiusmod tempor incididunt ut 
@@ -86,14 +86,14 @@
                         <li>bone density study (06-03-2014)</li>
                         <li>Eye Exam (05-05-2014)</li>
                     </ul>
-                </span>
+                </div>
             </div>
             
             <div class="horizontal-block-3 block">
                 <h1 class="block-header">
                     Why should you use it?
                 </h1>
-                <span class="block-text">
+                <div class="block-text">
                     <p>
                     Lorem ipsum dolor sit amet, consectetur adipisi
                     cing elit, sed do eiusmod tempor incididunt ut 
@@ -103,14 +103,14 @@
                     ut aliquip ex ea commodo . Duis aute irure dolor 
                     in reprehenderit in voluptate velit esse cillum.
                     </p>
-                </span>
+                </div>
             </div>
             
             <div class="horizontal-block-3 block">
                 <h1 class="block-header">
                     Our vision
                 </h1>
-                <span class="block-text">
+                <div class="block-text">
                     <p>
                     Lorem ipsum dolor sit amet, consectetur adipisi
                     cing elit, sed do eiusmod tempor incididunt ut 
@@ -122,15 +122,15 @@
                     <br /><br />
                     Dolore eu fugiat nulla pariatur. Excepteur sinboru.
                     </p>
-                </span>
+                </div>
             </div>
             
-            <div class="wide-block block" style="clear: both;">
-                <span class="">
+            <div class="wide-block block">
+                <div class="half-text-width">
 	                <h1 class="block-header">
 	                    How to use your PHR
 	                </h1>
-	                <span class="block-text half-text-width">
+	                <div class="block-text" style="float: left;">
 	                    <p>
 	                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod 
 	                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim 
@@ -139,16 +139,28 @@
 	                    eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, 
 	                    sunt in culpa qui officia deserunt mollit anim id est laborum
 	                    </p>
-	                </span>
-	            </span>
+	                </div>
+	            </div>
                 <span class="video-small">
-                    <iframe width="420" height="315" src="//www.youtube.com/embed/77r5p8IBwJk" frameborder="0" allowfullscreen></iframe>
+                    <iframe width="440" height="260" src="//www.youtube.com/embed/77r5p8IBwJk" frameborder="0" allowfullscreen></iframe>
                 </span>
             </div>
-        </div>
             
-
-        <div id="myCarousel" class="carousel slide" style="border: 1px solid #ccc; float: left;">
+            <div class="wide-block block">
+                <h1 class="block-header">
+                    Recommended Readings
+                </h1>
+                <ul class="block-text">
+                    <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod empor incididunt ut labore et dolore magna aliqua. Ut enim ad minim </li>
+                    <li>Quis ostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</li>
+                    <li>Eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, unt in culpa qui officia deserunt mollit anim id est laborum</li>
+                </ul>  
+            </div>
+        </div>
+        
+        
+        
+        <div id="myCarousel" class="carousel slide" style="border: 1px solid #ccc; float: left; display: none;">
             <div class="carousel-inner">
                 <div class="active item">
                     <g:img dir='images/custom/home/' file='one.png' />
@@ -165,16 +177,6 @@
                 <div class="item">
                     <g:img dir='images/custom/home/' file='five.png' />
                 </div>
-            </div>
-        </div>
-        
-        <div style="float: right; overflow: hidden; width: 30%;">
-            <div style="margin-top: 40px; font-style: italic;">
-                Innovative Medicine supports the<br/><a class="external" href="http://torbug.org">Toronto Bioinformatics Users Group</a> (TorBUG).
-            </div>
-
-            <div style="margin-top: 40px; font-style: italic; background: yellow; padding: 10px">
-                We have posted a new position on our Careers page! <g:link mapping="careers">See available positions. </g:link>
             </div>
         </div>
     </div>
