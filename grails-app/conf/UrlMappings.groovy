@@ -11,11 +11,11 @@ class UrlMappings
         //   name about:"/"{view='/index.gsp'}
         
         name home:          "/"             (view:"/index")
-        name summary:       "/summary"      (view:"/about")
+        name summary:       "/summary"      (view:"/summary")
         name medications:   "/medications"  (view:"/team")
         name immunizations: "/immunizations"(view:"/contact")
         name allergies:     "/allergies"    (view:"/careers")
-        name illnesses:     "/illnesses"    (view:"/services")
+        name illnesses:     "/illnesses"    (view:"/careers")
         name conditions:    "/conditions"   (view:"/symposium-2012-MAY-31")
         name wellness:      "/wellness"     (view:"/tools")
         name calendar:      "/calendar"     (view:"/tools")
