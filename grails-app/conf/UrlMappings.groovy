@@ -12,7 +12,7 @@ class UrlMappings
         
         name home:          "/"             (view:"/index")
         name summary:       "/summary"      (view:"/summary")
-        name medications:   "/medications"  (view:"/team")
+        name medications:   "/medications"  (view:"/medications")
         name immunizations: "/immunizations"(view:"/contact")
         name allergies:     "/allergies"    (view:"/careers")
         name illnesses:     "/illnesses"    (view:"/careers")
