@@ -106,4 +106,50 @@ h1 {
     float: right;
 }
 
+.table caption {
+	text-align: left;
+	margin: -10px 0 10px 0;
+}
+
+.table thead tr {
+	background-color: #062C8F;
+	color: white;
+}
+
+.table-name {
+    width: 150px;
+}
+
+.table-name2 {
+    width: 200px;
+}
+
+.table-date {
+    width: 88px;
+}
+
+.table-date2 {
+    width: 120px;
+}
+
+.table-reason {
+	width: 200px;
+}
+
+.table-editdelete {
+	width: 100px;
+	text-align: center !important;
+}
+
+.add-button {
+	width: 100px;
+	margin-top: 10px;
+	position: static;
+	float: right;
+}
+
+
+
+
+
 

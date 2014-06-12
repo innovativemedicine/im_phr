@@ -31,22 +31,10 @@
 				<li class="${g.activePageClass(pageTitle:'Calendar') }">
                     <g:link mapping="calendar">Calendar</g:link>
                 </li>
-				<li class="${g.activePageClass(pageTitle:'profile') }">
+				<li class="${g.activePageClass(pageTitle:'My Profile') }">
                     <g:link mapping="profile">My Profile</g:link>
                 </li>
                 
-                <!-- 
-				<g:if test="${session.user == null}">
-                <li class="${g.activePageClass(pageTitle:'Login') }">
-                    <g:link mapping="login">Login</g:link>
-                </li>
-                </g:if>
-                <g:if test="${session.user != null}">
-                <li class="${g.activePageClass(pageTitle:'Logout') }">
-                    <g:link mapping="logout">Logout</g:link>
-                </li>
-                </g:if>
-                 -->
                 
 			</ul>
 		</div>

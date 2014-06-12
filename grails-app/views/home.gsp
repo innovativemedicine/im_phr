@@ -3,40 +3,9 @@
 <head>
 
 <title>Home</title>
-<script charset="utf-8" src="http://widgets.twimg.com/j/2/widget.js"></script>
-<script>
-    try {
-        new TWTR.Widget({
-          version: 2,
-          type: 'profile',
-          rpp: 3,
-          interval: 30000,
-          width: 'auto',
-          height: 300,
-          theme: {
-            shell: {
-              background: '#f7f7f7',
-              color: '#050005'
-            },
-            tweets: {
-              background: '#fafafa',
-              color: '#030003',
-              links: '#0726eb'
-            }
-          },
-          features: {
-            scrollbar: false,
-            loop: false,
-            live: false,
-            behavior: 'all'
-          }
-        }).render().setUser('innovative_med').start();
-    } catch(e) {
-    }
-</script>
+
 
 </head>
-
 <body>
     <content tag="header">
     <div id="homehero" style="background-color: #fff;">
@@ -62,8 +31,7 @@
     
         <div>
             <p class="home-header-text">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et 
-                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.
             </p>
             <img class="home-header-img" src="/static/images/custom/red_pill_DNA.jpg">
         </div>
@@ -150,33 +118,7 @@
 	        </div>
         </div>
         
-        
-        
-        <div id="myCarousel" class="carousel slide" style="border: 1px solid #ccc; float: left; display: none;">
-            <div class="carousel-inner">
-                <div class="active item">
-                    <g:img dir='images/custom/home/' file='one.png' />
-                </div>
-                <div class="item">
-                    <g:img dir='images/custom/home/' file='two.png' />
-                </div>
-                <div class="item">
-                    <g:img dir='images/custom/home/' file='three.png' />
-                </div>
-                <div class="item">
-                    <g:img dir='images/custom/home/' file='four.png' />
-                </div>
-                <div class="item">
-                    <g:img dir='images/custom/home/' file='five.png' />
-                </div>
-            </div>
-        </div>
     </div>
-    <r:script>
-    $('#myCarousel').carousel({
-      interval: 4000
-    })
-    </r:script>
     
 </body>
 </html>

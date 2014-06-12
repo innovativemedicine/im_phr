@@ -2,7 +2,7 @@
 <html>
 <head>
 
-<title>Medications</title>
+<title>Immunizations</title>
 
 
 </head>
@@ -14,12 +14,12 @@
             
             <button type="button" class="add-button btn btn-primary">Add</button>
             
-            <h1>Current Medications</h1>
+            <h1>Current Immunizations</h1>
             <table class="table table-hover table-striped">
-				<caption>Medication that is currently being taken. Will automatically update when date expires.</caption>
+				<caption>Immunizations that is currently being given. Will automatically update when date expires.</caption>
 				<thead>
 					<tr>
-						<th class="table-name">Name</th>
+                        <th class="table-name">Name</th>
                         <th>Dose</th>
                         <th>Frequency</th>
                         <th>Form</th>
@@ -29,7 +29,7 @@
                         <th class="table-date">Refill Date</th>
                         <th class="table-reason">Reason for taking</th>
                         <th class="table-editdelete">Edit/Delete</th>
-					</tr>
+                    </tr>
 				</thead>
 				<tbody>
 				    <% def count=5 %>
@@ -56,10 +56,9 @@
             </table>
             
             
-            
-            <h1>Previous Medications</h1>
+            <h1>Previous Immunizations</h1>
             <table class="table table-hover table-striped">
-                <caption>Medication that was taken prior to current date.</caption>
+                <caption>Immunizations that was given prior to current date.</caption>
                 <thead>
                     <tr>
                         <th class="table-name">Name</th>

@@ -25,3 +25,5 @@ stacktrace.log
 /test/
 *target*
 /target/classes
+*/target/*
+*/target/**

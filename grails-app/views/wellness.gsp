@@ -2,13 +2,13 @@
 <html>
 <head>
 
-<title>Summary</title>
+<title>Wellness</title>
 
 
 </head>
 <body>
     <content tag="header" style="display: none;">
-        <h1>Summary</h1>
+        <h1>Wellness</h1>
     </content>
     
     <div class="container home-body">
@@ -28,7 +28,7 @@
 		                </div>
 		            </div>
 		            <div class="user-image-small">
-		                <img src="/images/placeholder-img.png" alt="User Image" class="img-polaroid" height="200" width="200" />
+		                <img src="/images/placeholder-img.png" alt="User Image" height="200" width="200" />
 		            </div>
 	            </div>
 	            
@@ -132,8 +132,7 @@
 	                </div>
 	            </div>
 	        </div>
-	        
-	        
 	    </div>
+	    
     </div>
 </body>
