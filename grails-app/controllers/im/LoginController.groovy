@@ -37,7 +37,7 @@ class LoginController {
             
             def allData = Login.list()
             
-            [fullName:session.user.fullName, allData: allData]
+            [firstName:session.user.firstName, allData: allData]
             
         } else {
             redirect(action: "login");

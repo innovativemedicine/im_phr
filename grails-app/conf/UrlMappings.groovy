@@ -19,7 +19,7 @@ class UrlMappings
         name conditions:    "/conditions"   (view:"/conditions")
         name wellness:      "/wellness"     (view:"/wellness")
         name calendar:      "/calendar"     (view:"/calendar")
-        name profile:       "/profile"      (view:"/profile")
+        name profile:       "/profile"      (controller:"myProfile")
         
 //        name vcflatten:"/tools/vcflatten"(view:"/vcflatten")
         

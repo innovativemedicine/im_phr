@@ -5,16 +5,19 @@ import java.util.Date;
 class Login {
     String userName
     String password
-    String fullName
+    String firstName
+    String lastName
     String email
     Date birthday
     
     String toString () {
-        "${fullName}"
+        "${firstName}"
+        "${lastName}"
     }
     
     static constraints = {
-        fullName(blank: false)
+        firstName(blank: false)
+        lastName(blank: false)
         userName(blank: false, unique: true)
         password(password: true)
         email(blank: false, email: true)
