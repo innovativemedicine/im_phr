@@ -11,14 +11,14 @@ class UrlMappings
         //   name about:"/"{view='/index.gsp'}
         
         name home:          "/"             (view:"/index")
-        name summary:       "/summary"      (view:"/summary")
-        name medications:   "/medications"  (view:"/medications")
-        name immunizations: "/immunizations"(view:"/immunizations")
-        name allergies:     "/allergies"    (view:"/allergies")
-        name illnesses:     "/illnesses"    (view:"/illnesses")
-        name conditions:    "/conditions"   (view:"/conditions")
-        name wellness:      "/wellness"     (view:"/wellness")
-        name calendar:      "/calendar"     (view:"/calendar")
+        name summary:       "/summary"      (controller:"summary")
+        name medications:   "/medications"  (controller:"medications")
+        name immunizations: "/immunizations"(controller:"immunizations")
+        name allergies:     "/allergies"    (controller:"allergies")
+        name illnesses:     "/illnesses"    (controller:"illnesses")
+        name conditions:    "/conditions"   (controller:"conditions")
+        name wellness:      "/wellness"     (controller:"wellness")
+        name calendar:      "/calendar"     (controller:"calendar")
         name profile:       "/profile"      (controller:"myProfile")
         
 //        name vcflatten:"/tools/vcflatten"(view:"/vcflatten")
