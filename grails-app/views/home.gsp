@@ -14,7 +14,7 @@
             <h1 style="line-height: 1.1em; font-size: 28px;">
                 <span class="home-header">
                     <g:if test="${session.user != null}">
-                    Welcome, ${session.user }!
+                    Welcome, ${session.user.firstName }!
                     </g:if>
                     
                     <g:if test="${session.user == null}">
