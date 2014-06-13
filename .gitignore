@@ -27,3 +27,5 @@ stacktrace.log
 /target/classes
 */target/*
 */target/**
+/devDb.trace.db
+/devDb.lock.db
