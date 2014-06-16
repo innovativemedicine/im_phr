@@ -28,21 +28,25 @@ class Login {
         "${lastName}"
     }
     
+    static mapping = {
+        id column:'user_id'
+    }
+    
     static constraints = {
         userName(blank: false, unique: true)
         password(password: true)
         firstName(blank: false)
-        middleName()
+        middleName(blank: true)
         lastName(blank: false)
         email(blank: false, email: true, unique: true)
         
-//        addressOne()
-//        addressTwo()
-//        city()
-//        province()
-//        postalCode()
-//        country()
-//        telephoneNumber()
+//        addressOne(blank: false)
+//        addressTwo(blank: true)
+//        city(blank: false)
+//        province(blank: false)
+//        postalCode(blank: false)
+//        country(blank: false)
+//        telephoneNumber(blank: false)
 //        gender(inList: ["Male", "Female", "Decline to answer"])
         
         birthday(max: new Date())

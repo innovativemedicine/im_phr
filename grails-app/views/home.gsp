@@ -17,9 +17,9 @@
                     Welcome, ${session.user.firstName }!
                     </g:if>
                     
-                    <g:if test="${session.user == null}">
+                    <g:elseif test="${session.user == null}">
                     Welcome, Test User!
-                    </g:if>
+                    </g:elseif>
                 </span>
             </h1>
         </div>

@@ -15,6 +15,7 @@ class LoginController {
     }
     
     def authenticate = {
+        println(params.userName + "  " + params.password)
         def user = Login.findByUserNameAndPassword(params.userName, params.password)
         if (user) {
             session.user = user
@@ -35,9 +36,7 @@ class LoginController {
     def welcome =  {
         if (session.user != null) {
             
-            def allData = Login.list()
-            
-            [firstName:session.user.firstName, allData: allData]
+            [firstName:session.user.firstName]
             
         } else {
             redirect(action: "login");

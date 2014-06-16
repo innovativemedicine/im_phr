@@ -22,10 +22,12 @@
 		                    User Info
 		                </h1>
 		                <div class="block-text-18">
-		                    <p>
-		                    Gray Fullbuster<br />20 King Road<br />Edolas<br />Home #: 416-245-6585<br />Age: 18<br />Birthdate: 03-15-1993
-		                    </p>
-		                </div>
+		                    <g:each in="${result}"> <!-- Need to wrap the variable calls with "g:each" to remove square brackets -->
+                                <p>
+                                    ${it.first_name } ${it.last_name }<br />${it.address_one }<br />${it.city }<br />Home #: ${it.telephone_number }<br />Age: ${it.birthday }<br />Birthday: ${it.birthday }
+                                </p>                                
+                            </g:each>
+                        </div>
 		            </div>
 		            <div class="user-image-small">
 		                <img src="/images/placeholder-img.png" alt="User Image" class="img-polaroid" height="200" width="200" />
