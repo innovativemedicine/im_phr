@@ -12,7 +12,17 @@
         
         <div id="main-body" style="clear: both">
             
-            <button type="button" class="add-button btn btn-primary">Add</button>
+            
+            <g:form action="add_medicine" >
+                <fieldset class="buttons">
+                    <g:submitButton name="add" class="add-button btn btn-primary" value="Add" />
+                </fieldset>
+            </g:form>
+            
+            
+            <g:submitButton name="add" class="add-button btn btn-primary" value="Add" action="add_medicine" />
+            
+            
             
             <h1>Current Medications</h1>
             <table class="table table-hover table-striped">
@@ -32,18 +42,17 @@
 					</tr>
 				</thead>
 				<tbody>
-				    <% def count=5 %>
-					<g:each in="${1..count}" var="c">
+				    <g:each in="${result}" var="data">
 					<tr>
-						<td>Ether ${c}</td>
-						<td>15 mL</td>
-                        <td>3 times/day</td>
-                        <td>Liquid</td>
-                        <td>Potent</td>
-                        <td>02-1${c}-2014</td>
-                        <td>02-18-2014</td>
-                        <td>02-29-2014</td>
-                        <td>Tired very easily</td>
+						<td>${data.name }</td>
+						<td>${data.dose }</td>
+						<td>${data.frequency }</td>
+						<td>${data.form }</td>
+                        <td>${data.strength }</td>
+                        <td>${data.start_date }</td>
+                        <td>${data.stop_date }</td>
+                        <td>${data.refill_date }</td>
+                        <td>${data.comments }</td>
                         <td class="table-editdelete">
                             <i class="icon-cog"></i>
                             <i class="icon-pencil"></i>
@@ -75,17 +84,17 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <g:each in="${1..count}" var="c">
+                    <g:each in="${result}" var="data">
                     <tr>
-                        <td>Ether ${c}</td>
-                        <td>15 mL</td>
-                        <td>3 times/day</td>
-                        <td>Liquid</td>
-                        <td>Potent</td>
-                        <td>02-1${c}-2014</td>
-                        <td>02-18-2014</td>
-                        <td>02-29-2014</td>
-                        <td>Tired very easily</td>
+                        <td>${data.name }</td>
+                        <td>${data.dose }</td>
+                        <td>${data.frequency }</td>
+                        <td>${data.form }</td>
+                        <td>${data.strength }</td>
+                        <td>${data.start_date }</td>
+                        <td>${data.stop_date }</td>
+                        <td>${data.refill_date }</td>
+                        <td>${data.comments }</td>
                         <td class="table-editdelete">
                             <i class="icon-cog"></i>
                             <i class="icon-pencil"></i>

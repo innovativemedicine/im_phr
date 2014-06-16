@@ -32,8 +32,7 @@ class SummaryController {
      * Main landing page for Summary tab.
      */
     def summary = {
-//        params.max = Math.min(max ?: 10, 100)
-//        [userInfo: EndUser.list(params), endUserInstanceTotal: EndUser.count()]
+        
         def db = new Sql(dataSource) // Create a new instance of groovy.sql.Sql with the DB of the Grails app
         
         def result = db.rows("SELECT * FROM login WHERE user_name = ? ", session.user.userName) // Perform the query
