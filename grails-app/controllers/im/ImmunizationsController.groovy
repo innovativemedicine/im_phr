@@ -5,7 +5,7 @@ import groovy.sql.Sql
 
 class ImmunizationsController {
     
-    static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
+    static allowedMethods = [save: "POST", update: "POST", delete: ["GET", "POST"]]
     
     def dataSource // the Spring-Bean "dataSource" is auto-injected
     
@@ -33,7 +33,7 @@ class ImmunizationsController {
         def db = new Sql(dataSource) // Create a new instance of groovy.sql.Sql with the DB of the Grails app
         
         def UserImmunizationsInstanceList = db.rows(
-            "SELECT ui.name, ui.comments, ui.date, ui.dose, ui.manufacturer, ui.next_date, ui.type " +
+            "SELECT ui.immunization_id, ui.name, ui.comments, ui.date, ui.dose, ui.manufacturer, ui.next_date, ui.type " +
             " FROM user_immunizations ui, login l " +
             " WHERE ui.user_id = l.user_id AND l.last_name = ? ", session.user.lastName)
         
@@ -68,15 +68,18 @@ class ImmunizationsController {
     }
     
     def edit(Long id) {
-        println("edit");
+        println("edit : " + id);
+        
         def UserImmunizationsInstance = UserImmunizations.get(id)
+        
+        println("userImmuniuzations = " + UserImmunizationsInstance + "   |   " + UserImmunizations)
         if (!UserImmunizationsInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'UserImmunizations.label', default: 'UserImmunizations'), id])
             redirect(action: "immunizations")
             return
         }
-
-        [UserImmunizationsInstance: UserImmunizationsInstance]
+        
+        [userImmunizationsInstance: UserImmunizationsInstance]
     }
     
     def update(Long id, Long version) {
@@ -106,13 +109,17 @@ class ImmunizationsController {
         }
 
         flash.message = message(code: 'default.updated.message', args: [message(code: 'UserImmunizations.label', default: 'UserImmunizations'), UserImmunizationsInstance.id])
-        redirect(action: "show", id: UserImmunizationsInstance.id)
+        redirect(action: "immunizations", id: UserImmunizationsInstance.id)
     }
 
     def delete(Long id) {
-        println("delete");
+        
+        
+        
+        println("delete")
         def UserImmunizationsInstance = UserImmunizations.get(id)
         if (!UserImmunizationsInstance) {
+            println("something failed")
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'UserImmunizations.label', default: 'UserImmunizations'), id])
             redirect(action: "immunizations")
             return
@@ -127,6 +134,7 @@ class ImmunizationsController {
             flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'UserImmunizations.label', default: 'UserImmunizations'), id])
             redirect(action: "immunizations", id: id)
         }
+        
     }
     
 }

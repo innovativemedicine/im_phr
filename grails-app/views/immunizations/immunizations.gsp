@@ -47,10 +47,14 @@
                         <td>${data.next_date }</td>
                         <td>${data.comments }</td>
                         <td class="table-editdelete">
-                            <i class="icon-cog"></i>
-                            <i class="icon-pencil"></i>
-                            <i class="icon-wrench"></i>
-                            <i class="icon-search"></i>
+                            <g:link class="icons-edit" action="edit" params='[id: "${data.immunization_id }"]' title="Edit">
+				                <i class="icon-cog"></i>
+	                            <i class="icon-pencil"></i>
+	                            <i class="icon-wrench"></i>
+				            </g:link>
+				            <g:link class="icons-edit" action="delete" params='[id: "${data.immunization_id }"]' onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" title="Delete">
+				                <i class="icon-remove"></i>
+				            </g:link>
                         </td>
 					</tr>
 					</g:each>
