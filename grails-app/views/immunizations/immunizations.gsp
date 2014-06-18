@@ -12,7 +12,12 @@
         
         <div id="main-body" style="clear: both">
             
-            <button type="button" class="add-button btn btn-primary">Add</button>
+            
+            <g:link class="add-button btn btn-primary form-button" action="create">
+<%--                <g:message code="default.new.label" args="[entityName]" />--%>
+                Add
+            </g:link>
+            
             
             <h1>Current Immunizations</h1>
             <table class="table table-hover table-striped">
@@ -21,29 +26,26 @@
 					<tr>
                         <th class="table-name">Name</th>
                         <th>Dose</th>
-                        <th>Frequency</th>
-                        <th>Form</th>
-                        <th>Strength</th>
-                        <th class="table-date">Start Date</th>
-                        <th class="table-date">Stop Date</th>
-                        <th class="table-date">Refill Date</th>
-                        <th class="table-reason">Reason for taking</th>
+                        <th>Type</th>
+                        <th>Manufacturer</th>
+                        <th>Dose</th>
+                        <th class="table-date">Date</th>
+                        <th class="table-date">Next Date</th>
+                        <th class="table-reason">Comments</th>
                         <th class="table-editdelete">Edit/Delete</th>
                     </tr>
 				</thead>
 				<tbody>
-				    <% def count=5 %>
-					<g:each in="${1..count}" var="c">
+					<g:each in="${UserImmunizationsInstanceList }" var="data">
 					<tr>
-						<td>Ether ${c}</td>
-						<td>15 mL</td>
-                        <td>3 times/day</td>
-                        <td>Liquid</td>
-                        <td>Potent</td>
-                        <td>02-1${c}-2014</td>
-                        <td>02-18-2014</td>
-                        <td>02-29-2014</td>
-                        <td>Tired very easily</td>
+					    <td>${data.name }</td>
+                        <td>${data.dose }</td>
+                        <td>${data.type }</td>
+                        <td>${data.manufacturer }</td>
+                        <td>${data.dose }</td>
+                        <td>${data.date }</td>
+                        <td>${data.nextDate }</td>
+                        <td>${data.comments }</td>
                         <td class="table-editdelete">
                             <i class="icon-cog"></i>
                             <i class="icon-pencil"></i>
@@ -55,46 +57,6 @@
 				</tbody>
             </table>
             
-            
-            <h1>Previous Immunizations</h1>
-            <table class="table table-hover table-striped">
-                <caption>Immunizations that was given prior to current date.</caption>
-                <thead>
-                    <tr>
-                        <th class="table-name">Name</th>
-                        <th>Dose</th>
-                        <th>Frequency</th>
-                        <th>Form</th>
-                        <th>Strength</th>
-                        <th class="table-date">Start Date</th>
-                        <th class="table-date">Stop Date</th>
-                        <th class="table-date">Refill Date</th>
-                        <th class="table-reason">Reason for taking</th>
-                        <th class="table-editdelete">Edit/Delete</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <g:each in="${1..count}" var="c">
-                    <tr>
-                        <td>Ether ${c}</td>
-                        <td>15 mL</td>
-                        <td>3 times/day</td>
-                        <td>Liquid</td>
-                        <td>Potent</td>
-                        <td>02-1${c}-2014</td>
-                        <td>02-18-2014</td>
-                        <td>02-29-2014</td>
-                        <td>Tired very easily</td>
-                        <td class="table-editdelete">
-                            <i class="icon-cog"></i>
-                            <i class="icon-pencil"></i>
-                            <i class="icon-wrench"></i>
-                            <i class="icon-search"></i>
-                        </td>
-                    </tr>
-                    </g:each>
-                </tbody>
-            </table>
             
         </div>
     </div>

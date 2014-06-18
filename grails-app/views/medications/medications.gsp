@@ -12,16 +12,11 @@
         
         <div id="main-body" style="clear: both">
             
-            
-            <g:form action="add_medicine" >
+            <g:form action="add" class="form-button" >
                 <fieldset class="buttons">
                     <g:submitButton name="add" class="add-button btn btn-primary" value="Add" />
                 </fieldset>
             </g:form>
-            
-            
-            <g:submitButton name="add" class="add-button btn btn-primary" value="Add" action="add_medicine" />
-            
             
             
             <h1>Current Medications</h1>

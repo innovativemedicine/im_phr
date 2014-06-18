@@ -142,13 +142,14 @@ h1 {
 }
 
 .add-button {
-	width: 100px;
+	width: 100px !important;
 	margin-top: 10px;
 	position: static;
-	float: right;
 }
 
-
+.form-button {
+	float: right;
+}
 
 
 

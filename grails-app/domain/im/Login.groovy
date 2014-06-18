@@ -32,6 +32,8 @@ class Login {
         id column:'user_id'
     }
     
+    static hasMany = [userImmunizations : UserImmunizations]
+    
     static constraints = {
         userName(blank: false, unique: true)
         password(password: true)
