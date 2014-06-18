@@ -72,7 +72,7 @@ class ImmunizationsController {
         
         def UserImmunizationsInstance = UserImmunizations.get(id)
         
-        println("userImmuniuzations = " + UserImmunizationsInstance + "   |   " + UserImmunizations)
+        println("userImmunizations = " + UserImmunizationsInstance + "   |   " + UserImmunizations)
         if (!UserImmunizationsInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'UserImmunizations.label', default: 'UserImmunizations'), id])
             redirect(action: "immunizations")
@@ -113,9 +113,6 @@ class ImmunizationsController {
     }
 
     def delete(Long id) {
-        
-        
-        
         println("delete")
         def UserImmunizationsInstance = UserImmunizations.get(id)
         if (!UserImmunizationsInstance) {
