@@ -14,6 +14,8 @@ class UserImmunizations {
     
     static belongsTo = [user : Login]
     
+    static fetchMode = [user: 'eager']
+    
     String toString () {
         "${name}"
         "${comments}"
@@ -26,9 +28,9 @@ class UserImmunizations {
     
     static constraints = {
         name(blank: false)
-//        userId(blank: false)
-        type(inList: ["Live", "Inactivated Killed", "Toxoids", "Cellular Fractions", "Combinations", "Immunoglobulins", 
-                      "Anitisera"], nullable: true) // http://www.webhealthcentre.com/HealthyLiving/immunisation_types.aspx
+//        type(inList: ["Live", "Inactivated Killed", "Toxoids", "Cellular Fractions", "Combinations", "Immunoglobulins", 
+//                      "Anitisera"], nullable: true) // http://www.webhealthcentre.com/HealthyLiving/immunisation_types.aspx
+        type(blank: true, nullable: true)
         manufacturer(blank: true, nullable: true)
         dose(blank: true, nullable: true)
         date(max: new Date(), blank: true, nullable: true)

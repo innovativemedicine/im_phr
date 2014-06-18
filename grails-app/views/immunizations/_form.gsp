@@ -1,11 +1,20 @@
 <%@ page import="im.UserImmunizations" %>
 
 
-<div class="fieldcontain ${hasErrors(bean: userImmunizationsInstance, field: 'name', 'error')} ">
+<div class="fieldcontain ${hasErrors(bean: userImmunizationsInstance, field: 'name', 'error')} required">
 	<label for="name">
 		<g:message code="userImmunizations.name.label" default="Immunization Name" />
+		<span class="required-indicator">*</span>
 	</label>
 	<g:textField name="name" value="${userImmunizationsInstance?.name}"/>
+</div>
+
+
+<div class="fieldcontain ${hasErrors(bean: userImmunizationsInstance, field: 'dose', 'error')} ">
+    <label for="dose">
+        <g:message code="userImmunizations.dose.label" default="Dose" />
+    </label>
+    <g:textField name="dose" value="${userImmunizationsInstance?.dose}"/>
 </div>
 
 
@@ -57,7 +66,7 @@
         <g:message code="project.user.label" default="User" />
         <span class="required-indicator">*</span>
     </label>
-    <g:select id="user" name="user.id" from="${im.Login.list()}" optionKey="id" required="" value="${userImmunizationsInstance?.user?.id}" class="many-to-one"/>
+    <g:select id="user" name="user.id" from="${im.Login.findByFirstName(session.user.firstName)}" optionKey="id" required="" value="${userImmunizationsInstance?.user?.id}" class="many-to-one"/>
 </div>
 
 

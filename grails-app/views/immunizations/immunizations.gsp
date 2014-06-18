@@ -44,7 +44,7 @@
                         <td>${data.manufacturer }</td>
                         <td>${data.dose }</td>
                         <td>${data.date }</td>
-                        <td>${data.nextDate }</td>
+                        <td>${data.next_date }</td>
                         <td>${data.comments }</td>
                         <td class="table-editdelete">
                             <i class="icon-cog"></i>
