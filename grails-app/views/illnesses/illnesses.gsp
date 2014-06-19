@@ -12,89 +12,89 @@
         
         <div id="main-body" style="clear: both">
             
-            <button type="button" class="add-button btn btn-primary">Add</button>
+            
+            <g:link class="add-button btn btn-primary form-button" action="create">
+                Add
+            </g:link>
+            
             
             <h1>Current Illnesses</h1>
             <table class="table table-hover table-striped">
-				<caption>Will automatically update when date expires.</caption>
-				<thead>
-					<tr>
-                        <th class="table-name">Name</th>
-                        <th>Dose</th>
-                        <th>Frequency</th>
-                        <th>Form</th>
-                        <th>Strength</th>
-                        <th class="table-date">Start Date</th>
-                        <th class="table-date">Stop Date</th>
-                        <th class="table-date">Refill Date</th>
-                        <th class="table-reason">Reason for taking</th>
-                        <th class="table-editdelete">Edit/Delete</th>
-                    </tr>
-				</thead>
-				<tbody>
-				    <% def count=5 %>
-					<g:each in="${1..count}" var="c">
-					<tr>
-						<td>Ether ${c}</td>
-						<td>15 mL</td>
-                        <td>3 times/day</td>
-                        <td>Liquid</td>
-                        <td>Potent</td>
-                        <td>02-1${c}-2014</td>
-                        <td>02-18-2014</td>
-                        <td>02-29-2014</td>
-                        <td>Tired very easily</td>
-                        <td class="table-editdelete">
-                            <i class="icon-cog"></i>
-                            <i class="icon-pencil"></i>
-                            <i class="icon-wrench"></i>
-                            <i class="icon-search"></i>
-                        </td>
-					</tr>
-					</g:each>
-				</tbody>
-            </table>
-            
-            
-            <h1>Previous Illnesses</h1>
-            <table class="table table-hover table-striped">
-                <caption>Illnesses prior to current date.</caption>
+                <caption>Will automatically update when date expires.</caption>
                 <thead>
                     <tr>
-                        <th class="table-name">Name</th>
-                        <th>Dose</th>
-                        <th>Frequency</th>
-                        <th>Form</th>
-                        <th>Strength</th>
-                        <th class="table-date">Start Date</th>
-                        <th class="table-date">Stop Date</th>
-                        <th class="table-date">Refill Date</th>
-                        <th class="table-reason">Reason for taking</th>
+                        <th class="table-name">Illness Name</th>
+                        <th>Symptoms</th>
+                        <th>Treatment</th>
+                        <th>Date of Onset</th>
+                        <th>End Date</th>
+                        <th>Comments</th>
                         <th class="table-editdelete">Edit/Delete</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <g:each in="${1..count}" var="c">
+                    <g:each in="${UserIllnessesInstanceList }" var="data">
                     <tr>
-                        <td>Ether ${c}</td>
-                        <td>15 mL</td>
-                        <td>3 times/day</td>
-                        <td>Liquid</td>
-                        <td>Potent</td>
-                        <td>02-1${c}-2014</td>
-                        <td>02-18-2014</td>
-                        <td>02-29-2014</td>
-                        <td>Tired very easily</td>
+                        <td>${data.name }</td>
+                        <td>${data.symptoms }</td>
+                        <td>${data.treatment }</td>
+                        <td>${data.onset_date }</td>
+                        <td>${data.end_date }</td>
+                        <td>${data.comments }</td>
                         <td class="table-editdelete">
-                            <i class="icon-cog"></i>
-                            <i class="icon-pencil"></i>
-                            <i class="icon-wrench"></i>
-                            <i class="icon-search"></i>
+                            <g:link class="icons-edit" action="edit" params='[id: "${data.illness_id }"]' title="Edit">
+                                <i class="icon-cog"></i>
+                                <i class="icon-pencil"></i>
+                                <i class="icon-wrench"></i>
+                            </g:link>
+                            <g:link class="icons-edit" action="delete" params='[id: "${data.illness_id }"]' onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" title="Delete">
+                                <i class="icon-remove"></i>
+                            </g:link>
                         </td>
                     </tr>
                     </g:each>
                 </tbody>
             </table>
+            
+            
+            <h1>Previous Illnesses</h1>
+            <table class="table table-hover table-striped">
+                <caption>Illnesses prior to current data.</caption>
+                <thead>
+                    <tr>
+                        <th class="table-name">Illness Name</th>
+                        <th>Symptoms</th>
+                        <th>Treatment</th>
+                        <th>Date of Onset</th>
+                        <th>End Date</th>
+                        <th>Comments</th>
+                        <th class="table-editdelete">Edit/Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <g:each in="${UserAllergiesInstanceList }" var="data">
+                    <tr>
+                        <td>${data.name }</td>
+                        <td>${data.symptoms }</td>
+                        <td>${data.treatment }</td>
+                        <td>${data.onset_date }</td>
+                        <td>${data.end_date }</td>
+                        <td>${data.comments }</td>
+                        <td class="table-editdelete">
+                            <g:link class="icons-edit" action="edit" params='[id: "${data.illness_id }"]' title="Edit">
+                                <i class="icon-cog"></i>
+                                <i class="icon-pencil"></i>
+                                <i class="icon-wrench"></i>
+                            </g:link>
+                            <g:link class="icons-edit" action="delete" params='[id: "${data.illness_id }"]' onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" title="Delete">
+                                <i class="icon-remove"></i>
+                            </g:link>
+                        </td>
+                    </tr>
+                    </g:each>
+                </tbody>
+            </table>
+            
             
         </div>
     </div>

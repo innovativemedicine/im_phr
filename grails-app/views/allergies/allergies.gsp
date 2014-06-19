@@ -24,9 +24,9 @@
                 <thead>
                     <tr>
                         <th class="table-name">Allergy Name</th>
-                        <th class="table-reason">Allergic Reaction</th>
+                        <th>Allergic Reaction</th>
                         <th>Severity</th>
-                        <th class="table-date">Date of Onset</th>
+                        <th>Date of Onset</th>
                         <th class="table-editdelete">Edit/Delete</th>
                     </tr>
                 </thead>

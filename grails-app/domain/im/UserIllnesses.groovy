@@ -2,11 +2,13 @@ package im
 
 import java.util.Date;
 
-class UserAllergies {
+class UserIllnesses {
     String name
-    String reaction
-    String severity
+    String symptoms
+    String treatment
     Date   onsetDate
+    Date   endDate
+    String comments
     
     static belongsTo = [user : Login]
     
@@ -17,15 +19,16 @@ class UserAllergies {
     }
     
     static mapping = {
-        id column:'allergy_id'
+        id column:'illness_id'
     }
     
     static constraints = {
         name(blank: false)
-        reaction(blank: true, nullable: true)
-//        severity(inList: ["Lethal", "Medium", "Mild"], nullable: true)
-        severity(blank: true, nullable: true)
+        symptoms(blank: true, nullable: true)
+        treatment(blank: true, nullable: true)
         onsetDate(max: new Date(), blank: true, nullable: true)
+        endDate(blank: true, nullable: true)
+        comments(blank: true, nullable: true)
     }
 }
 
