@@ -12,37 +12,45 @@
         
         <div id="main-body" style="clear: both">
             
-            <button type="button" class="add-button btn btn-primary">Add</button>
+            
+            
+            <g:link class="add-button btn btn-primary form-button" action="create">
+                Add
+            </g:link>
+            
             
             <h1>Current Conditions</h1>
             <table class="table table-hover table-striped">
-				<caption>Will automatically update when date expires.</caption>
-				<thead>
-					<tr>
+                <caption>Will automatically update when date expires.</caption>
+                <thead>
+                    <tr>
                         <th class="table-name2">Name</th>
-                        <th class="table-comments">Commends</th>
+                        <th class="table-comments">Comments</th>
                         <th class="table-date2">Onset Date</th>
                         <th class="table-date2"></th>
                         <th class="table-editdelete">Edit/Delete</th>
                     </tr>
-				</thead>
-				<tbody>
-				    <% def count=5 %>
-					<g:each in="${1..count}" var="c">
-					<tr>
-                        <td>Cholera</td>
-                        <td>Very contagious</td>
-                        <td>0${c}-29-2014</td>
-                        <td></td>
+                </thead>
+                <tbody>
+                    <g:each in="${UserConditionsInstanceList }" var="data">
+                    <tr>
+                        <td>${data.name }</td>
+                        <td>${data.comments }</td>
+                        <td>${data.onset_date }</td>
+                        <td>${data.end_date }</td>
                         <td class="table-editdelete">
-                            <i class="icon-cog"></i>
-                            <i class="icon-pencil"></i>
-                            <i class="icon-wrench"></i>
-                            <i class="icon-search"></i>
+                            <g:link class="icons-edit" action="edit" params='[id: "${data.condition_id }"]' title="Edit">
+                                <i class="icon-cog"></i>
+                                <i class="icon-pencil"></i>
+                                <i class="icon-wrench"></i>
+                            </g:link>
+                            <g:link class="icons-edit" action="delete" params='[id: "${data.condition_id }"]' onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" title="Delete">
+                                <i class="icon-remove"></i>
+                            </g:link>
                         </td>
-					</tr>
-					</g:each>
-				</tbody>
+                    </tr>
+                    </g:each>
+                </tbody>
             </table>
             
             
@@ -52,29 +60,34 @@
                 <thead>
                     <tr>
                         <th class="table-name2">Name</th>
-                        <th class="table-comments">Commends</th>
+                        <th class="table-comments">Comments</th>
                         <th class="table-date2">Onset Date</th>
                         <th class="table-date2">End Date</th>
                         <th class="table-editdelete">Edit/Delete</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <g:each in="${1..count}" var="c">
+                    <g:each in="${UserConditionsInstanceList }" var="data">
                     <tr>
-                        <td>Cholera</td>
-                        <td>Very contagious</td>
-                        <td>0${c}-29-2014</td>
-                        <td>0${c+1}-29-2014</td>
+                        <td>${data.name }</td>
+                        <td>${data.comments }</td>
+                        <td>${data.onset_date }</td>
+                        <td>${data.end_date }</td>
                         <td class="table-editdelete">
-                            <i class="icon-cog"></i>
-                            <i class="icon-pencil"></i>
-                            <i class="icon-wrench"></i>
-                            <i class="icon-search"></i>
+                            <g:link class="icons-edit" action="edit" params='[id: "${data.condition_id }"]' title="Edit">
+                                <i class="icon-cog"></i>
+                                <i class="icon-pencil"></i>
+                                <i class="icon-wrench"></i>
+                            </g:link>
+                            <g:link class="icons-edit" action="delete" params='[id: "${data.condition_id }"]' onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" title="Delete">
+                                <i class="icon-remove"></i>
+                            </g:link>
                         </td>
                     </tr>
                     </g:each>
                 </tbody>
             </table>
+            
             
         </div>
     </div>
