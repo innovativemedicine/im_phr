@@ -35,7 +35,7 @@ class ImmunizationsController {
         def UserImmunizationsInstanceList = db.rows(
             "SELECT ui.immunization_id, ui.name, ui.comments, ui.date, ui.dose, ui.manufacturer, ui.next_date, ui.type " +
             " FROM user_immunizations ui, login l " +
-            " WHERE ui.user_id = l.user_id AND l.last_name = ? ", session.user.lastName)
+            " WHERE ui.user_id = l.user_id AND l.user_name = ? ", session.user.userName)
         
         [UserImmunizationsInstanceList: UserImmunizationsInstanceList]
     }

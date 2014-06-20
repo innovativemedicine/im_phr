@@ -1,0 +1,55 @@
+package im
+
+import java.util.Date;
+
+class UserProfile {
+    String addressOne
+    String addressTwo
+    String city
+    String province
+    String country
+    String postalCode
+    String gender
+    Date   birthday
+    String maritalStatus
+    String homePhone
+    String cellPhone
+    String email
+    String race
+    String primaryLanguage
+    int    height
+    int    weight
+    String bloodType
+    
+    static belongsTo = [user : Login]
+    static fetchMode = [user: 'eager']
+    
+    static mapping = {
+        id column:'profile_id'
+    }
+    
+    static constraints = {
+        addressOne(blank:true, nullable: true)
+        addressTwo(blank:true, nullable: true)
+        city(blank:true, nullable: true)
+        province(blank:true, nullable: true)
+        country(blank:true, nullable: true)
+        postalCode(blank:true, nullable: true)
+//        gender(blank:true, nullable: true)
+        gender(inList:["Male", "Female", "Decline to answer"])
+        birthday(blank:true, nullable: true, max: new Date())
+        
+//        maritalStatus(blank:true, nullable: true)
+        maritalStatus(inList:["Maried", "Separated/Divorced", "Widowed", "Single/Never Maried", "Decline to answer"])
+        
+        homePhone(blank:true, nullable: true)
+        cellPhone(blank:true, nullable: true)
+        email(blank:true, nullable: true, email: true)
+        race(blank:true, nullable: true)
+        primaryLanguage(blank:true, nullable: true)
+        height(blank:true, nullable: true)
+        weight(blank:true, nullable: true)
+//        bloodType(blank:true, nullable: true)
+        bloodType(inList:["Don't Know", "A +", "A -", "B +", "B -", "AB +", "AB -", "O +", "O -"])
+    }
+}

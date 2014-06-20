@@ -36,7 +36,7 @@ class AllergiesController {
         def UserAllergiesInstanceList = db.rows(
             "SELECT ua.allergy_id, ua.name, ua.reaction, ua.severity, ua.onset_date " +
             " FROM user_allergies ua, login l " +
-            " WHERE ua.user_id = l.user_id AND l.last_name = ? ", session.user.lastName)
+            " WHERE ua.user_id = l.user_id AND l.user_name = ? ", session.user.userName)
         
         [UserAllergiesInstanceList: UserAllergiesInstanceList]
     }

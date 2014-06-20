@@ -10,18 +10,6 @@ class Login {
     String lastName
     String email
     
-    String addressOne
-    String addressTwo
-    String city
-    String province
-    String postalCode
-    String country
-    String telephoneNumber
-    String gender
-    
-    
-    Date birthday
-    
     String toString () {
         "${firstName}"
         "${middleName}"
@@ -32,7 +20,9 @@ class Login {
         id column:'user_id'
     }
     
-    static hasMany = [userImmunizations : UserImmunizations]
+    static hasMany = [userAllergies : UserAllergies, userConditions : UserConditions, userIllnesses : UserIllnesses, 
+                      userImmunizations : UserImmunizations, userMedications : UserMedications, userProfile : UserProfile, 
+                      userEmergencyContacts : UserEmergencyContacts, userEmploymentInfo : UserEmploymentInfo]
     
     static constraints = {
         userName(blank: false, unique: true)
@@ -41,16 +31,5 @@ class Login {
         middleName(blank: true)
         lastName(blank: false)
         email(blank: false, email: true, unique: true)
-        
-//        addressOne(blank: false)
-//        addressTwo(blank: true)
-//        city(blank: false)
-//        province(blank: false)
-//        postalCode(blank: false)
-//        country(blank: false)
-//        telephoneNumber(blank: false)
-//        gender(inList: ["Male", "Female", "Decline to answer"])
-        
-        birthday(max: new Date())
     }
 }
