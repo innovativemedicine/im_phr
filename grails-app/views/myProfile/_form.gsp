@@ -1,0 +1,189 @@
+<%@ page import="im.UserProfile" %>
+
+
+<div class="fieldcontain ${hasErrors(bean: loginInstance, field: 'firstName', 'error')} required">
+    <label for="firstName">
+        <g:message code="login.firstName.label" default="First Name" />
+        <span class="required-indicator">*</span>
+    </label>
+    <g:textField name="firstName" value="${loginInstance?.firstName}"/>
+</div>
+
+
+<div class="fieldcontain ${hasErrors(bean: loginInstance, field: 'middleName', 'error')}">
+    <label for="middleName">
+        <g:message code="login.middleName.label" default="Middle Name" />
+    </label>
+    <g:textField name="middleName" value="${loginInstance?.middleName}"/>
+</div>
+
+
+<div class="fieldcontain ${hasErrors(bean: loginInstance, field: 'lastName', 'error')} required">
+    <label for="lastName">
+        <g:message code="login.lastName.label" default="Last Name" />
+        <span class="required-indicator">*</span>
+    </label>
+    <g:textField name="lastName" value="${loginInstance?.lastName}"/>
+</div>
+
+
+<div class="fieldcontain ${hasErrors(bean: userProfileInstance, field: 'addressOne', 'error')} required">
+    <label for="addressOne">
+        <g:message code="userProfile.addressOne.label" default="Address" />
+        <span class="required-indicator">*</span>
+    </label>
+    <g:textField name="addressOne" value="${userProfileInstance?.addressOne}"/>
+</div>
+
+<!-- 
+<div class="fieldcontain ${hasErrors(bean: userProfileInstance, field: 'addressTwo', 'error')} required">
+    <label for="addressTwo">
+        <g:message code="userProfile.addressTwo.label" default="Address 2" />
+        <span class="required-indicator">*</span>
+    </label>
+    <g:textField name="addressTwo" value="${userProfileInstance?.addressTwo}"/>
+</div>
+
+
+<div class="fieldcontain ${hasErrors(bean: userProfileInstance, field: 'city', 'error')} required">
+    <label for="city">
+        <g:message code="userProfile.city.label" default="City" />
+        <span class="required-indicator">*</span>
+    </label>
+    <g:textField name="city" value="${userProfileInstance?.city}"/>
+</div>
+
+
+<div class="fieldcontain ${hasErrors(bean: userProfileInstance, field: 'province', 'error')} required">
+    <label for="province">
+        <g:message code="userProfile.province.label" default="Province" />
+        <span class="required-indicator">*</span>
+    </label>
+    <g:textField name="province" value="${userProfileInstance?.province}"/>
+</div>
+
+
+<div class="fieldcontain ${hasErrors(bean: userProfileInstance, field: 'country', 'error')} required">
+    <label for="country">
+        <g:message code="userProfile.country.label" default="Country" />
+        <span class="required-indicator">*</span>
+    </label>
+    <g:textField name="country" value="${userProfileInstance?.country}"/>
+</div>
+
+
+<div class="fieldcontain ${hasErrors(bean: userProfileInstance, field: 'postalCode', 'error')} required">
+    <label for="postalCode">
+        <g:message code="userProfile.postalCode.label" default="Postal Code" />
+        <span class="required-indicator">*</span>
+    </label>
+    <g:textField name="postalCode" value="${userProfileInstance?.postalCode}"/>
+</div>
+
+
+<div class="fieldcontain ${hasErrors(bean: userProfileInstance, field: 'homePhone', 'error')} required">
+    <label for="homePhone">
+        <g:message code="userProfile.homePhone.label" default="Home Phone" />
+        <span class="required-indicator">*</span>
+    </label>
+    <g:textField name="homePhone" value="${userProfileInstance?.homePhone}"/>
+</div>
+
+
+<div class="fieldcontain ${hasErrors(bean: userProfileInstance, field: 'cellPhone', 'error')} required">
+    <label for="cellPhone">
+        <g:message code="userProfile.cellPhone.label" default="Cell Phone" />
+        <span class="required-indicator">*</span>
+    </label>
+    <g:textField name="cellPhone" value="${userProfileInstance?.cellPhone}"/>
+</div>
+
+
+<div class="fieldcontain ${hasErrors(bean: loginInstance, field: 'email', 'error')} required">
+    <label for="email">
+        <g:message code="login.email.label" default="Email" />
+        <span class="required-indicator">*</span>
+    </label>
+    <g:textField name="email" value="${loginInstance?.email}"/>
+</div>
+
+
+<div class="fieldcontain ${hasErrors(bean: userProfileInstance, field: 'birthday', 'error')} required">
+    <label for="birthday">
+        <g:message code="project.birthday.label" default="Birthday" />
+        <span class="required-indicator">*</span>
+    </label>
+    <g:datePicker name="birthday" precision="day"  value="${userProfileInstance?.birthday}" />
+</div>
+
+
+<div class="fieldcontain ${hasErrors(bean: userProfileInstance, field: 'bloodType', 'error')} required">
+    <label for="bloodType">
+        <g:message code="userProfile.bloodType.label" default="Blood Type" />
+        <span class="required-indicator">*</span>
+    </label>
+    <g:textField name="bloodType" value="${userProfileInstance?.bloodType}"/>
+</div>
+
+
+<div class="fieldcontain ${hasErrors(bean: userProfileInstance, field: 'height', 'error')} required">
+    <label for="height">
+        <g:message code="userProfile.height.label" default="Height" />
+        <span class="required-indicator">*</span>
+    </label>
+    <g:textField name="height" value="${userProfileInstance?.height}"/>
+</div>
+
+
+<div class="fieldcontain ${hasErrors(bean: userProfileInstance, field: 'maritalStatus', 'error')} required">
+    <label for="maritalStatus">
+        <g:message code="userProfile.maritalStatus.label" default="Marital Status" />
+        <span class="required-indicator">*</span>
+    </label>
+    <g:textField name="maritalStatus" value="${userProfileInstance?.maritalStatus}"/>
+</div>
+
+
+<div class="fieldcontain ${hasErrors(bean: userProfileInstance, field: 'primaryLanguage', 'error')} required">
+    <label for="primaryLanguage">
+        <g:message code="userProfile.primaryLanguage.label" default="Primary Language" />
+        <span class="required-indicator">*</span>
+    </label>
+    <g:textField name="primaryLanguage" value="${userProfileInstance?.primaryLanguage}"/>
+</div>
+
+
+<div class="fieldcontain ${hasErrors(bean: userProfileInstance, field: 'weight', 'error')} required">
+    <label for="weight">
+        <g:message code="userProfile.weight.label" default="Weight" />
+        <span class="required-indicator">*</span>
+    </label>
+    <g:textField name="weight" value="${userProfileInstance?.weight}"/>
+</div>
+
+
+<div class="fieldcontain ${hasErrors(bean: userProfileInstance, field: 'race', 'error')} required">
+    <label for="race">
+        <g:message code="userProfile.race.label" default="Race" />
+        <span class="required-indicator">*</span>
+    </label>
+    <g:textField name="race" value="${userProfileInstance?.race}"/>
+</div>
+
+
+-->
+
+
+
+
+<div class="fieldcontain ${hasErrors(bean: userProfileInstance, field: 'user', 'error')} required">
+    <label for="user">
+        <g:message code="project.user.label" default="User" />
+        <span class="required-indicator">*</span>
+    </label>
+    <g:select id="user" name="user.id" from="${im.Login.findByUserName(session.user.userName)}" optionKey="id" required="" value="${userProfileInstance?.user?.id}" class="many-to-one"/>
+</div>
+
+
+
+

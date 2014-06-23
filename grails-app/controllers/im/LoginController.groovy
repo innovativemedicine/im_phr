@@ -36,7 +36,7 @@ class LoginController {
     def welcome =  {
         if (session.user != null) {
             
-            [firstName:session.user.firstName]
+            [userName:session.user.userName]
             
         } else {
             redirect(action: "login");

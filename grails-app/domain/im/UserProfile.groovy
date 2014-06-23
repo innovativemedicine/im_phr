@@ -3,6 +3,10 @@ package im
 import java.util.Date;
 
 class UserProfile {
+    String firstName
+    String middleName
+    String lastName
+    String email
     String addressOne
     String addressTwo
     String city
@@ -14,7 +18,6 @@ class UserProfile {
     String maritalStatus
     String homePhone
     String cellPhone
-    String email
     String race
     String primaryLanguage
     int    height
@@ -24,11 +27,21 @@ class UserProfile {
     static belongsTo = [user : Login]
     static fetchMode = [user: 'eager']
     
+    String toString () {
+        "${firstName}"
+        "${middleName}"
+        "${lastName}"
+    }
+    
     static mapping = {
         id column:'profile_id'
     }
     
     static constraints = {
+        firstName(blank: false)
+        middleName(blank: true)
+        lastName(blank: false)
+        email(blank: false, email: true, unique: true)
         addressOne(blank:true, nullable: true)
         addressTwo(blank:true, nullable: true)
         city(blank:true, nullable: true)
@@ -40,11 +53,10 @@ class UserProfile {
         birthday(blank:true, nullable: true, max: new Date())
         
 //        maritalStatus(blank:true, nullable: true)
-        maritalStatus(inList:["Maried", "Separated/Divorced", "Widowed", "Single/Never Maried", "Decline to answer"])
+        maritalStatus(inList:["Married", "Separated", "Divorced", "Widowed", "Single", "Common Law", "Decline to answer"])
         
         homePhone(blank:true, nullable: true)
         cellPhone(blank:true, nullable: true)
-        email(blank:true, nullable: true, email: true)
         race(blank:true, nullable: true)
         primaryLanguage(blank:true, nullable: true)
         height(blank:true, nullable: true)

@@ -25,7 +25,7 @@
 		                    <g:each in="${result}"> <!-- Need to wrap the variable calls with "g:each" to remove square brackets -->
                                 <p>
                                     <%--${it.first_name } ${it.last_name }<br />${it.address_one }<br />${it.city }<br />Home #: ${it.telephone_number }<br />Age: ${it.birthday }<br />Birthday: ${it.birthday }--%>
-                                    ${it.first_name } ${it.last_name }<br />
+                                    ${it.user_name } <br />
                                 </p>                                
                             </g:each>
                         </div>

@@ -88,6 +88,7 @@ class MedicationsController {
     def update(Long id, Long version) {
         println("update");
         def UserMedicationsInstance = UserMedications.get(id)
+        
         if (!UserMedicationsInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'UserMedications.label', default: 'UserMedications'), id])
             redirect(action: "medications")
@@ -105,7 +106,7 @@ class MedicationsController {
         }
 
         UserMedicationsInstance.properties = params
-
+        
         if (!UserMedicationsInstance.save(flush: true)) {
             render(view: "edit", model: [UserMedicationsInstance: UserMedicationsInstance])
             return
