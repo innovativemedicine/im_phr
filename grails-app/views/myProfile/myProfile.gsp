@@ -14,7 +14,13 @@
             
             
             
-            <g:link class="add-button btn btn-primary form-button" action="edit" params='[id: "${session.user.id }"]' >
+            <g:link class="add-button btn btn-primary form-button" action="edit" params='[id: "${session.user.id }", page: "contacts"]' >
+                Edit Contacts
+            </g:link>
+            <g:link class="add-button btn btn-primary form-button" action="edit" params='[id: "${session.user.id }", page: "employment"]' >
+                Edit Employment
+            </g:link>
+            <g:link class="add-button btn btn-primary form-button" action="edit" params='[id: "${session.user.id }", page: "profile"]' >
                 Edit Profile
             </g:link>
             

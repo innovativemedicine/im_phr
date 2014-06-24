@@ -80,6 +80,10 @@ class IllnessesController {
     def update(Long id, Long version) {
         println("update");
         def UserIllnessesInstance = UserIllnesses.get(id)
+        
+        println(id)
+        println(UserIllnessesInstance)
+        
         if (!UserIllnessesInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'UserIllnesses.label', default: 'UserIllnesses'), id])
             redirect(action: "illnesses")

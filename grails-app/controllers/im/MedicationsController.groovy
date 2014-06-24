@@ -61,7 +61,7 @@ class MedicationsController {
         println("save");
         
         def UserMedicationsInstance = new UserMedications(params)
-        
+        println(params)
         if (!UserMedicationsInstance.save(flush: true)) {
             println("didn't save :  " + UserMedicationsInstance.errors);
             render(view: "create", model: [UserMedicationsInstance: UserMedicationsInstance])
@@ -90,28 +90,34 @@ class MedicationsController {
         def UserMedicationsInstance = UserMedications.get(id)
         
         if (!UserMedicationsInstance) {
+            println("instance failed ")
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'UserMedications.label', default: 'UserMedications'), id])
             redirect(action: "medications")
             return
         }
-
-        if (version != null) {
-            if (UserMedicationsInstance.version > version) {
-                UserMedicationsInstance.errors.rejectValue("version", "default.optimistic.locking.failure",
-                          [message(code: 'UserMedications.label', default: 'UserMedications')] as Object[],
-                          "Another user has updated this UserMedications while you were editing")
-                render(view: "edit", model: [UserMedicationsInstance: UserMedicationsInstance])
-                return
-            }
-        }
+//
+//        if (version != null) {
+//            if (UserMedicationsInstance.version > version) {
+//                UserMedicationsInstance.errors.rejectValue("version", "default.optimistic.locking.failure",
+//                          [message(code: 'UserMedications.label', default: 'UserMedications')] as Object[],
+//                          "Another user has updated this UserMedications while you were editing")
+//                render(view: "edit", model: [UserMedicationsInstance: UserMedicationsInstance])
+//                return
+//            }
+//        }
 
         UserMedicationsInstance.properties = params
         
+        println(params)
+        println(UserMedicationsInstance.properties )
+        
         if (!UserMedicationsInstance.save(flush: true)) {
+            println("flush true???")
             render(view: "edit", model: [UserMedicationsInstance: UserMedicationsInstance])
             return
         }
-
+        println("flush finish")
+        UserMedicationsInstance.save()
         flash.message = message(code: 'default.updated.message', args: [message(code: 'UserMedications.label', default: 'UserMedications'), UserMedicationsInstance.id])
         redirect(action: "medications", id: UserMedicationsInstance.id)
     }

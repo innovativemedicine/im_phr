@@ -25,12 +25,32 @@
 		<g:form method="post" >
 			<g:hiddenField name="id" value="${userProfileInstance?.id}" />
 			<g:hiddenField name="version" value="${userProfileInstance?.version}" />
-			<fieldset class="form">
-				<g:render template="form"/>
-			</fieldset>
-			<fieldset class="buttons">
-				<g:actionSubmit class="save" action="update" value="${message(code: 'default.button.update.label', default: 'Update')}" />
-			</fieldset>
+			
+			<g:if test="${page == 'profile'}">
+                <fieldset class="form">
+                    <g:render template="formProfile"/>
+	            </fieldset>
+	            <fieldset class="buttons">
+	                <g:actionSubmit class="save" action="updateProfile" value="${message(code: 'default.button.update.label', default: 'Update')}" />
+	            </fieldset>
+            </g:if>
+            <g:if test="${page == 'employment'}">
+                <fieldset class="form">
+                    <g:render template="formEmployment"/>
+	            </fieldset>
+	            <fieldset class="buttons">
+	                <g:actionSubmit class="save" action="updateEmployment" value="${message(code: 'default.button.update.label', default: 'Update')}" />
+	            </fieldset>
+            </g:if>
+            <g:if test="${page == 'contacts'}">
+                <fieldset class="form">
+                    <g:render template="formContacts"/>
+	            </fieldset>
+	            <fieldset class="buttons">
+	                <g:actionSubmit class="save" action="updateContacts" value="${message(code: 'default.button.update.label', default: 'Update')}" />
+	            </fieldset>
+            </g:if>
+            
 		</g:form>
 	</div>
 </body>

@@ -35,7 +35,7 @@
     <g:textField name="addressOne" value="${userProfileInstance?.addressOne}"/>
 </div>
 
-<!-- 
+
 <div class="fieldcontain ${hasErrors(bean: userProfileInstance, field: 'addressTwo', 'error')} required">
     <label for="addressTwo">
         <g:message code="userProfile.addressTwo.label" default="Address 2" />
@@ -170,8 +170,6 @@
     <g:textField name="race" value="${userProfileInstance?.race}"/>
 </div>
 
-
--->
 
 
 
