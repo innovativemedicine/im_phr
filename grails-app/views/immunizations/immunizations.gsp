@@ -25,7 +25,6 @@
 				<thead>
 					<tr>
                         <th class="table-name">Name</th>
-                        <th>Dose</th>
                         <th>Type</th>
                         <th>Manufacturer</th>
                         <th>Dose</th>
@@ -39,7 +38,6 @@
 					<g:each in="${UserImmunizationsInstanceList }" var="data">
 					<tr>
 					    <td>${data.name }</td>
-                        <td>${data.dose }</td>
                         <td>${data.type }</td>
                         <td>${data.manufacturer }</td>
                         <td>${data.dose }</td>

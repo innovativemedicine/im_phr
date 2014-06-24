@@ -6,6 +6,10 @@ class Login {
     String userName
     String password
     
+    String toString () {
+        "${userName}"
+    }
+    
     static mapping = {
         id column:'user_id'
     }
