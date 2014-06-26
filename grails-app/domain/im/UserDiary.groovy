@@ -2,7 +2,7 @@ package im
 
 import java.util.Date;
 
-class UserDiaries {
+class UserDiary {
     String topic
     String entry
     Date   date
