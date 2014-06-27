@@ -2,7 +2,7 @@
 <html>
 <head>
 
-    <g:set var="entityName" value="${message(code: 'immunizations.label', default: 'Questions')}" />
+    <g:set var="entityName" value="${message(code: 'diary.label', default: 'Questions')}" />
     <title><g:message code="default.create.label" args="[entityName]" /></title>
 
 </head>

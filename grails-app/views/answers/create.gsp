@@ -2,22 +2,22 @@
 <html>
 <head>
 
-	<g:set var="entityName" value="${message(code: 'questions.label', default: 'Questions')}" />
+	<g:set var="entityName" value="${message(code: 'answers.label', default: 'Answers')}" />
 	<title><g:message code="default.create.label" args="[entityName]" /></title>
 
 </head>
-<%@ page import="im.Questions" %>
+<%@ page import="im.Answers" %>
 
 <body>
 
-	<div id="create-questions" class="content scaffold-create" role="main">
+	<div id="create-answers" class="content scaffold-create" role="main">
         <h1><g:message code="default.create.label" args="[entityName]" /></h1>
 		<g:if test="${flash.message}">
 		<div class="message" role="status">${flash.message}</div>
 		</g:if>
-		<g:hasErrors bean="${questionsInstance}">
+		<g:hasErrors bean="${answersInstance}">
 		<ul class="errors" role="alert">
-			<g:eachError bean="${questionsInstance}" var="error">
+			<g:eachError bean="${answersInstance}" var="error">
 			<li <g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>><g:message error="${error}"/></li>
 			</g:eachError>
 		</ul>
