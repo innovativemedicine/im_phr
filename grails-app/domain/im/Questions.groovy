@@ -3,9 +3,12 @@ package im
 
 
 class Questions {
+    String pageName
+    int    pageId
     String questionText
     
     String toString () {
+        "${pageName}"
         "${questionText}"
     }
     

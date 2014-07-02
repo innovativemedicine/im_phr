@@ -5,16 +5,13 @@ import java.util.Date;
 class QuestionsAnswers {
     Long questionId
     Long answerId
-    Date date
+    Long qaId
     
-    static mapping = {
-        id column:'qa_id'
-    }
-    
+   
     static constraints = {
-        questionId(blank: false)
-        answerId(blank: false)
-        date(blank: false, nullable: false)
+        questionId(blank: true, nullable: true)
+        answerId(blank: true, nullable: true)
+        qaId(blank: true, nullable: true)
     }
 }
 
