@@ -39,7 +39,7 @@ grails.project.dependency.resolution = {
     plugins {
         runtime ":hibernate:$grailsVersion"
      //   runtime ":resources:1.1.5"
-           runtime ':twitter-bootstrap:2.3.2'
+//           runtime ':twitter-bootstrap:2.3.2'
        //    runtime ':lesscss-resources:0.6.1'
            build ":tomcat:$grailsVersion"
     }

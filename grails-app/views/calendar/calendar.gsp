@@ -84,6 +84,6 @@
             
             
             <div id='calendar'></div>
-            
+        </div>
     </div>
 </body>

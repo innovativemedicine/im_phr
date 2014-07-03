@@ -12,17 +12,31 @@
         
         <div id="main-body" style="clear: both">
             
+            <g:set var="counter" value="${1}" />
             
             <div class="span9" style="float: left;">
                 
 				<g:form action="save" >
                     <fieldset class="form">
 				        
+				        <g:if test="${params.var1 == 'BASDAI' }">
+				            <g:render template="form1"/>
+				            <g:set var="counter" value="${6}" />
+				        </g:if>
+				        <g:elseif test="${params.var1 == 'BASFI' }">
+                            <g:render template="form2"/>
+                            <g:set var="counter" value="${10}" />
+				        </g:elseif>
+				        <g:elseif test="${params.var1 == 'Health Assessment Questionnaire' }">
+                            <g:render template="form3"/>
+                            <g:set var="counter" value="${24}" />
+				        </g:elseif>
+				        
+				        <%-- 
 						<g:each in="${QuestionsInstanceList }" var="data">
 							<div class="row">
 								<!-- // Articles Loop -->
 								<div >
-									<%--<h2>Question #${data.question_id }</h2>--%>
 									<div>${data.question_id }.&nbsp;&nbsp;${data.question_text }</div>
 									
 						            <div class="btn-group q_buttons_row" data-toggle="buttons">
@@ -40,6 +54,7 @@
 							</div>
 							<br /><br />
 						</g:each>
+						--%>
 					    
 					    <div class="fieldcontain ${hasErrors(bean: questionnaireInstance, field: 'user', 'error')} required">
 						    <label for="user">
@@ -68,9 +83,11 @@
 						<li><a href="/questionnaire/questionnaire/BASFI">BASFI</a></li>
 						<li><a href="/questionnaire/questionnaire/Health Assessment Questionnaire">Health Assessment Questionnaire</a></li>
 						<li class="divider"></li>
-						<li class="nav-header">Recent Posts</li>
+						<li class="nav-header">Question Number</li>
+						<g:set var="counter" value="${1}" />
 						<g:each in="${QuestionsInstanceList }" var="data">
-							<li><a href="/diary/diary/${data.question_id }">Question #${data.question_id }</a></li>
+							<li><a href="#${counter }">Question #${counter }</a></li>
+							<g:set var="counter" value="${counter + 1}" />
 						</g:each>
 						<li class="divider"></li>
 						<li class="nav-header">Categories</li>

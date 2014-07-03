@@ -62,8 +62,6 @@ class QuestionnaireController {
     def save() {
         println("save");
         
-//        def QuestionsInstance = new Questions(params)
-        
         Date test = new Date()
         
         println("userId = " + params.user.id)
@@ -82,6 +80,9 @@ class QuestionnaireController {
         long qaId = lastId.get(0).id   //lastId.id
         println("qaId = " + qaId)
         
+//        // Find the corresponding answer table values
+//        for (i in )
+//        def AnswerValues = db.row("SELECT a.answer_text FROM answers a WHERE a.answer_id IN (0, 4, 5, 6, 8, 9, 11, 20)")
         
         
         // Save the data into the QuestionAnswers Table that links the userId with the Questions and Answers
@@ -94,16 +95,30 @@ class QuestionnaireController {
                 
                 def questionId = e.key.substring(1)
                 def answerId = e.value
+                def other = 0;
                 
-                def QuestionsAnswersInstance = new QuestionsAnswers(qaId: qaId, questionId: questionId, answerId: answerId)
-//                println("~~~~~~~~~~~~~|||||||||||~~~~~~~~~~~~~~~~~")
-//                println(QuestionsAnswersInstance.dump())
-//                println("~~~~~~~~~~~~~|||||||||||~~~~~~~~~~~~~~~~~")
+                // Questions with "other, specify" fields
+                if (e.key == "Q33") {
+                    other = params.other33b
+                    println("OTHER = " + other + "   key = " + e.key)
+                    answerId = 23
+                }
+                else if (e.key == "Q55") {
+                    other = params.other55b
+                    println("OTHER = " + other + "   key = " + e.key)
+                    answerId = 23
+                }
+                // Questions with ranges
+                else if (e.key == "Q60" || e.key == "Q61") {
+                    other = e.value
+                    answerId = 44
+                }
                 
+                def QuestionsAnswersInstance = new QuestionsAnswers(qaId: qaId, questionId: questionId, answerId: answerId, other: other)
                 
                 if (!QuestionsAnswersInstance.save(flush: true)) {
                     println("didn't save :  " + QuestionsAnswersInstance.errors);
-                    render(view: "create", model: [QuestionsInstance: QuestionsAnswersInstance])
+                    render(action: "questionnaire", params: params)
                     return
                 }
                 
@@ -127,26 +142,22 @@ class QuestionnaireController {
 //            JOIN login l
 //                ON l.user_id = uqa.user_id
 //            RIGHT JOIN (
-//        SELECT MAX(date) AS 'date' FROM user_question_answers WHERE user_id = 1 AND
+//        SELECT MAX(date) AS 'date' FROM user_question_answers WHERE user_id = 1
 //        ) z ON z.date = uqa.date
 //        WHERE uqa.user_id = 1
 //        ORDER BY q.question_id ASC
         
         
-        
-//        def QuestionsAnswersInstance = new QuestionsAnswers(qaId: qaId, questionId: 1, answerId: 2)
-//        println("~~~~~~~~~~~~~|||||||||||~~~~~~~~~~~~~~~~~")
-//        println(QuestionsAnswersInstance.dump())
-//        println("~~~~~~~~~~~~~|||||||||||~~~~~~~~~~~~~~~~~")
-//        
-//        
-//        
-//        if (!QuestionsAnswersInstance.save(flush: true)) {
-//            println("didn't save :  " + QuestionsAnswersInstance.errors);
-//            render(view: "create", model: [QuestionsInstance: QuestionsAnswersInstance])
-//            return
+//        // Redirect to the next questionnaire
+//        println("`````````` SAVE DONE ````````````   " + params.var1)
+//        println("params = " + params.dump())
+//        if (params.var1 == "BASDAI") {
+//            params.var1 = "BASFI"
+//            println("BASFI = " + params.var1)
+//        } else if (params.var1 == "BASFI") {
+//            params.var1 = "Health Assessment Questionnaire"
+//            println("Health Assessment Questionnaire = " + params.var1)
 //        }
-        
         
         redirect(action: "questionnaire", params: params)
     }
