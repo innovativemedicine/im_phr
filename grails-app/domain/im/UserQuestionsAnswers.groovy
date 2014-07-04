@@ -2,7 +2,7 @@ package im
 
 import java.util.Date;
 
-class UserQuestionAnswers {
+class UserQuestionsAnswers {
     Date date
     
     static belongsTo = [user : Login]

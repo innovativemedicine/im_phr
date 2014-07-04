@@ -15,10 +15,6 @@
         
         <div id="main-body" style="clear: both">
             
-            
-            
-            
-            <h1>My Profile</h1>
             <div class="row-fluid">
                 
                 

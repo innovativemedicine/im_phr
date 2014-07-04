@@ -70,10 +70,10 @@ class QuestionnaireController {
         def db = new Sql(dataSource) // Create a new instance of groovy.sql.Sql with the DB of the Grails app
         
         // Set the value that designates the User answering the questionnaire
-        def UserQuestionAnswersInstance = db.execute(
-            "INSERT INTO user_question_answers (version, date, user_id) " +
+        def UserQuestionsAnswersInstance = db.execute(
+            "INSERT INTO user_questions_answers (version, date, user_id) " +
             " VALUES (0, ?, ?) ", new Date(), params.user.id)
-        println(UserQuestionAnswersInstance.dump())
+        println(UserQuestionsAnswersInstance.dump())
         
         // Get the ID that was created in last MySQL call
         def lastId = db.rows("SELECT LAST_INSERT_ID() AS 'id';")
@@ -132,7 +132,7 @@ class QuestionnaireController {
 //        q.question_id AS 'questionID', q.page_name AS 'page', q.question_text AS 'question',
 //        a.answer_id AS 'answerId', a.answer_text AS 'answer',
 //        l.user_name AS 'username'
-//        FROM user_question_answers uqa
+//        FROM user_questions_answers uqa
 //            JOIN questions_answers qa
 //                ON qa.qa_id = uqa.qa_id
 //            JOIN questions q
@@ -142,7 +142,7 @@ class QuestionnaireController {
 //            JOIN login l
 //                ON l.user_id = uqa.user_id
 //            RIGHT JOIN (
-//        SELECT MAX(date) AS 'date' FROM user_question_answers WHERE user_id = 1
+//        SELECT MAX(date) AS 'date' FROM user_questions_answers WHERE user_id = 1
 //        ) z ON z.date = uqa.date
 //        WHERE uqa.user_id = 1
 //        ORDER BY q.question_id ASC
