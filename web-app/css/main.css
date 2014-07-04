@@ -176,6 +176,13 @@ h1 {
 	*zoom:1;
 }
 
+.wellness-button {
+	float: right;
+    border: 1px gray solid;
+    background-color: rgb(212, 209, 252);
+    padding: 5px 15px;
+    border-radius: 10px;
+}
 
 
 

@@ -2,7 +2,7 @@ package im
 
 import java.util.Date;
 
-class UserCalories {
+class UserCarbohydrates {
     int  amount
     int  previousChange
     Date date

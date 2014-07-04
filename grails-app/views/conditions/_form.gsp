@@ -2,11 +2,11 @@
 
 
 <div class="fieldcontain ${hasErrors(bean: userConditionsInstance, field: 'name', 'error')} required">
-	<label for="name">
-		<g:message code="userConditions.name.label" default="Condition Name" />
-		<span class="required-indicator">*</span>
-	</label>
-	<g:textField name="name" value="${userConditionsInstance?.name}"/>
+    <label for="name">
+        <g:message code="userConditions.name.label" default="Condition Name" />
+        <span class="required-indicator">*</span>
+    </label>
+    <g:textField name="name" value="${userConditionsInstance?.name}"/>
 </div>
 
 
