@@ -35,8 +35,8 @@ class ConditionsController {
         
         def UserConditionsInstanceList = db.rows(
             "SELECT uc.condition_id, uc.name, uc.comments, uc.onset_date, uc.end_date " +
-            " FROM user_conditions uc, login l " +
-            " WHERE uc.user_id = l.user_id AND l.user_name = ? ", session.user.userName)
+            " FROM user_conditions uc " +
+            " WHERE uc.user_id = ? ", session.user.id)
         
         [UserConditionsInstanceList: UserConditionsInstanceList]
     }

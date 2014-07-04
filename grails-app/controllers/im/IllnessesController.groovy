@@ -37,8 +37,8 @@ class IllnessesController {
         
         def UserIllnessesInstanceList = db.rows(
             "SELECT ui.illness_id, ui.name, ui.symptoms, ui.treatment, ui.onset_date, ui.end_date, ui.comments " +
-            " FROM user_illnesses ui, login l " +
-            " WHERE ui.user_id = l.user_id AND l.user_name = ? ", session.user.userName)
+            " FROM user_illnesses ui " +
+            " WHERE ui.user_id = ? ", session.user.id)
         
         [UserIllnessesInstanceList: UserIllnessesInstanceList]
     }

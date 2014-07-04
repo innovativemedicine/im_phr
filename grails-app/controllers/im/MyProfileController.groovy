@@ -35,16 +35,16 @@ class MyProfileController {
         
         def UserProfileInstanceList = db.rows(
             "SELECT up.* " +
-            " FROM user_profile up, login l " +
-            " WHERE up.user_id = l.user_id AND l.user_name = ? ", session.user.userName)
+            " FROM user_profile up " +
+            " WHERE up.user_id = ? ", session.user.id)
         def UserContactsInstanceList = db.rows(
             "SELECT uec.* " +
-            " FROM user_emergency_contacts uec, login l " +
-            " WHERE uec.user_id = l.user_id AND l.user_name = ? ", session.user.userName)
+            " FROM user_emergency_contacts uec " +
+            " WHERE uec.user_id = ? ", session.user.id)
         def UserEmploymentInstanceList = db.rows(
             "SELECT uei.* " +
-            " FROM user_employment_info uei, login l " +
-            " WHERE uei.user_id = l.user_id AND l.user_name = ? ", session.user.userName)
+            " FROM user_employment_info uei " +
+            " WHERE uei.user_id = ? ", session.user.id)
         
         [UserProfileInstanceList: UserProfileInstanceList, UserContactsInstanceList: UserContactsInstanceList, 
          UserEmploymentInstanceList: UserEmploymentInstanceList]

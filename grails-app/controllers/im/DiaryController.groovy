@@ -35,9 +35,9 @@ class DiaryController {
         
         def UserDiaryInstanceList = db.rows(
             "SELECT ud.diary_id, ud.topic, ud.entry, ud.date " +
-            " FROM user_diary ud, login l " +
-            " WHERE ud.user_id = l.user_id AND l.user_name = ? " + 
-            " ORDER BY date DESC LIMIT 10", session.user.userName)
+            " FROM user_diary ud " +
+            " WHERE ud.user_id = ? " + 
+            " ORDER BY date DESC LIMIT 10", session.user.id)
         
         [UserDiaryInstanceList: UserDiaryInstanceList]
     }

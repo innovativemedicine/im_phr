@@ -45,8 +45,8 @@ class Medications2Controller {
         def UserMedicationsInstanceList = db.rows(
             "SELECT um.medication_id, um.name, um.dose, um.frequency, um.form, um.strength, um.start_date, " + 
             " um.stop_date, um.refill_date, um.comments " + 
-            " FROM user_medications2 um, login l " + 
-            " WHERE um.user_id = l.user_id AND l.user_name = ? ", session.user.userName)
+            " FROM user_medications2 um " + 
+            " WHERE um.user_id = ? ", session.user.id)
         
         [UserMedicationsInstanceList: UserMedicationsInstanceList]
     }
