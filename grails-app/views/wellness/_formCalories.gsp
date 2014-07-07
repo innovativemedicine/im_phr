@@ -32,8 +32,8 @@
         </g:else>
         
         
-        <g:form action="saveCalories" >
-	        <div id="calories_add" class="" style="display: none;">
+        <g:form action="saveCalories" class="form-hidden" >
+	        <div id="calories_add" class="add-section" style="display: none;">
 	            <div class="fieldcontain ${hasErrors(bean: userCaloriesInstance, field: 'amount', 'error')} required">
 	                <label for="amount">
 	                    <g:message code="userConditions.amount.label" default="Amount (calories)" />

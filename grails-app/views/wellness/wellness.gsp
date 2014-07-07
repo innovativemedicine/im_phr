@@ -35,8 +35,8 @@
 	
 	
 	$(document).ready(function() {
-		$( "#wellness-button" ).click(function() {
-	        $("#calories_add").toggle();
+		$( ".wellness-button" ).click(function() {
+			$(this).siblings('.block-text').children('.form-hidden').children('.add-section').slideToggle();
 	    });
 	});
 	
