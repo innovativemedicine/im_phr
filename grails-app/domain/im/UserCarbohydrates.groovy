@@ -12,7 +12,7 @@ class UserCarbohydrates {
     static fetchMode = [user: 'eager']
     
     static mapping = {
-        id column:'calories_id'
+        id column:'carbohydrates_id'
     }
     
     static constraints = {

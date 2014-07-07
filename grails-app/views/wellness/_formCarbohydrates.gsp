@@ -5,10 +5,10 @@
     <a id="wellness-button" class="wellness-button">Add</a>
     
     <h1 class="block-header">
-        Calories
+        Carbohydrates
     </h1>
     <div class="block-text">
-        <g:if test="${UserCalories == null }">
+        <g:if test="${UserCarbohydrates == null }">
         <h3>None</h3>
         </g:if>
         <g:else>
@@ -16,14 +16,14 @@
             <!--  <div id="chart_div"></div> -->
              
             <ul style="font-size: 18px;">
-                <g:if test="${UserCalories.size == 0 }">
+                <g:if test="${UserCarbohydrates.size == 0 }">
                     <li><h4>None</h4></li>
                 </g:if>
                 <g:else>
-	                <g:each in="${UserCalories }" var="data">
+	                <g:each in="${UserCarbohydrates }" var="data">
 	                    <li>
-	                        <span style="display: inline-block; width: 120px;">${data.amount } calories</span> 
-	                        <span style="display: inline-block; width: 150px;">(${data.previous_change })</span> 
+                            <span style="display: inline-block; width: 185px;">${data.amount } calories</span> 
+                            <span style="display: inline-block; width: 85px;">(${data.previous_change })</span> 
 	                        <span style="display: inline-block;">[ ${data.date } ]</span>
 	                    </li>
 	                </g:each>
@@ -32,32 +32,32 @@
         </g:else>
         
         
-        <g:form action="saveCalories" class="form-hidden" >
-	        <div id="calories_add" class="add-section" style="display: none;">
-	            <div class="fieldcontain ${hasErrors(bean: userCaloriesInstance, field: 'amount', 'error')} required">
+        <g:form action="saveCarbohydrates" class="form-hidden" >
+	        <div id="carbohydrates_add" class="add-section" style="display: none;">
+	            <div class="fieldcontain ${hasErrors(bean: userCarbohydratesInstance, field: 'amount', 'error')} required">
 	                <label for="amount">
-	                    <g:message code="userConditions.amount.label" default="Amount (calories)" />
+	                    <g:message code="userConditions.amount.label" default="Amount (carbohydrates)" />
 	                    <span class="required-indicator">*</span>
 	                </label>
-	                <g:textField name="amount" value="${userCaloriesInstance?.amount}"/>
+	                <g:textField name="amount" value="${userCarbohydratesInstance?.amount}"/>
 	            </div>
 	            
 	            
-	            <div class="fieldcontain ${hasErrors(bean: userCaloriesInstance, field: 'date', 'error')} required">
+	            <div class="fieldcontain ${hasErrors(bean: userCarbohydratesInstance, field: 'date', 'error')} required">
 	                <label for="date">
 	                    <g:message code="project.date.label" default="Date" />
 	                    <span class="required-indicator">*</span>
 	                </label>
-	                <g:datePicker name="date" precision="day"  value="${userCaloriesInstance?.date}"  />
+	                <g:datePicker name="date" precision="day"  value="${userCarbohydratesInstance?.date}"  />
 	            </div>
 	            
 	            
-	            <div class="fieldcontain ${hasErrors(bean: userCaloriesInstance, field: 'user', 'error')} required hidden">
+	            <div class="fieldcontain ${hasErrors(bean: userCarbohydratesInstance, field: 'user', 'error')} required hidden">
 	                <label for="user">
 	                    <g:message code="project.user.label" default="User" />
 	                    <span class="required-indicator">*</span>
 	                </label>
-	                <g:select id="user" name="user.id" from="${im.Login.findByUserName(session.user.userName)}" optionKey="id" required="" value="${userCaloriesInstance?.user?.id}" class="many-to-one"/>
+	                <g:select id="user" name="user.id" from="${im.Login.findByUserName(session.user.userName)}" optionKey="id" required="" value="${userCarbohydratesInstance?.user?.id}" class="many-to-one"/>
 	            </div>
 	            
 	            
