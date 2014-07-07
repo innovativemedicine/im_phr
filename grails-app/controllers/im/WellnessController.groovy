@@ -1,8 +1,10 @@
 package im
 
 import groovy.sql.Sql
+
 import java.text.ParseException;
 import java.util.Date
+
 
 class WellnessController {
     
@@ -96,20 +98,38 @@ class WellnessController {
     
     
     
-    
     def save() {
         println("Save - CALORIES");
         
-        def UserCaloriesInstance = new UserCalories(params)
+        def db = new Sql(dataSource) // Create a new instance of groovy.sql.Sql with the DB of the Grails app
         
-        if (!UserCaloriesInstance.save(flush: true)) {
-            println("didn't save :  " + UserCaloriesInstance.errors);
-            render(view: "create", model: [UserCaloriesInstance: UserCaloriesInstance])
-            return
+        def LastCaloriesInstance = db.rows(
+            "SELECT uc.amount FROM user_calories uc " +
+            " WHERE uc.user_id = ? AND date <= ? ORDER BY uc.date DESC LIMIT 1;", session.user.id, params.date)
+        def NextCaloriesInstance = db.rows(
+            "SELECT uc.calories_id AS 'id', uc.amount FROM user_calories uc " +
+            " WHERE uc.user_id = ? AND date >= ? ORDER BY uc.date ASC LIMIT 1;", session.user.id, params.date)
+        def change = 0;
+        for (e in LastCaloriesInstance) {
+            change = (params.amount.toInteger() - e.amount.toInteger())
         }
+        
+        def UserCaloriesInstance = db.execute(
+            "INSERT INTO user_calories (version, amount, date, previous_change, user_id) " +
+            " VALUES (0, ?, ?, ?, ?) ", params.amount, params.date, change, params.user.id)
+        
+        
+        // Update next value's amount change if the user updated a date between other entries
+        println("NextCaloriesInstance =  " + NextCaloriesInstance)
+        for (e in NextCaloriesInstance) {
+            def newDiff = e.amount.toInteger() - params.amount.toInteger()
+            def UpdateNextCaloriesInstance = db.execute(
+                "UPDATE user_calories SET previous_change = ?" +
+                " WHERE calories_id = ? ", newDiff, e.id)
+        }
+        
         redirect(action: "wellness", params: params)
     }
-
     
 }
 
