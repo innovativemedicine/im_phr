@@ -35,18 +35,31 @@ class WellnessController {
         def db = new Sql(dataSource) // Create a new instance of groovy.sql.Sql with the DB of the Grails app
         
         // Calories
-        def UserCalories = db.rows(
+        def UserCaloriesInstanceList = db.rows(
             "SELECT uc.* " +
             " FROM user_calories uc " +
             " WHERE uc.user_id = ? " +
             " ORDER BY uc.date DESC LIMIT 5", session.user.id)
         
         // Carbohydrates
-        def UserCarbohydrates = db.rows(
+        def UserCarbohydratesInstanceList = db.rows(
             "SELECT uc.* " +
             " FROM user_carbohydrates uc " +
             " WHERE uc.user_id = ? " +
             " ORDER BY uc.date DESC LIMIT 5", session.user.id)
+        
+        // Cholestrol
+        def UserCholestrolInstanceList = db.rows(
+            "SELECT uc.* " +
+            " FROM user_cholestrol uc " +
+            " WHERE uc.user_id = ? " +
+            " ORDER BY uc.date DESC LIMIT 5", session.user.id)
+        
+        
+        
+        
+        
+        
         
         
         def UserContactsInstanceList = db.rows(
@@ -96,8 +109,9 @@ class WellnessController {
         
         
         
-        [UserCalories: UserCalories, 
-         UserCarbohydrates: UserCarbohydrates, 
+        [UserCaloriesInstanceList: UserCaloriesInstanceList, 
+         UserCarbohydratesInstanceList: UserCarbohydratesInstanceList, 
+         UserCholestrolInstanceList: UserCholestrolInstanceList, 
          
          UserContactsInstanceList: UserContactsInstanceList,
          UserEmploymentInstanceList: UserEmploymentInstanceList, UserConditionsInstanceList: UserConditionsInstanceList,
@@ -117,7 +131,7 @@ class WellnessController {
         
         def LastCaloriesInstance = db.rows(
             "SELECT uc.amount FROM user_calories uc " +
-            " WHERE uc.user_id = ? AND date <= ? ORDER BY uc.date DESC LIMIT 1;", session.user.id, params.date)
+            " WHERE uc.user_id = ? AND date < ? ORDER BY uc.date DESC LIMIT 1;", session.user.id, params.date)
         def NextCaloriesInstance = db.rows(
             "SELECT uc.calories_id AS 'id', uc.amount FROM user_calories uc " +
             " WHERE uc.user_id = ? AND date >= ? ORDER BY uc.date ASC LIMIT 1;", session.user.id, params.date)
@@ -150,7 +164,7 @@ class WellnessController {
         
         def LastCarbohydratesInstance = db.rows(
             "SELECT uc.amount FROM user_carbohydrates uc " +
-            " WHERE uc.user_id = ? AND date <= ? ORDER BY uc.date DESC LIMIT 1;", session.user.id, params.date)
+            " WHERE uc.user_id = ? AND date < ? ORDER BY uc.date DESC LIMIT 1;", session.user.id, params.date)
         def NextCarbohydratesInstance = db.rows(
             "SELECT uc.carbohydrates_id AS 'id', uc.amount FROM user_carbohydrates uc " +
             " WHERE uc.user_id = ? AND date >= ? ORDER BY uc.date ASC LIMIT 1;", session.user.id, params.date)
@@ -171,6 +185,39 @@ class WellnessController {
             def UpdateNextCarbohydratesInstance = db.execute(
                 "UPDATE user_carbohydrates SET previous_change = ?" +
                 " WHERE carbohydrates_id = ? ", newDiff, e.id)
+        }
+        
+        redirect(action: "wellness", params: params)
+    }
+    
+    def saveCholestrol() {
+        println("Save - CHOLESTROL");
+        
+        def db = new Sql(dataSource) // Create a new instance of groovy.sql.Sql with the DB of the Grails app
+        
+        def LastCholestrolInstance = db.rows(
+            "SELECT uc.amount FROM user_cholestrol uc " +
+            " WHERE uc.user_id = ? AND date < ? ORDER BY uc.date DESC LIMIT 1;", session.user.id, params.date)
+        def NextCholestrolInstance = db.rows(
+            "SELECT uc.cholestrol_id AS 'id', uc.amount FROM user_cholestrol uc " +
+            " WHERE uc.user_id = ? AND date >= ? ORDER BY uc.date ASC LIMIT 1;", session.user.id, params.date)
+        def change = 0;
+        for (e in LastCholestrolInstance) {
+            change = (params.amount.toInteger() - e.amount.toInteger())
+        }
+        
+        def UserCholestrolInstance = db.execute(
+            "INSERT INTO user_cholestrol (version, amount, date, previous_change, user_id) " +
+            " VALUES (0, ?, ?, ?, ?) ", params.amount, params.date, change, params.user.id)
+        
+        
+        // Update next value's amount change if the user updated a date between other entries
+        println("NextCholestrolInstance =  " + NextCholestrolInstance)
+        for (e in NextCholestrolInstance) {
+            def newDiff = e.amount.toInteger() - params.amount.toInteger()
+            def UpdateNextCholestrolInstance = db.execute(
+                "UPDATE user_cholestrol SET previous_change = ?" +
+                " WHERE cholestrol_id = ? ", newDiff, e.id)
         }
         
         redirect(action: "wellness", params: params)

@@ -68,23 +68,9 @@
             
             
             <div class="row-fluid">
-                <div class="block span6">
-                    <h1 class="block-header">
-                        Current Conditions
-                    </h1>
-                    <div class="block-text-18">
-                        <g:if test="${UserConditionsInstanceList.size == 0 }">
-                            <h4>None</h4>
-                        </g:if>
-                        <g:else>
-                            <ul>
-                                <g:each in="${UserConditionsInstanceList }" var="data">
-                                    <li>${data.name }</li>
-                                </g:each>
-                            </ul>
-                        </g:else>
-                    </div>
-                </div>
+                
+                <g:render template="formCholestrol"/>
+                
                 
                 <div class="block span6">
                     <h1 class="block-header">

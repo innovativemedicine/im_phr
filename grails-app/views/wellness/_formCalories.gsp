@@ -8,28 +8,23 @@
         Calories
     </h1>
     <div class="block-text">
-        <g:if test="${UserCalories == null }">
-        <h3>None</h3>
-        </g:if>
-        <g:else>
-            <div id="holder"></div>
-            <!--  <div id="chart_div"></div> -->
-             
-            <ul style="font-size: 18px;">
-                <g:if test="${UserCalories.size == 0 }">
-                    <li><h4>None</h4></li>
-                </g:if>
-                <g:else>
-	                <g:each in="${UserCalories }" var="data">
-	                    <li>
-	                        <span style="display: inline-block; width: 120px;">${data.amount } calories</span> 
-	                        <span style="display: inline-block; width: 150px;">(${data.previous_change })</span> 
-	                        <span style="display: inline-block;">[ ${data.date } ]</span>
-	                    </li>
-	                </g:each>
-                </g:else>
-            </ul>
-        </g:else>
+        <div id="holder"></div>
+        <!--  <div id="chart_div"></div> -->
+         
+        <ul style="font-size: 18px;">
+            <g:if test="${UserCaloriesInstanceList.size == 0 }">
+                <li><h4>None</h4></li>
+            </g:if>
+            <g:else>
+				<g:each in="${UserCaloriesInstanceList }" var="data">
+				    <li>
+				        <span style="display: inline-block; width: 120px;">${data.amount } calories</span> 
+				        <span style="display: inline-block; width: 150px;">(${data.previous_change })</span> 
+				        <span style="display: inline-block;">[ ${data.date } ]</span>
+				    </li>
+				</g:each>
+            </g:else>
+        </ul>
         
         
         <g:form action="saveCalories" class="form-hidden" >
