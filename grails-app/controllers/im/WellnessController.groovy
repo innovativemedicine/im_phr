@@ -98,7 +98,7 @@ class WellnessController {
     
     
     
-    def save() {
+    def saveCalories() {
         println("Save - CALORIES");
         
         def db = new Sql(dataSource) // Create a new instance of groovy.sql.Sql with the DB of the Grails app

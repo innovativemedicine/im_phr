@@ -32,7 +32,7 @@
         </g:else>
         
         
-        <g:form action="save" >
+        <g:form action="saveCalories" >
 	        <div id="calories_add" class="" style="display: none;">
 	            <div class="fieldcontain ${hasErrors(bean: userCaloriesInstance, field: 'amount', 'error')} required">
 	                <label for="amount">
