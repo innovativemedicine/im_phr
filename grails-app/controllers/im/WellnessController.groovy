@@ -55,6 +55,13 @@ class WellnessController {
             " WHERE uc.user_id = ? " +
             " ORDER BY uc.date DESC LIMIT 5", session.user.id)
         
+        // Blood Pressure
+        def UserBloodPressureInstanceList = db.rows(
+            "SELECT ub.* " +
+            " FROM user_blood_pressure ub " +
+            " WHERE ub.user_id = ? " +
+            " ORDER BY ub.date DESC LIMIT 5", session.user.id)
+        
         
         
         
@@ -112,6 +119,7 @@ class WellnessController {
         [UserCaloriesInstanceList: UserCaloriesInstanceList, 
          UserCarbohydratesInstanceList: UserCarbohydratesInstanceList, 
          UserCholestrolInstanceList: UserCholestrolInstanceList, 
+         UserBloodPressureInstanceList: UserBloodPressureInstanceList, 
          
          UserContactsInstanceList: UserContactsInstanceList,
          UserEmploymentInstanceList: UserEmploymentInstanceList, UserConditionsInstanceList: UserConditionsInstanceList,
@@ -219,6 +227,18 @@ class WellnessController {
                 "UPDATE user_cholestrol SET previous_change = ?" +
                 " WHERE cholestrol_id = ? ", newDiff, e.id)
         }
+        
+        redirect(action: "wellness", params: params)
+    }
+    
+    def saveBloodPressure() {
+        println("Save - BLOODPRESSURE");
+        
+        def db = new Sql(dataSource) // Create a new instance of groovy.sql.Sql with the DB of the Grails app
+        
+        def UserBloodPressureInstance = db.execute(
+            "INSERT INTO user_blood_pressure (version, systolic, diastolic, date, user_id) " +
+            " VALUES (0, ?, ?, ?, ?) ", params.systolic, params.diastolic, params.date, params.user.id)
         
         redirect(action: "wellness", params: params)
     }

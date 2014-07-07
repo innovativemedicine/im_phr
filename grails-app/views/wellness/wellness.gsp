@@ -72,18 +72,8 @@
                 <g:render template="formCholestrol"/>
                 
                 
-                <div class="block span6">
-                    <h1 class="block-header">
-                        Upcoming Appointments
-                    </h1>
-                    <div class="block-text">
-                        <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisi cing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim.
-                        <br /><br />
-                        Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo . Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.
-                        </p>
-                    </div>
-                </div>
+                <g:render template="formBloodPressure"/>
+                
             </div>
             
             
