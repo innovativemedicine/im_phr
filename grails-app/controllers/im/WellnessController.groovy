@@ -62,6 +62,12 @@ class WellnessController {
             " WHERE ub.user_id = ? " +
             " ORDER BY ub.date DESC LIMIT 5", session.user.id)
         
+        // BMI
+        def UserBmiInstanceList = db.rows(
+            "SELECT ub.* " +
+            " FROM user_bmi ub " +
+            " WHERE ub.user_id = ? " +
+            " ORDER BY ub.date DESC LIMIT 5", session.user.id)
         
         
         
@@ -120,6 +126,7 @@ class WellnessController {
          UserCarbohydratesInstanceList: UserCarbohydratesInstanceList, 
          UserCholestrolInstanceList: UserCholestrolInstanceList, 
          UserBloodPressureInstanceList: UserBloodPressureInstanceList, 
+         UserBmiInstanceList: UserBmiInstanceList, 
          
          UserContactsInstanceList: UserContactsInstanceList,
          UserEmploymentInstanceList: UserEmploymentInstanceList, UserConditionsInstanceList: UserConditionsInstanceList,
@@ -239,6 +246,23 @@ class WellnessController {
         def UserBloodPressureInstance = db.execute(
             "INSERT INTO user_blood_pressure (version, systolic, diastolic, date, user_id) " +
             " VALUES (0, ?, ?, ?, ?) ", params.systolic, params.diastolic, params.date, params.user.id)
+        
+        redirect(action: "wellness", params: params)
+    }
+    
+    def saveBmi() {
+        println("Save - BMI");
+        
+        def db = new Sql(dataSource) // Create a new instance of groovy.sql.Sql with the DB of the Grails app
+        
+        def bmi = params.weight.toInteger() * 703 / (params.height.toInteger() * params.height.toInteger())
+        
+        print("" + params.weight.toInteger() + "/" + (params.height.toInteger() * params.height.toInteger()))
+        print("  =  " + params.weight.toInteger() / (params.height.toInteger() * params.height.toInteger()))
+        println(bmi)
+        def UserBloodPressureInstance = db.execute(
+            "INSERT INTO user_bmi (version, bmi, height, weight, date, user_id) " +
+            " VALUES (0, ?, ?, ?, ?, ?) ", bmi, params.height, params.weight, params.date, params.user.id)
         
         redirect(action: "wellness", params: params)
     }

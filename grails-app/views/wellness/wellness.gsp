@@ -80,42 +80,9 @@
             
             
             <div class="row-fluid">
-                <div class="block span6">
-                    <h1 class="block-header">
-                        Current Medications
-                    </h1>
-                    <div class="block-text-18">
-                        <g:if test="${UserMedicationsInstanceList == null }">
-                            <h3>None</h3>
-                        </g:if>
-                        <g:else>
-                            <ul>
-                                <g:each in="${UserMedicationsInstanceList }" var="data">
-                                    <li>${data.name } ( ${data.dose } ) - ${data.form }, ${data.frequency }</li>
-                                </g:each>
-                            </ul>
-                        </g:else>
-                    </div>
-                </div>
                 
+                <g:render template="formBmi"/>
                 
-                <div class="block span6">
-                    <h1 class="block-header">
-                        Current Illnesses
-                    </h1>
-                    <div class="block-text-18">
-                        <g:if test="${UserIllnessesInstanceList.size == 0 }">
-                            <h4>None</h4>
-                        </g:if>
-                        <g:else>
-                            <ul>
-                                <g:each in="${UserIllnessesInstanceList }" var="data">
-                                    <li>${data.name }, ${data.symptoms } (${data.onset_date })</li>
-                                </g:each>
-                            </ul>
-                        </g:else>
-                    </div>
-                </div>
             </div>
             
             
