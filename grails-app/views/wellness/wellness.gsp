@@ -88,43 +88,10 @@
             
             
             
-            
             <div class="row-fluid">
-                <div class="block span6">
-                    <h1 class="block-header">
-                        Immunization
-                    </h1>
-                    <div class="block-text-18">
-                        <g:if test="${UserImmunizationsInstanceList.size == 0 }">
-                            <h4>None</h4>
-                        </g:if>
-                        <g:else>
-                            <ul>
-                                <g:each in="${UserImmunizationsInstanceList }" var="data">
-                                <li>${data.name } - ${data.type } (${data.date })</li>
-                                </g:each>
-                            </ul>
-                        </g:else>
-                    </div>
-                </div>
                 
-                <div class="block span6">
-                    <h1 class="block-header">
-                        Allergies
-                    </h1>
-                    <div class="block-text">
-                        <g:if test="${UserAllergiesInstanceList.size == 0 }">
-                            <h4>None</h4>
-                        </g:if>
-                        <g:else>
-                            <ul>
-                                <g:each in="${UserAllergiesInstanceList }" var="data">
-                                    <li>${data.name } ( ${data.reaction } ) - ${data.severity }</li>
-                                </g:each>
-                            </ul>
-                        </g:else>
-                    </div>
-                </div>
+                <g:render template="formExercise"/>
+                
             </div>
             
             
