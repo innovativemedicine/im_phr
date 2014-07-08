@@ -24,23 +24,23 @@
                 <thead>
                     <tr>
                         <th class="table-name">Illness Name</th>
-                        <th>Symptoms</th>
-                        <th>Treatment</th>
-                        <th>Date of Onset</th>
-                        <th>End Date</th>
+                        <th class="table-symptoms">Symptoms</th>
+                        <th class="table-treatment">Treatment</th>
                         <th>Comments</th>
+                        <th class="table-date">Onset Date</th>
+                        <th class="table-date">End Date</th>
                         <th class="table-editdelete">Edit/Delete</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <g:each in="${UserIllnessesInstanceList }" var="data">
+                    <g:each in="${UserCurrentIllnessesInstanceList }" var="data">
                     <tr>
                         <td>${data.name }</td>
                         <td>${data.symptoms }</td>
                         <td>${data.treatment }</td>
+                        <td>${data.comments }</td>
                         <td>${data.onset_date }</td>
                         <td>${data.end_date }</td>
-                        <td>${data.comments }</td>
                         <td class="table-editdelete">
                             <g:link class="icons-edit" action="edit" params='[id: "${data.illness_id }"]' title="Edit">
                                 <i class="icon-cog"></i>
@@ -63,23 +63,23 @@
                 <thead>
                     <tr>
                         <th class="table-name">Illness Name</th>
-                        <th>Symptoms</th>
-                        <th>Treatment</th>
-                        <th>Date of Onset</th>
-                        <th>End Date</th>
+                        <th class="table-symptoms">Symptoms</th>
+                        <th class="table-treatment">Treatment</th>
                         <th>Comments</th>
+                        <th class="table-date">Onset Date</th>
+                        <th class="table-date">End Date</th>
                         <th class="table-editdelete">Edit/Delete</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <g:each in="${UserAllergiesInstanceList }" var="data">
+                    <g:each in="${UserPreviousIllnessesInstanceList }" var="data">
                     <tr>
                         <td>${data.name }</td>
                         <td>${data.symptoms }</td>
                         <td>${data.treatment }</td>
+                        <td>${data.comments }</td>
                         <td>${data.onset_date }</td>
                         <td>${data.end_date }</td>
-                        <td>${data.comments }</td>
                         <td class="table-editdelete">
                             <g:link class="icons-edit" action="edit" params='[id: "${data.illness_id }"]' title="Edit">
                                 <i class="icon-cog"></i>

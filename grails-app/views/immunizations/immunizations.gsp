@@ -28,9 +28,9 @@
                         <th>Type</th>
                         <th>Manufacturer</th>
                         <th>Dose</th>
+                        <th class="table-reason">Comments</th>
                         <th class="table-date">Date</th>
                         <th class="table-date">Next Date</th>
-                        <th class="table-reason">Comments</th>
                         <th class="table-editdelete">Edit/Delete</th>
                     </tr>
 				</thead>
@@ -41,9 +41,9 @@
                         <td>${data.type }</td>
                         <td>${data.manufacturer }</td>
                         <td>${data.dose }</td>
+                        <td>${data.comments }</td>
                         <td>${data.date }</td>
                         <td>${data.next_date }</td>
-                        <td>${data.comments }</td>
                         <td class="table-editdelete">
                             <g:link class="icons-edit" action="edit" params='[id: "${data.immunization_id }"]' title="Edit">
 				                <i class="icon-cog"></i>

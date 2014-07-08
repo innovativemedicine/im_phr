@@ -34,7 +34,7 @@ class MyProfileController {
         def db = new Sql(dataSource) // Create a new instance of groovy.sql.Sql with the DB of the Grails app
         
         def UserProfileInstanceList = db.rows(
-            "SELECT up.* " +
+            "SELECT up.*, DATE_FORMAT(up.birthday, '%d/%m/%Y') AS 'birthday' " + 
             " FROM user_profile up " +
             " WHERE up.user_id = ? ", session.user.id)
         def UserContactsInstanceList = db.rows(

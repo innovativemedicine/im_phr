@@ -36,58 +36,58 @@ class WellnessController {
         
         // Calories
         def UserCaloriesInstanceList = db.rows(
-            "SELECT uc.* " +
+            "SELECT uc.*, DATE_FORMAT(uc.date, '%d/%m/%Y') AS 'date' " + 
             " FROM user_calories uc " +
             " WHERE uc.user_id = ? " +
             " ORDER BY uc.date DESC LIMIT 5", session.user.id)
         
         // Carbohydrates
         def UserCarbohydratesInstanceList = db.rows(
-            "SELECT uc.* " +
+            "SELECT uc.*, DATE_FORMAT(uc.date, '%d/%m/%Y') AS 'date' " + 
             " FROM user_carbohydrates uc " +
             " WHERE uc.user_id = ? " +
             " ORDER BY uc.date DESC LIMIT 5", session.user.id)
         
         // Cholestrol
         def UserCholestrolInstanceList = db.rows(
-            "SELECT uc.* " +
+            "SELECT uc.*, DATE_FORMAT(uc.date, '%d/%m/%Y') AS 'date' " + 
             " FROM user_cholestrol uc " +
             " WHERE uc.user_id = ? " +
             " ORDER BY uc.date DESC LIMIT 5", session.user.id)
         
         // Blood Pressure
         def UserBloodPressureInstanceList = db.rows(
-            "SELECT ub.* " +
+            "SELECT ub.*, DATE_FORMAT(ub.date, '%d/%m/%Y') AS 'date' " + 
             " FROM user_blood_pressure ub " +
             " WHERE ub.user_id = ? " +
             " ORDER BY ub.date DESC LIMIT 5", session.user.id)
         
         // BMI
         def UserBmiInstanceList = db.rows(
-            "SELECT ub.* " +
+            "SELECT ub.*, DATE_FORMAT(ub.date, '%d/%m/%Y') AS 'date' " + 
             " FROM user_bmi ub " +
             " WHERE ub.user_id = ? " +
             " ORDER BY ub.date DESC LIMIT 5", session.user.id)
         
         // Exercise
         def UserPushupsInstanceList = db.rows(
-            "SELECT ue.date, ue.pushups FROM user_exercise ue WHERE ue.user_id = ? AND ue.pushups > 0 " + 
+            "SELECT ue.pushups, DATE_FORMAT(ue.date, '%d/%m/%Y') AS 'date' FROM user_exercise ue WHERE ue.user_id = ? AND ue.pushups > 0 " + 
             " ORDER BY ue.date DESC LIMIT 5", session.user.id)
         def UserSitupsInstanceList = db.rows(
-            "SELECT ue.date, ue.situps FROM user_exercise ue WHERE ue.user_id = ? AND ue.situps > 0 " + 
+            "SELECT ue.situps, DATE_FORMAT(ue.date, '%d/%m/%Y') AS 'date' FROM user_exercise ue WHERE ue.user_id = ? AND ue.situps > 0 " + 
             " ORDER BY ue.date DESC LIMIT 5", session.user.id)
         def UserSquatsInstanceList = db.rows(
-            "SELECT ue.date, ue.squats FROM user_exercise ue WHERE ue.user_id = ? AND ue.squats > 0 " + 
+            "SELECT ue.squats, DATE_FORMAT(ue.date, '%d/%m/%Y') AS 'date'  FROM user_exercise ue WHERE ue.user_id = ? AND ue.squats > 0 " + 
             " ORDER BY ue.date DESC LIMIT 5", session.user.id)
         def UserStepsInstanceList = db.rows(
-            "SELECT ue.date, ue.steps FROM user_exercise ue WHERE ue.user_id = ? AND ue.steps > 0 " + 
+            "SELECT ue.steps, DATE_FORMAT(ue.date, '%d/%m/%Y') AS 'date'  FROM user_exercise ue WHERE ue.user_id = ? AND ue.steps > 0 " + 
             " ORDER BY ue.date DESC LIMIT 5", session.user.id)
         
         [UserCaloriesInstanceList: UserCaloriesInstanceList, 
          UserCarbohydratesInstanceList: UserCarbohydratesInstanceList, 
          UserCholestrolInstanceList: UserCholestrolInstanceList, 
          UserBloodPressureInstanceList: UserBloodPressureInstanceList, 
-         UserBmiInstanceList: UserBmiInstanceList,  
+         UserBmiInstanceList: UserBmiInstanceList, 
          UserPushupsInstanceList: UserPushupsInstanceList, 
          UserSitupsInstanceList: UserSitupsInstanceList, 
          UserSquatsInstanceList: UserSquatsInstanceList, 

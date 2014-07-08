@@ -33,9 +33,9 @@ class ImmunizationsController {
         def db = new Sql(dataSource) // Create a new instance of groovy.sql.Sql with the DB of the Grails app
         
         def UserImmunizationsInstanceList = db.rows(
-            "SELECT ui.immunization_id, ui.name, ui.comments, ui.date, ui.dose, ui.manufacturer, ui.next_date, ui.type " +
-            " FROM user_immunizations ui " +
-            " WHERE ui.user_id = ? ", session.user.id)
+            "SELECT ui.immunization_id, ui.name, ui.comments, ui.dose, ui.manufacturer, ui.type, DATE_FORMAT(ui.date, '%d/%m/%Y') AS 'date', DATE_FORMAT(ui.next_date, '%d/%m/%Y') AS 'next_date' " + 
+            " FROM user_immunizations ui " + 
+            " WHERE ui.user_id = ? ORDER BY ui.date DESC", session.user.id)
         
         [UserImmunizationsInstanceList: UserImmunizationsInstanceList]
     }

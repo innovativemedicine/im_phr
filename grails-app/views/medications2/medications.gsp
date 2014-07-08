@@ -28,25 +28,25 @@
                         <th>Frequency</th>
                         <th>Form</th>
                         <th>Strength</th>
+                        <th class="table-reason">Reason for taking</th>
                         <th class="table-date">Start Date</th>
                         <th class="table-date">Stop Date</th>
                         <th class="table-date">Refill Date</th>
-                        <th class="table-reason">Reason for taking</th>
                         <th class="table-editdelete">Edit/Delete</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <g:each in="${UserMedicationsInstanceList }" var="data">
+                    <g:each in="${UserCurrentMedicationsInstanceList }" var="data">
                     <tr>
                         <td>${data.name }</td>
                         <td>${data.dose }</td>
                         <td>${data.frequency }</td>
                         <td>${data.form }</td>
                         <td>${data.strength }</td>
+                        <td>${data.comments }</td>
                         <td>${data.start_date }</td>
                         <td>${data.stop_date }</td>
                         <td>${data.refill_date }</td>
-                        <td>${data.comments }</td>
                         <td class="table-editdelete">
                             <g:link class="icons-edit" action="edit" params='[id: "${data.medication_id }"]' title="Edit">
                                 <i class="icon-cog"></i>
@@ -74,25 +74,25 @@
                         <th>Frequency</th>
                         <th>Form</th>
                         <th>Strength</th>
+                        <th class="table-reason">Reason for taking</th>
                         <th class="table-date">Start Date</th>
                         <th class="table-date">Stop Date</th>
                         <th class="table-date">Refill Date</th>
-                        <th class="table-reason">Reason for taking</th>
                         <th class="table-editdelete">Edit/Delete</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <g:each in="${UserMedicationsInstanceList }" var="data">
+                    <g:each in="${UserPreviousMedicationsInstanceList }" var="data">
                     <tr>
                         <td>${data.name }</td>
                         <td>${data.dose }</td>
                         <td>${data.frequency }</td>
                         <td>${data.form }</td>
                         <td>${data.strength }</td>
+                        <td>${data.comments }</td>
                         <td>${data.start_date }</td>
                         <td>${data.stop_date }</td>
                         <td>${data.refill_date }</td>
-                        <td>${data.comments }</td>
                         <td class="table-editdelete">
                             <g:link class="icons-edit" action="edit" params='[id: "${data.medication_id }"]' title="Edit">
                                 <i class="icon-cog"></i>

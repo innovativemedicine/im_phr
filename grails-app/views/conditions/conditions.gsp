@@ -27,12 +27,12 @@
                         <th class="table-name2">Name</th>
                         <th class="table-comments">Comments</th>
                         <th class="table-date2">Onset Date</th>
-                        <th class="table-date2"></th>
+                        <th class="table-date2">End Date</th>
                         <th class="table-editdelete">Edit/Delete</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <g:each in="${UserConditionsInstanceList }" var="data">
+                    <g:each in="${UserCurrentConditionsInstanceList }" var="data">
                     <tr>
                         <td>${data.name }</td>
                         <td>${data.comments }</td>
@@ -67,7 +67,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <g:each in="${UserConditionsInstanceList }" var="data">
+                    <g:each in="${UserPreviousConditionsInstanceList }" var="data">
                     <tr>
                         <td>${data.name }</td>
                         <td>${data.comments }</td>

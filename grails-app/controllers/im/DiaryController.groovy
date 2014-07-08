@@ -34,7 +34,7 @@ class DiaryController {
         def db = new Sql(dataSource) // Create a new instance of groovy.sql.Sql with the DB of the Grails app
         
         def UserDiaryInstanceList = db.rows(
-            "SELECT ud.diary_id, ud.topic, ud.entry, ud.date " +
+            "SELECT ud.diary_id, ud.topic, ud.entry, DATE_FORMAT(ud.date, '%d/%m/%Y') AS 'date' " + 
             " FROM user_diary ud " +
             " WHERE ud.user_id = ? " + 
             " ORDER BY date DESC LIMIT 10", session.user.id)

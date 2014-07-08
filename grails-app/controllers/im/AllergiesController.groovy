@@ -34,9 +34,9 @@ class AllergiesController {
         def db = new Sql(dataSource) // Create a new instance of groovy.sql.Sql with the DB of the Grails app
         
         def UserAllergiesInstanceList = db.rows(
-            "SELECT ua.allergy_id, ua.name, ua.reaction, ua.severity, ua.onset_date " +
+            "SELECT ua.allergy_id, ua.name, ua.reaction, ua.severity, DATE_FORMAT(ua.onset_date, '%d/%m/%Y') AS 'onset_date' " + 
             " FROM user_allergies ua " +
-            " WHERE ua.user_id = ? ", session.user.id)
+            " WHERE ua.user_id = ? ORDER BY ua.onset_date DESC", session.user.id)
         
         [UserAllergiesInstanceList: UserAllergiesInstanceList]
     }

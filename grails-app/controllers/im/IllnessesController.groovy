@@ -35,12 +35,18 @@ class IllnessesController {
         
         def db = new Sql(dataSource) // Create a new instance of groovy.sql.Sql with the DB of the Grails app
         
-        def UserIllnessesInstanceList = db.rows(
-            "SELECT ui.illness_id, ui.name, ui.symptoms, ui.treatment, ui.onset_date, ui.end_date, ui.comments " +
+        def UserCurrentIllnessesInstanceList = db.rows(
+            "SELECT ui.illness_id, ui.name, ui.symptoms, ui.treatment, ui.comments, " +
+            " DATE_FORMAT(ui.onset_date, '%d/%m/%Y') AS 'onset_date', DATE_FORMAT(ui.end_date, '%d/%m/%Y') AS 'end_date' " + 
             " FROM user_illnesses ui " +
-            " WHERE ui.user_id = ? ", session.user.id)
+            " WHERE ui.user_id = ? AND ui.end_date >= CURDATE() ORDER BY ui.onset_date DESC", session.user.id)
+        def UserPreviousIllnessesInstanceList = db.rows(
+            "SELECT ui.illness_id, ui.name, ui.symptoms, ui.treatment, ui.comments, " +
+            " DATE_FORMAT(ui.onset_date, '%d/%m/%Y') AS 'onset_date', DATE_FORMAT(ui.end_date, '%d/%m/%Y') AS 'end_date' " +
+            " FROM user_illnesses ui " +
+            " WHERE ui.user_id = ? AND ui.end_date < CURDATE() ORDER BY ui.onset_date DESC", session.user.id)
         
-        [UserIllnessesInstanceList: UserIllnessesInstanceList]
+        [UserCurrentIllnessesInstanceList: UserCurrentIllnessesInstanceList, UserPreviousIllnessesInstanceList: UserPreviousIllnessesInstanceList]
     }
     
     

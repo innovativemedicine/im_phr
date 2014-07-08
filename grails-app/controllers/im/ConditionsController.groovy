@@ -33,12 +33,19 @@ class ConditionsController {
         
         def db = new Sql(dataSource) // Create a new instance of groovy.sql.Sql with the DB of the Grails app
         
-        def UserConditionsInstanceList = db.rows(
-            "SELECT uc.condition_id, uc.name, uc.comments, uc.onset_date, uc.end_date " +
+        def UserCurrentConditionsInstanceList = db.rows(
+            "SELECT uc.condition_id, uc.name, uc.comments, " + 
+            " DATE_FORMAT(uc.onset_date, '%d/%m/%Y') AS 'onset_date', DATE_FORMAT(uc.end_date, '%d/%m/%Y') AS 'end_date' " + 
             " FROM user_conditions uc " +
-            " WHERE uc.user_id = ? ", session.user.id)
+            " WHERE uc.user_id = ? AND uc.end_date >= CURDATE() ORDER BY onset_date DESC", session.user.id)
         
-        [UserConditionsInstanceList: UserConditionsInstanceList]
+        def UserPreviousConditionsInstanceList = db.rows(
+            "SELECT uc.condition_id, uc.name, uc.comments, " +
+            " DATE_FORMAT(uc.onset_date, '%d/%m/%Y') AS 'onset_date', DATE_FORMAT(uc.end_date, '%d/%m/%Y') AS 'end_date' " +
+            " FROM user_conditions uc " +
+            " WHERE uc.user_id = ? AND uc.end_date < CURDATE() ORDER BY onset_date DESC", session.user.id)
+        
+        [UserCurrentConditionsInstanceList: UserCurrentConditionsInstanceList, UserPreviousConditionsInstanceList: UserPreviousConditionsInstanceList]
     }
     
     def create() {

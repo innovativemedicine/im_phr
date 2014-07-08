@@ -11,16 +11,16 @@
         <div id="holder"></div>
         <!--  <div id="chart_div"></div> -->
          
-        <ul style="font-size: 18px;">
+        <ul class="block-text-18">
             <g:if test="${UserCarbohydratesInstanceList.size == 0 }">
                 <li><h4>None</h4></li>
             </g:if>
             <g:else>
 				<g:each in="${UserCarbohydratesInstanceList }" var="data">
 				    <li>
-				           <span style="display: inline-block; width: 120px;">${data.amount } grams</span> 
-				           <span style="display: inline-block; width: 150px;">(${data.previous_change })</span> 
-				        <span style="display: inline-block;">[ ${data.date } ]</span>
+			            <span class="value-block">${data.amount } grams</span> 
+			            <span class="difference-block">(${data.previous_change })</span> 
+				        <span class="date-block">[ ${data.date } ]</span>
 				    </li>
 				</g:each>
             </g:else>

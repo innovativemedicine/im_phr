@@ -93,11 +93,55 @@
 	                    Wellness
 	                </h1>
 	                <div class="block-text">
-	                    <p>
-	                    Lorem ipsum dolor sit amet, consectetur adipisi cing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim.
-	                    <br /><br />
-	                    Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo . Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.
-	                    </p>
+	                    <g:if test="${UserStepsInstanceList.size != 0 }">
+                            <g:each in="${UserStepsInstanceList }" var="data">
+                                <span><strong>Most recent steps taken:</strong> ${data.steps } [${data.date }]</span><br />
+                                <span><strong>Total steps:</strong> ${data.total } steps</span><br />
+                            </g:each>
+                        </g:if>
+                        <g:if test="${UserPushupsInstanceList.size != 0 }">
+                            <g:each in="${UserPushupsInstanceList }" var="data">
+                                <span><strong>Push-ups:</strong> ${data.pushups } [${data.date }]</span><br />
+                            </g:each>
+                        </g:if>
+                        <g:if test="${UserSitupsInstanceList.size != 0 }">
+                            <g:each in="${UserSitupsInstanceList }" var="data">
+                                <span><strong>Sit-ups:</strong> ${data.situps } [${data.date }]</span><br />
+                            </g:each>
+                        </g:if>
+                        <g:if test="${UserSquatsInstanceList.size != 0 }">
+                            <g:each in="${UserSquatsInstanceList }" var="data">
+                                <span><strong>Squats:</strong> ${data.squats } [${data.date }]</span><br />
+                            </g:each>
+                        </g:if>
+                        <g:if test="${UserCaloriesInstanceList.size != 0 }">
+                            <g:each in="${UserCaloriesInstanceList }" var="data">
+                                <span><strong>Most recent calories:</strong> ${data.amount } calories [${data.date }]</span><br />
+                            </g:each>
+                        </g:if>
+                        <g:if test="${UserCarbohydratesInstanceList.size != 0 }">
+                            <g:each in="${UserCarbohydratesInstanceList }" var="data">
+                                <span><strong>Most recent carbohydrates:</strong> ${data.amount } grams [${data.date }]</span><br />
+                            </g:each>
+                        </g:if>
+                        <g:if test="${UserCholestrolInstanceList.size != 0 }">
+                            <g:each in="${UserCholestrolInstanceList }" var="data">
+                                <span><strong>Most recent cholestrol:</strong> ${data.amount } mg/dl [${data.date }]</span><br />
+                            </g:each>
+                        </g:if>
+                        <g:if test="${UserBloodPressureInstanceList.size != 0 }">
+                            <g:each in="${UserBloodPressureInstanceList }" var="data">
+                                <span><strong>Most recent blood pressure:</strong> ${data.systolic }/${data.diastolic } mm Hg [${data.date }]</span><br />
+                            </g:each>
+                        </g:if>
+                        <g:if test="${UserBmiInstanceList.size != 0 }">
+                            <g:each in="${UserBmiInstanceList }" var="data">
+                                <span><strong>Most recent height:</strong> ${data.height } inches [${data.date }]</span><br />
+                                <span><strong>Most recent weight:</strong> ${data.weight } lbs [${data.date }]</span><br />
+                                <span><strong>Most recent BMI:</strong> ${data.bmi } kg/m2 [${data.date }]</span><br />
+                            </g:each>
+                        </g:if>
+                        
 	                </div>
 	            </div>
             </div>
@@ -171,7 +215,7 @@
                         <g:else>
                             <ul>
                                 <g:each in="${UserIllnessesInstanceList }" var="data">
-                                    <li>${data.name }, ${data.symptoms } (${data.onset_date })</li>
+                                    <li>${data.name }, ${data.symptoms } [${data.onset_date }]</li>
                                 </g:each>
                             </ul>
                         </g:else>
@@ -195,7 +239,7 @@
                         <g:else>
                             <ul>
 	                            <g:each in="${UserImmunizationsInstanceList }" var="data">
-	                            <li>${data.name } - ${data.type } (${data.date })</li>
+	                            <li>${data.name } - ${data.type } [${data.date }]</li>
 	                            </g:each>
 	                        </ul>
                         </g:else>

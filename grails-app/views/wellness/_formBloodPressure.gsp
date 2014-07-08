@@ -11,15 +11,15 @@
         <div id="holder"></div>
         <!--  <div id="chart_div"></div> -->
          
-        <ul style="font-size: 18px;">
+        <ul class="block-text-18">
             <g:if test="${UserBloodPressureInstanceList.size == 0 }">
                 <li><h4>None</h4></li>
             </g:if>
             <g:else>
 				<g:each in="${UserBloodPressureInstanceList }" var="data">
 				    <li>
-				        <span style="display: inline-block; width: 270px;">${data.systolic }/${data.diastolic } mm Hg</span>  
-				        <span style="display: inline-block;">[ ${data.date } ]</span>
+				        <span>${data.systolic }/${data.diastolic } mm Hg</span>  
+				        <span class="date-block">[ ${data.date } ]</span>
 				    </li>
 				</g:each>
             </g:else>

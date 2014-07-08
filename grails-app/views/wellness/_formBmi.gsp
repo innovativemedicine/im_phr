@@ -11,15 +11,15 @@
         <div id="holder"></div>
         <!--  <div id="chart_div"></div> -->
          
-        <ul style="font-size: 18px;">
+        <ul class="block-text-18">
             <g:if test="${UserBmiInstanceList.size == 0 }">
                 <li><h4>None</h4></li>
             </g:if>
             <g:else>
                 <g:each in="${UserBmiInstanceList }" var="data">
                     <li>
-                        <span style="display: inline-block; width: 120px;">${data.bmi } kg/m2</span> 
-                        <span style="display: inline-block;">[ ${data.date } ]</span>
+                        <span class="value-block">${data.bmi } kg/m2</span> 
+                        <span class="date-block">[ ${data.date } ]</span>
                     </li>
                 </g:each>
             </g:else>
@@ -83,15 +83,15 @@
         <div id="holder"></div>
         <!--  <div id="chart_div"></div> -->
          
-        <ul style="font-size: 18px;">
+        <ul class="block-text-18">
             <g:if test="${UserBmiInstanceList.size == 0 }">
                 <li><h4>None</h4></li>
             </g:if>
             <g:else>
                 <g:each in="${UserBmiInstanceList }" var="data">
                     <li>
-                        <span style="display: inline-block; width: 120px;">${data.weight } lbs</span> 
-                        <span style="display: inline-block;">[ ${data.date } ]</span>
+                        <span class="value-block">${data.weight } lbs</span> 
+                        <span class="date-block">[ ${data.date } ]</span>
                     </li>
                 </g:each>
             </g:else>
@@ -109,15 +109,15 @@
         <div id="holder"></div>
         <!--  <div id="chart_div"></div> -->
          
-        <ul style="font-size: 18px;">
+        <ul class="block-text-18">
             <g:if test="${UserBmiInstanceList.size == 0 }">
                 <li><h4>None</h4></li>
             </g:if>
             <g:else>
                 <g:each in="${UserBmiInstanceList }" var="data">
                     <li>
-                        <span style="display: inline-block; width: 120px;">${data.height } in</span> 
-                        <span style="display: inline-block;">[ ${data.date } ]</span>
+                        <span class="value-block">${data.height } in</span> 
+                        <span class="date-block">[ ${data.date } ]</span>
                     </li>
                 </g:each>
             </g:else>
