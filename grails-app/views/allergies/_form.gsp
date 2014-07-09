@@ -22,9 +22,8 @@
 	<label for="severity">
 		<g:message code="userAllergies.severity.label" default="Severity" />
 	</label>
-	<%--<g:select name="severity" from="${im.UserAllergies.list()}" optionKey="severity" value="${userAllergiesInstance?.severity}" noSelection="['null': 'N/A']"/>--%>
-	<%--<g:select name="severity" from="${userAllergiesInstance?.constraints?.severity?.inList}" value="${userAllergiesInstance?.severity}" noSelection="['null': 'N/A']"/>--%>
-	<g:textField name="severity" value="${userAllergiesInstance?.severity}"/>	
+    <g:select name="severity" from="${UserAllergies?.constraints.severity.inList}" keys="${UserAllergies?.constraints.severity.inList}" 
+        noSelection="['null':'Select a Resource']" optionKey="severity" value="${userAllergiesInstance?.severity}"/>
 </div>
 
 

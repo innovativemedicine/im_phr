@@ -67,6 +67,7 @@ class AllergiesController {
         
         println("userAllergies = " + UserAllergiesInstance + "   |   " + UserAllergies)
         if (!UserAllergiesInstance) {
+            println("no UserAllergiesInstance")
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'UserAllergies.label', default: 'UserAllergies'), id])
             redirect(action: "allergies")
             return
@@ -95,13 +96,15 @@ class AllergiesController {
         }
 
         UserAllergiesInstance.properties = params
-
+        
         if (!UserAllergiesInstance.save(flush: true)) {
-            render(view: "edit", model: [UserAllergiesInstance: UserAllergiesInstance])
+            flash.message = message(code: 'Error updating the entry. Please ensure the values are correct.', args: [message(code: 'UserAllergies.label', default: 'UserAllergies'), id])
+            redirect(action: "edit", id: params.id)
+//            render(view: "edit", model: [UserAllergiesInstance: UserAllergiesInstance])
             return
         }
 
-        flash.message = message(code: 'default.updated.message', args: [message(code: 'UserAllergies.label', default: 'UserAllergies'), UserAllergiesInstance.id])
+        flash.message = message(code: 'Allergy \"' + UserAllergies.get(id) + '\" updated successfully', args: [message(code: 'UserAllergies.label', default: 'UserAllergies'), UserAllergiesInstance.id])
         redirect(action: "allergies", id: UserAllergiesInstance.id)
     }
 

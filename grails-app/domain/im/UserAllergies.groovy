@@ -23,8 +23,8 @@ class UserAllergies {
     static constraints = {
         name(blank: false)
         reaction(blank: true, nullable: true)
-//        severity(inList: ["Lethal", "Medium", "Mild"], nullable: true)
-        severity(blank: true, nullable: true)
+        severity(inList: ["Lethal", "Medium", "Mild"], nullable: true)
+//        severity(blank: true, nullable: true)
         onsetDate(max: new Date(), blank: true, nullable: true)
     }
 }
