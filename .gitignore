@@ -29,3 +29,5 @@ stacktrace.log
 */target/**
 /devDb.trace.db
 /devDb.lock.db
+target/stacktrace.log
+/target/stacktrace.log

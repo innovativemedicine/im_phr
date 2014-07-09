@@ -18,7 +18,7 @@
                     </g:if>
                     
                     <g:elseif test="${session.user == null}">
-                    Welcome, Test User!
+                    Welcome!
                     </g:elseif>
                 </span>
             </h1>
