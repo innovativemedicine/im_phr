@@ -65,10 +65,8 @@ class AllergiesController {
         
         def UserAllergiesInstance = UserAllergies.get(id)
         
-        println("userAllergies = " + UserAllergiesInstance + "   |   " + UserAllergies)
         if (!UserAllergiesInstance) {
-            println("no UserAllergiesInstance")
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'UserAllergies.label', default: 'UserAllergies'), id])
+            flash.message = message(code: 'Could not find the specific entry. Please try again.', args: [message(code: 'UserAllergies.label', default: 'UserAllergies'), id])
             redirect(action: "allergies")
             return
         }
@@ -79,6 +77,7 @@ class AllergiesController {
     def update(Long id, Long version) {
         println("update");
         def UserAllergiesInstance = UserAllergies.get(id)
+        
         if (!UserAllergiesInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'UserAllergies.label', default: 'UserAllergies'), id])
             redirect(action: "allergies")
@@ -103,7 +102,7 @@ class AllergiesController {
             return
         }
 
-        flash.message = message(code: 'Allergy \"' + UserAllergies.get(id) + '\" updated successfully', args: [message(code: 'UserAllergies.label', default: 'UserAllergies'), UserAllergiesInstance.id])
+        flash.message = message(code: 'Allergy \"' + UserAllergiesInstance.name + '\" updated successfully', args: [message(code: 'UserAllergies.label', default: 'UserAllergies'), UserAllergiesInstance.id])
         redirect(action: "allergies", id: UserAllergiesInstance.id)
     }
 

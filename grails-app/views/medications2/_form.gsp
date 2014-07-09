@@ -38,7 +38,16 @@
     <label for="strength">
         <g:message code="userMedications2.strength.label" default="Strength" />
     </label>
-    <g:textField name="strength" value="${userMedicationsInstance?.strength}"/>
+    <g:select name="strength" from="${UserMedications2?.constraints.strength.inList}" keys="${UserMedications2?.constraints.strength.inList}" 
+        noSelection="['null':'Select a value']" optionKey="strength" value="${userAllergiesInstance?.strength}"/>
+</div>
+
+
+<div class="fieldcontain ${hasErrors(bean: userMedicationsInstance, field: 'comments', 'error')} ">
+    <label for="comments">
+        <g:message code="userMedications2.comments.label" default="Reasons for taking" />
+    </label>
+    <g:textField name="comments" value="${userMedicationsInstance?.comments}"/>
 </div>
 
 
@@ -66,14 +75,6 @@
         <span class="required-indicator">*</span>
     </label>
     <g:datePicker name="refillDate" precision="day"  value="${userMedicationsInstance?.refillDate}" />
-</div>
-
-
-<div class="fieldcontain ${hasErrors(bean: userMedicationsInstance, field: 'comments', 'error')} ">
-    <label for="comments">
-        <g:message code="userMedications2.comments.label" default="Reasons for taking" />
-    </label>
-    <g:textField name="comments" value="${userMedicationsInstance?.comments}"/>
 </div>
 
 

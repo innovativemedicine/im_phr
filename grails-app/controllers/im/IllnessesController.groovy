@@ -61,8 +61,8 @@ class IllnessesController {
         def UserIllnessesInstance = new UserIllnesses(params)
         
         if (!UserIllnessesInstance.save(flush: true)) {
-            println("didn't save :  " + UserIllnessesInstance.errors);
-            render(view: "create", model: [UserIllnessesInstance: UserIllnessesInstance])
+            flash.message = message(code: 'Error saving the entry. Please ensure the values are correct.', args: [message(code: 'UserIllnesses.label', default: 'UserIllnesses')])
+            redirect(action: "create", params: params)
             return
         }
         redirect(action: "illnesses", params: params)
@@ -73,9 +73,8 @@ class IllnessesController {
         
         def UserIllnessesInstance = UserIllnesses.get(id)
         
-        println("userIllnesses = " + UserIllnessesInstance + "   |   " + UserIllnesses)
         if (!UserIllnessesInstance) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'UserIllnesses.label', default: 'UserIllnesses'), id])
+            flash.message = message(code: 'Could not find the specific entry. Please try again.', args: [message(code: 'UserIllnesses.label', default: 'UserIllnesses'), id])
             redirect(action: "illnesses")
             return
         }
@@ -109,11 +108,12 @@ class IllnessesController {
         UserIllnessesInstance.properties = params
 
         if (!UserIllnessesInstance.save(flush: true)) {
-            render(view: "edit", model: [UserIllnessesInstance: UserIllnessesInstance])
+            flash.message = message(code: 'Error updating the entry. Please ensure the values are correct.', args: [message(code: 'UserIllnesses.label', default: 'UserIllnesses'), id])
+            redirect(action: "edit", id: params.id)
             return
         }
-
-        flash.message = message(code: 'default.updated.message', args: [message(code: 'UserIllnesses.label', default: 'UserIllnesses'), UserIllnessesInstance.id])
+        
+        flash.message = message(code: 'Illness \"' + UserIllnessesInstance.name + '\" updated successfully', args: [message(code: 'UserIllnesses.label', default: 'UserIllnesses'), UserIllnessesInstance.id])
         redirect(action: "illnesses", id: UserIllnessesInstance.id)
     }
 

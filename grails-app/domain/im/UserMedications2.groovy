@@ -35,6 +35,7 @@ class UserMedications2 {
         dose(blank: true, nullable: true)
         frequency(blank: true, nullable: true)
         form(blank: true, nullable: true)
+        strength(inList: ["Very Weak", "Weak", "Fair", "Moderate", "Strong", "Very Strong"], nullable: true)
         strength(blank: true, nullable: true)
         startDate(blank: false, nullable: true)
         stopDate(blank: false, nullable: true)

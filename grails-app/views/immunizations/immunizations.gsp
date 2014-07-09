@@ -14,7 +14,6 @@
             
             
             <g:link class="add-button btn btn-primary form-button" action="create">
-<%--                <g:message code="default.new.label" args="[entityName]" />--%>
                 Add
             </g:link>
             
@@ -25,12 +24,8 @@
 				<thead>
 					<tr>
                         <th class="table-name">Name</th>
-                        <th>Type</th>
-                        <th>Manufacturer</th>
-                        <th>Dose</th>
-                        <th class="table-reason">Comments</th>
+                        <th>Comments</th>
                         <th class="table-date">Date</th>
-                        <th class="table-date">Next Date</th>
                         <th class="table-editdelete">Edit/Delete</th>
                     </tr>
 				</thead>
@@ -38,12 +33,8 @@
 					<g:each in="${UserImmunizationsInstanceList }" var="data">
 					<tr>
 					    <td>${data.name }</td>
-                        <td>${data.type }</td>
-                        <td>${data.manufacturer }</td>
-                        <td>${data.dose }</td>
                         <td>${data.comments }</td>
                         <td>${data.date }</td>
-                        <td>${data.next_date }</td>
                         <td class="table-editdelete">
                             <g:link class="icons-edit" action="edit" params='[id: "${data.immunization_id }"]' title="Edit">
 				                <i class="icon-cog"></i>

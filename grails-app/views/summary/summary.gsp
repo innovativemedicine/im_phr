@@ -153,7 +153,7 @@
 	                <h1 class="block-header">
 	                    Current Conditions
 	                </h1>
-	                <div class="block-text-18">
+	                <div class="block-text">
 	                    <g:if test="${UserConditionsInstanceList.size == 0 }">
                             <h4>None</h4>
                         </g:if>
@@ -189,7 +189,7 @@
 	                <h1 class="block-header">
 	                    Current Medications
 	                </h1>
-	                <div class="block-text-18">
+	                <div class="block-text">
 	                    <g:if test="${UserMedicationsInstanceList == null }">
 	                        <h3>None</h3>
 	                    </g:if>
@@ -208,7 +208,7 @@
 	                <h1 class="block-header">
 	                    Current Illnesses
 	                </h1>
-	                <div class="block-text-18">
+	                <div class="block-text">
 	                    <g:if test="${UserIllnessesInstanceList.size == 0 }">
                             <h4>None</h4>
                         </g:if>
@@ -232,14 +232,14 @@
 	                <h1 class="block-header">
 	                    Immunization
 	                </h1>
-	                <div class="block-text-18">
+	                <div class="block-text">
 	                    <g:if test="${UserImmunizationsInstanceList.size == 0 }">
                             <h4>None</h4>
                         </g:if>
                         <g:else>
                             <ul>
 	                            <g:each in="${UserImmunizationsInstanceList }" var="data">
-	                            <li>${data.name } - ${data.type } [${data.date }]</li>
+	                            <li>${data.name } [${data.date }]</li>
 	                            </g:each>
 	                        </ul>
                         </g:else>

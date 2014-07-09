@@ -111,7 +111,7 @@ class SummaryController {
         
         // Immunizations
         def UserImmunizationsInstanceList = db.rows(
-            "SELECT ui.name, ui.type, DATE_FORMAT(ui.date, '%d/%m/%Y') AS 'date' " + 
+            "SELECT ui.name, DATE_FORMAT(ui.date, '%d/%m/%Y') AS 'date' " + 
             " FROM user_immunizations ui " +
             " WHERE ui.user_id = ? " + 
             " ORDER BY ui.date DESC", session.user.id)

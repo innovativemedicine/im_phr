@@ -10,31 +10,6 @@
 </div>
 
 
-<div class="fieldcontain ${hasErrors(bean: userImmunizationsInstance, field: 'dose', 'error')} ">
-    <label for="dose">
-        <g:message code="userImmunizations.dose.label" default="Dose" />
-    </label>
-    <g:textField name="dose" value="${userImmunizationsInstance?.dose}"/>
-</div>
-
-
-<div class="fieldcontain ${hasErrors(bean: userImmunizationsInstance, field: 'type', 'error')} ">
-	<label for="type">
-		<g:message code="userImmunizations.type.label" default="Type" />
-	</label>
-	<%--<g:select name="type" from="${im.UserImmunizations.list()}" optionKey="type" value="${userImmunizationsInstance?.type}" noSelection="['null': 'N/A']"/>--%>
-	<g:select name="type" from="${userImmunizationsInstance?.constraints?.type?.inList}" value="${userImmunizationsInstance?.type}" noSelection="['null': 'N/A']"/>	
-</div>
-
-
-<div class="fieldcontain ${hasErrors(bean: userImmunizationsInstance, field: 'manufacturer', 'error')} ">
-    <label for="manufacturer">
-        <g:message code="userImmunizations.manufacturer.label" default="Manufacturer" />
-    </label>
-    <g:textField name="manufacturer" value="${userImmunizationsInstance?.manufacturer}"/>
-</div>
-
-
 <div class="fieldcontain ${hasErrors(bean: userImmunizationsInstance, field: 'comments', 'error')} ">
     <label for="comments">
         <g:message code="userImmunizations.comments.label" default="Comments" />
@@ -49,15 +24,6 @@
         <span class="required-indicator">*</span>
     </label>
     <g:datePicker name="date" precision="day"  value="${userImmunizationsInstance?.date}"  />
-</div>
-
-
-<div class="fieldcontain ${hasErrors(bean: userImmunizationsInstance, field: 'nextDate', 'error')} required">
-    <label for="nextDate">
-        <g:message code="project.nextDate.label" default="Next Date" />
-        <span class="required-indicator">*</span>
-    </label>
-    <g:datePicker name="nextDate" precision="day"  value="${userImmunizationsInstance?.nextDate}"  />
 </div>
 
 

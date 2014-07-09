@@ -59,8 +59,8 @@ class ConditionsController {
         def UserConditionsInstance = new UserConditions(params)
         
         if (!UserConditionsInstance.save(flush: true)) {
-            println("didn't save :  " + UserConditionsInstance.errors);
-            render(view: "create", model: [UserConditionsInstance: UserConditionsInstance])
+            flash.message = message(code: 'Error saving the entry. Please ensure the values are correct.', args: [message(code: 'UserConditions.label', default: 'UserConditions')])
+            redirect(action: "create", params: params)
             return
         }
         redirect(action: "conditions", params: params)
@@ -71,10 +71,9 @@ class ConditionsController {
         
         def UserConditionsInstance = UserConditions.get(id)
         
-        println("userConditions = " + UserConditionsInstance + "   |   " + UserConditions)
         if (!UserConditionsInstance) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'UserConditions.label', default: 'UserConditions'), id])
-            redirect(action: "conditions")
+            flash.message = message(code: 'Could not find the specific entry. Please try again.', args: [message(code: 'UserConditions.label', default: 'UserConditions'), id])
+            redirect(action: "immunizations")
             return
         }
         
@@ -103,11 +102,13 @@ class ConditionsController {
         UserConditionsInstance.properties = params
 
         if (!UserConditionsInstance.save(flush: true)) {
-            render(view: "edit", model: [UserConditionsInstance: UserConditionsInstance])
+            flash.message = message(code: 'Error updating the entry. Please ensure the values are correct.', args: [message(code: 'UserConditions.label', default: 'UserConditions'), id])
+            redirect(action: "edit", id: params.id)
             return
         }
 
-        flash.message = message(code: 'default.updated.message', args: [message(code: 'UserConditions.label', default: 'UserConditions'), UserConditionsInstance.id])
+        flash.message = message(code: 'Condition \"' + UserConditionsInstance.name + '\" updated successfully', args: [message(code: 'UserConditions.label', default: 'UserConditions'), UserConditionsInstance.id])
+        
         redirect(action: "conditions", id: UserConditionsInstance.id)
     }
 

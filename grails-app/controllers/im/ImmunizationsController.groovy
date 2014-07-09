@@ -33,7 +33,7 @@ class ImmunizationsController {
         def db = new Sql(dataSource) // Create a new instance of groovy.sql.Sql with the DB of the Grails app
         
         def UserImmunizationsInstanceList = db.rows(
-            "SELECT ui.immunization_id, ui.name, ui.comments, ui.dose, ui.manufacturer, ui.type, DATE_FORMAT(ui.date, '%d/%m/%Y') AS 'date', DATE_FORMAT(ui.next_date, '%d/%m/%Y') AS 'next_date' " + 
+            "SELECT ui.immunization_id, ui.name, ui.comments, DATE_FORMAT(ui.date, '%d/%m/%Y') AS 'date' " + 
             " FROM user_immunizations ui " + 
             " WHERE ui.user_id = ? ORDER BY ui.date DESC", session.user.id)
         
@@ -47,23 +47,14 @@ class ImmunizationsController {
     
     def save() {
         println("save");
-//        String name = params.name
-//        String type = params.type
-//        String manufacturer = params.manufacturer
-//        String comments = params.comments
-//        String date = params.date
-//        String nextDate = params.nextDate
-//        String user = params.user
-//        println(name + "  " + type + " | " + manufacturer + " | " + comments + " | " + date + " | " + nextDate + " | " + user);
         
         def UserImmunizationsInstance = new UserImmunizations(params)
+        
         if (!UserImmunizationsInstance.save(flush: true)) {
-            println("didn't save :  " + UserImmunizationsInstance.errors);
-            render(view: "create", model: [UserImmunizationsInstance: UserImmunizationsInstance])
+            flash.message = message(code: 'Error saving the entry. Please ensure the values are correct.', args: [message(code: 'UserImmunizations.label', default: 'UserImmunizations')])
+            redirect(action: "create", params: params)
             return
         }
-//        flash.message = message(code: 'default.created.message', args: [message(code: 'UserImmunizations.label', default: 'UserImmunizations'), UserImmunizationsInstance.id])
-//        redirect(action: "show", id: UserImmunizationsInstance.id)
         redirect(action: "immunizations", params: params)
     }
     
@@ -72,9 +63,8 @@ class ImmunizationsController {
         
         def UserImmunizationsInstance = UserImmunizations.get(id)
         
-        println("userImmunizations = " + UserImmunizationsInstance + "   |   " + UserImmunizations)
         if (!UserImmunizationsInstance) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'UserImmunizations.label', default: 'UserImmunizations'), id])
+            flash.message = message(code: 'Could not find the specific entry. Please try again.', args: [message(code: 'UserImmunizations.label', default: 'UserImmunizations'), id])
             redirect(action: "immunizations")
             return
         }
@@ -104,11 +94,12 @@ class ImmunizationsController {
         UserImmunizationsInstance.properties = params
 
         if (!UserImmunizationsInstance.save(flush: true)) {
-            render(view: "edit", model: [UserImmunizationsInstance: UserImmunizationsInstance])
+            flash.message = message(code: 'Error updating the entry. Please ensure the values are correct.', args: [message(code: 'UserImmunizations.label', default: 'UserImmunizations'), id])
+            redirect(action: "edit", id: params.id)
             return
         }
 
-        flash.message = message(code: 'default.updated.message', args: [message(code: 'UserImmunizations.label', default: 'UserImmunizations'), UserImmunizationsInstance.id])
+        flash.message = message(code: 'Immunization \"' + UserImmunizationsInstance.name + '\" updated successfully', args: [message(code: 'UserImmunizations.label', default: 'UserImmunizations'), UserImmunizationsInstance.id])
         redirect(action: "immunizations", id: UserImmunizationsInstance.id)
     }
 
