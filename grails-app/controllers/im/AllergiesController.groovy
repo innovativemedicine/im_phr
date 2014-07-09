@@ -53,8 +53,8 @@ class AllergiesController {
         def UserAllergiesInstance = new UserAllergies(params)
         
         if (!UserAllergiesInstance.save(flush: true)) {
-            println("didn't save :  " + UserAllergiesInstance.errors);
-            render(view: "create", model: [UserAllergiesInstance: UserAllergiesInstance])
+            flash.message = message(code: 'Error saving the entry. Please ensure the values are correct.', args: [message(code: 'UserAllergies.label', default: 'UserAllergies')])
+            redirect(action: "create", params: params)
             return
         }
         redirect(action: "allergies", params: params)
@@ -100,7 +100,6 @@ class AllergiesController {
         if (!UserAllergiesInstance.save(flush: true)) {
             flash.message = message(code: 'Error updating the entry. Please ensure the values are correct.', args: [message(code: 'UserAllergies.label', default: 'UserAllergies'), id])
             redirect(action: "edit", id: params.id)
-//            render(view: "edit", model: [UserAllergiesInstance: UserAllergiesInstance])
             return
         }
 
