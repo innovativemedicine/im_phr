@@ -108,6 +108,16 @@
 </div>
 
 
+<div class="fieldcontain ${hasErrors(bean: userProfileInstance, field: 'gender', 'error')} required">
+    <label for="gender">
+        <g:message code="userProfile.gender.label" default="Gender" />
+        <span class="required-indicator">*</span>
+    </label>
+    <g:select name="gender" from="${UserProfile?.constraints.gender.inList}" keys="${UserProfile?.constraints.gender.inList}" 
+        noSelection="['null':'Select a value']" optionKey="gender" value="${userProfileInstance?.gender}"/>
+</div>
+
+
 <div class="fieldcontain ${hasErrors(bean: userProfileInstance, field: 'birthday', 'error')} required">
     <label for="birthday">
         <g:message code="project.birthday.label" default="Birthday" />
@@ -122,7 +132,8 @@
         <g:message code="userProfile.bloodType.label" default="Blood Type" />
         <span class="required-indicator">*</span>
     </label>
-    <g:textField name="bloodType" value="${userProfileInstance?.bloodType}"/>
+    <g:select name="bloodType" from="${UserProfile?.constraints.bloodType.inList}" keys="${UserProfile?.constraints.bloodType.inList}" 
+        noSelection="['null':'Select a value']" optionKey="bloodType" value="${userProfileInstance?.bloodType}"/>
 </div>
 
 
@@ -140,7 +151,8 @@
         <g:message code="userProfile.maritalStatus.label" default="Marital Status" />
         <span class="required-indicator">*</span>
     </label>
-    <g:textField name="maritalStatus" value="${userProfileInstance?.maritalStatus}"/>
+    <g:select name="maritalStatus" from="${UserProfile?.constraints.maritalStatus.inList}" keys="${UserProfile?.constraints.maritalStatus.inList}" 
+        noSelection="['null':'Select a value']" optionKey="maritalStatus" value="${userProfileInstance?.maritalStatus}"/>
 </div>
 
 

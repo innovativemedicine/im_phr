@@ -48,12 +48,12 @@ class UserProfile {
         province(blank:true, nullable: true)
         country(blank:true, nullable: true)
         postalCode(blank:true, nullable: true)
-        gender(blank:true, nullable: true)
-//        gender(inList:["Male", "Female", "Decline to answer"])
+//        gender(blank:true, nullable: true)
+        gender(inList:["Male", "Female", "Decline to answer"])
         birthday(blank:true, nullable: true, max: new Date())
         
-        maritalStatus(blank:true, nullable: true)
-//        maritalStatus(inList:["Married", "Separated", "Divorced", "Widowed", "Single", "Common Law", "Decline to answer"])
+//        maritalStatus(blank:true, nullable: true)
+        maritalStatus(inList:["Married", "Separated", "Divorced", "Widowed", "Single", "Common Law", "Decline to answer"])
         
         homePhone(blank:true, nullable: true)
         cellPhone(blank:true, nullable: true)
@@ -61,7 +61,7 @@ class UserProfile {
         primaryLanguage(blank:true, nullable: true)
         height(blank:true, nullable: true)
         weight(blank:true, nullable: true)
-        bloodType(blank:true, nullable: true)
-//        bloodType(inList:["Don't Know", "A +", "A -", "B +", "B -", "AB +", "AB -", "O +", "O -"])
+//        bloodType(blank:true, nullable: true)
+        bloodType(inList:["Don't Know", "A +", "A -", "B +", "B -", "AB +", "AB -", "O +", "O -"])
     }
 }

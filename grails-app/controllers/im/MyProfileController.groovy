@@ -64,24 +64,23 @@ class MyProfileController {
         }
         
         if (!UserProfileInstance.save(flush: true)) {
-            println("didn't save Profile :  " + UserProfileInstance.errors);
-            render(view: "create", model: [UserProfileInstance: UserProfileInstance])
+            flash.message = message(code: 'There was an error saving your Profile. Make sure all the fields are correct and try again.', args: [message(code: 'UserProfile.label', default: 'UserProfile'), id])
+            redirect(action: "edit", id: params.id)
             return
         }
         redirect(action: "myProfile", params: params)
     }
     
-    def edit(Long id, String page) {
-        println("--- edit : " + id + " : " + page);
+    def edit(Long id, String page, String page123) {
+        println("--- edit : " + id + " : " + page + " | " + page123);
         
         if (page == "profile") {
             println("PROFILE PAGE")
             def UserProfileInstance = UserProfile.get(id)
             println(UserProfileInstance)
             if (!UserProfileInstance) {
-                println("failed")
-                flash.message = message(code: 'default.not.found.message', args: [message(code: 'UserProfile.label', default: 'UserProfile'), id])
-                redirect(action: "myProfile")
+                flash.message = message(code: 'There was an error loading your Profile', args: [message(code: 'UserProfile.label', default: 'UserProfile'), id])
+                redirect(action: "edit", id: params.id, page: "profile")
                 return
             }
             [page: page, userProfileInstance: UserProfileInstance]
@@ -91,9 +90,8 @@ class MyProfileController {
             def UserEmploymentInstance = UserEmploymentInfo.get(id)
             println(UserEmploymentInstance)
             if (!UserEmploymentInstance) {
-                println("failed")
-                flash.message = message(code: 'default.not.found.message', args: [message(code: 'UserEmployment.label', default: 'UserEmployment'), id])
-                redirect(action: "myProfile")
+                flash.message = message(code: 'There was an error loading your Employment information', args: [message(code: 'UserProfile.label', default: 'UserProfile'), id])
+                redirect(action: "edit", id: params.id, page: "employment")
                 return
             }
             [page: page, userEmploymentInstance: UserEmploymentInstance]
@@ -103,9 +101,8 @@ class MyProfileController {
             def UserContactsInstance = UserEmergencyContacts.get(id)
             println(UserContactsInstance)
             if (!UserContactsInstance) {
-                println("failed")
-                flash.message = message(code: 'default.not.found.message', args: [message(code: 'UserEmergencyContacts.label', default: 'UserEmergencyContacts'), id])
-                redirect(action: "myProfile")
+                flash.message = message(code: 'There was an error loading your Emergency Contacts information', args: [message(code: 'UserProfile.label', default: 'UserProfile'), id])
+                redirect(action: "edit", id: params.id, page: "contacts")
                 return
             }
             [page: page, userContactsInstance: UserContactsInstance]
@@ -118,45 +115,31 @@ class MyProfileController {
         println("update profile");
         def UserProfileInstance = UserProfile.get(id)
         
-        println("ID = " + id)
-        println(UserProfileInstance)
-        
         if (!UserProfileInstance) {
-            println("couldn't update PROFILE")
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'UserProfile.label', default: 'UserProfile'), id])
+            flash.message = message(code: 'There was an error loading your profile', args: [message(code: 'UserProfile.label', default: 'UserProfile'), id])
             redirect(action: "myProfile")
             return
         }
         
-        
         if (version != null) {
-            println("version not null : " + UserProfileInstance.version + " ~~ " + version)
             if (UserProfileInstance.version > version) {
-                println("PROFILE version is too large : " + UserProfileInstance.version + " ~~ " + version)
                 UserProfileInstance.errors.rejectValue("version", "default.optimistic.locking.failure",
                           [message(code: 'UserProfile.label', default: 'UserProfile')] as Object[],
-                          "Another user has updated this UserProfile while you were editing")
+                          "Another user has updated this profile while you were editing")
                 render(view: "edit", model: [UserProfileInstance: UserProfileInstance])
                 return
             }
         }
-
+        
         UserProfileInstance.properties = params
         
-        println("||  " + params)
-        println("||  " + UserProfileInstance)
-        
-        UserProfileInstance.save(failOnError: true)
-        
-        
         if (!UserProfileInstance.save(flush: true)) {
-            println("UserProfileInstance save flush failed")
-            render(view: "edit", model: [UserProfileInstance: UserProfileInstance])
+            flash.message = message(code: 'There was an error updating your Profile. Make sure all the fields are correct and try again.', args: [message(code: 'UserProfile.label', default: 'UserProfile'), id])
+            redirect(action: "edit", page123: 'test', id: params.id, page: "profile")
             return
         }
         
-        println("update correct")
-        flash.message = message(code: 'default.updated.message', args: [message(code: 'UserProfile.label', default: 'UserProfile'), UserProfileInstance.id])
+        flash.message = message(code: 'Profile updated successfully', args: [message(code: 'UserProfile.label', default: 'UserProfile'), UserProfileInstance.id])
         redirect(action: "myProfile", id: UserProfileInstance.id)
     }
     
@@ -166,11 +149,8 @@ class MyProfileController {
         println("update employment");
         def UserEmploymentInfoInstance = UserEmploymentInfo.get(session.user.id)
         
-        println("ID = " + id)
-        println(UserEmploymentInfoInstance)
-        
         if (!UserEmploymentInfoInstance) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'UserEmergencyContacts.label', default: 'UserEmergencyContacts'), id])
+            flash.message = message(code: 'There was an error loading your employment info', args: [message(code: 'UserEmploymentInfo.label', default: 'UserEmploymentInfo'), id])
             redirect(action: "myProfile")
             return
         }
@@ -179,7 +159,7 @@ class MyProfileController {
             if (UserEmploymentInfoInstance.version > version) {
                 UserEmploymentInfoInstance.errors.rejectValue("version", "default.optimistic.locking.failure",
                           [message(code: 'UserEmploymentInfo.label', default: 'UserEmploymentInfo')] as Object[],
-                          "Another user has updated this UserEmploymentInfo while you were editing")
+                          "Another user has updated this employment info while you were editing")
                 render(view: "edit", model: [UserEmploymentInfoInstance: UserEmploymentInfoInstance])
                 return
             }
@@ -188,11 +168,12 @@ class MyProfileController {
         UserEmploymentInfoInstance.properties = params
 
         if (!UserEmploymentInfoInstance.save(flush: true)) {
-            render(view: "edit", model: [UserEmploymentInfoInstance: UserEmploymentInfoInstance])
+            flash.message = message(code: 'There was an error updating your Employment Info. Make sure all the fields are correct and try again.', args: [message(code: 'UserEmploymentInfo.label', default: 'UserEmploymentInfo'), id])
+            redirect(action: "edit", page123: 'test', id: params.id, page: "employment")
             return
         }
-
-        flash.message = message(code: 'default.updated.message', args: [message(code: 'UserEmploymentInfo.label', default: 'UserEmploymentInfo'), UserEmploymentInfoInstance.id])
+        
+        flash.message = message(code: 'Employment info updated successfully', args: [message(code: 'UserEmploymentInfo.label', default: 'UserEmploymentInfo'), UserEmploymentInfoInstance.id])
         redirect(action: "myProfile", id: UserEmploymentInfoInstance.id)
     }
     
@@ -203,7 +184,7 @@ class MyProfileController {
         def UserEmergencyContactsInstance = UserEmergencyContacts.get(session.user.id)
         
         if (!UserEmergencyContactsInstance) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'UserEmergencyContacts.label', default: 'UserEmergencyContacts'), id])
+            flash.message = message(code: 'There was an error loading your emergency contacts', args: [message(code: 'UserEmergencyContacts.label', default: 'UserEmergencyContacts'), id])
             redirect(action: "myProfile")
             return
         }
@@ -221,11 +202,12 @@ class MyProfileController {
         UserEmergencyContactsInstance.properties = params
 
         if (!UserEmergencyContactsInstance.save(flush: true)) {
-            render(view: "edit", model: [UserEmergencyContactsInstance: UserEmergencyContactsInstance])
+            flash.message = message(code: 'There was an error updating your Employment Info. Make sure all the fields are correct and try again.', args: [message(code: 'UserEmploymentInfo.label', default: 'UserEmploymentInfo'), id])
+            redirect(action: "edit", page123: 'test', id: params.id, page: "employment")
             return
         }
-
-        flash.message = message(code: 'default.updated.message', args: [message(code: 'UserEmergencyContacts.label', default: 'UserEmergencyContacts'), UserEmergencyContactsInstance.id])
+        
+        flash.message = message(code: 'Emergency contacts updated successfully', args: [message(code: 'UserEmergencyContacts.label', default: 'UserEmergencyContacts'), UserEmergencyContactsInstance.id])
         redirect(action: "myProfile", id: UserEmergencyContactsInstance.id)
     }
     

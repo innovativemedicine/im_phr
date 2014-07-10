@@ -41,6 +41,7 @@
                                 <g:if test="${data.home_phone != null }"><p>Home #: ${data.home_phone }</p></g:if>
                                 <g:if test="${data.cell_phone != null }"><p>Cell #: ${data.cell_phone }</p></g:if>
                                 <g:if test="${data.email != null }"><p>Email: ${data.email }</p></g:if>
+                                <p>Gender: ${data.gender }</p>
                                 <p>Birthday: ${data.birthday }</p>
                                 <g:if test="${data.blood_type != null }"><p>Blood Type: ${data.blood_type }</p></g:if>
                                 <g:if test="${data.height != null }"><p>Height: ${data.height } inches</p></g:if>
