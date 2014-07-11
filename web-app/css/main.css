@@ -110,6 +110,7 @@ form {
 }
 
 .user-image-small {
+	width: 45%;
     float: right;
 }
 
@@ -222,6 +223,20 @@ form {
 	margin-right: 25px;
 	float: right;
 }
+
+
+.profile-img {
+	/* max-width:  234px;
+	max-height: 234px; */
+}
+
+
+
+
+
+
+
+
 
 
 

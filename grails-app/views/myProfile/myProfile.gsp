@@ -52,9 +52,27 @@
                             </g:each>
 		                </div>
 		            </div>
+		            
 		            <div class="user-image-small">
-		                <img src="/images/placeholder-img.png" alt="User Image" class="img-polaroid" height="200" width="200" />
-		            </div>
+	                    <g:fieldValue bean="${fileInstance}" field="id"/>
+                            <img  src="${createLink(controller:'MyProfile', action:'showPayload', id:"${session.user.id}")}" width='300' class="profile-img" />
+                        <g:fieldValue bean="${fileInstance}" field="fileName"/>
+                        <br /><br />
+						<g:form action="saveImage" enctype="multipart/form-data">
+							<fieldset class="form">
+								<div class="fieldcontain ${hasErrors(bean: fileInstance, field: 'filePayload', 'error')} ">
+								<input type="file" id="filePayload" name="filePayload" />
+								
+                                <g:hiddenField name="userId" value="${session.user.id}"/> 
+								
+								</div>
+							</fieldset>
+							<fieldset class="buttons">
+							    <g:submitButton name="create" class="save" value="${message(code: 'default.button.save.label', default: 'Save ')}" />
+							    <g:actionSubmit class="save" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" />
+							</fieldset>
+						</g:form>
+					</div>
 	            </div>
 	            
 	            

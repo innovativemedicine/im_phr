@@ -42,5 +42,7 @@ grails.project.dependency.resolution = {
 //           runtime ':twitter-bootstrap:2.3.2'
        //    runtime ':lesscss-resources:0.6.1'
            build ":tomcat:$grailsVersion"
+           compile ":calendar:1.2.1"
+           
     }
 }

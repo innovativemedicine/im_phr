@@ -2,11 +2,20 @@ package im
 
 import org.springframework.dao.DataIntegrityViolationException
 
+import org.springframework.web.multipart.MultipartFile
+import org.springframework.web.multipart.MultipartHttpServletRequest
+import javax.servlet.http.HttpServletRequest
+
 import groovy.sql.Sql
+
+import org.apache.commons.io.FileUtils
+import org.apache.commons.io.monitor.FileEntry
+
 
 class MyProfileController {
     
     static allowedMethods = [save: "POST", update: "POST", delete: ["GET", "POST"]]
+    private static final okcontents = ['image/png', 'image/jpeg', 'image/gif']
     
     def dataSource // the Spring-Bean "dataSource" is auto-injected
     
@@ -211,6 +220,70 @@ class MyProfileController {
         redirect(action: "myProfile", id: UserEmergencyContactsInstance.id)
     }
     
+    
+    
+    
+    
+    def saveImage() {
+        println("saveImage")
+        
+        def db = new Sql(dataSource) // Create a new instance of groovy.sql.Sql with the DB of the Grails app
+        
+        // Check if you are updating an old image or creating a new entry
+        def row = db.firstRow("SELECT COUNT(*) FROM file WHERE user_id = ?", params.userId)
+        
+        def fileInstance;
+        
+        if (row[0]) {            
+            fileInstance = File.findByUserId(session.user.id)
+        } else {
+            fileInstance = new File(params)
+        }
+        
+        def uploadedFile = request.getFile('filePayload')
+        
+//        if (uploadedFile.getBytes() == null || uploadedFile.getBytes().length == 0) {
+        if (uploadedFile.empty ) { //&& uploadService.isFileAllowed(uploadedFile)) {
+            flash.message = "Please select an image to upload"
+            redirect(action: "myProfile")
+            return
+        }
+        
+        fileInstance.filePayload = uploadedFile.getBytes() //converting the file to bytes
+        fileInstance.fileName = uploadedFile.originalFilename //getting the file name from the uploaded file
+        fileInstance.fileType = uploadedFile.contentType//getting and storing the file type
+        
+        if (!fileInstance.save(flush: true)) {
+            flash.message = message(code: 'Error saving the entry. Please ensure the values are correct.', args: [message(code: 'File.label', default: 'File')])
+            redirect(action: "myProfile")
+            return
+        }
+        
+        flash.message = "Profile image updated"
+        redirect(action: "myProfile")
+    }
+    
+    def showPayload() {
+        println("showPaylaod")
+        
+        def fileInstance = File.findByUserId(session.user.id)
+        
+        if (fileInstance == null) {
+            println("fileInstance  =  " + fileInstance)
+            fileInstance = File.findByFileName("placeholder-img.png")
+        }
+        
+        response.outputStream << fileInstance.filePayload // write the image to the outputstream
+        response.outputStream.flush()
+    }
+    
+    def delete() {
+        println("delete  =  " + session.user.id)
+        
+        def fileInstance = File.findByUserId(session.user.id)
+        fileInstance.delete(flush: true) //flush:true ->flushes the persistence context, persisting the object immediately
+        redirect(action: "myProfile")
+    }
     
 }
 
