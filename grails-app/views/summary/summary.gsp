@@ -16,49 +16,6 @@
         <div id="main-body" style="clear: both">
             
             <div class="row-fluid">
-                
-                
-                
-                <g:each in="${UserEmploymentInstanceList }" var="data">
-                    <g:if test="${data.size() > 0 }">
-                        <div class="block span6">
-                            <h1 class="block-header">
-                                Employment Info
-                            </h1>
-                            <div class="block-text">
-                                <g:if test="${data.occupation != null }"><span>Occupation: ${data.occupation }</span><br /></g:if>
-                                <g:if test="${data.name != null }"><span>Company: ${data.name }</span><br /></g:if>
-                                <g:if test="${data.address_one != null }"><span>${data.address_one }</span><br /></g:if>
-                                <g:if test="${data.address_two != null }"><span>${data.address_two }</span><br /></g:if>
-                                <g:if test="${data.city != null }"><span>${data.city }, ${data.province }, ${data.country }&nbsp;&nbsp;${data.postal_code }</span><br /></g:if>
-                                <g:if test="${data.phone_number != null }"><span>${data.phone_number }</span><br /></g:if>
-                            </div>
-                        </div>
-                    </g:if>
-                </g:each>
-                
-                <g:each in="${UserContactsInstanceList }" var="data">
-                    <g:if test="${data.size() > 0 }">
-                        <div class="block span6">
-                            <h1 class="block-header">
-                                Emergency Contacts
-                            </h1>
-                            <div class="block-text">
-                                <g:if test="${data.name != null }"><span>${data.name }</span><br /></g:if>
-                                <g:if test="${data.address_one != null }"><span>${data.address_one }</span><br /></g:if>
-                                <g:if test="${data.address_two != null }"><span>${data.address_two }</span><br /></g:if>
-                                <g:if test="${data.city != null }"><span>${data.city }, ${data.province }, ${data.country }&nbsp;&nbsp;${data.postal_code }</span><br /></g:if>
-                                <g:if test="${data.phone_number_one != null }"><span>${data.phone_number_one }</span><br /></g:if>
-                                <g:if test="${data.phone_number_two != null }"><span>${data.phone_number_two }</span><br /></g:if>
-                                <g:if test="${data.relationship != null }"><span>Relationship: ${data.relationship }</span><br /></g:if>
-                            </div>
-                        </div>
-                    </g:if>
-                </g:each>
-            </div>
-            
-            
-            <div class="row-fluid">
                 <div class="block span6">
                     <div class="half-text-width">
                         <h1 class="block-header">
@@ -84,7 +41,12 @@
                         </div>
                     </div>
                     <div class="user-image-small">
+                        <!--
                         <img src="/images/placeholder-img.png" alt="User Image" class="img-polaroid" height="200" width="200" />
+                        -->
+                        <g:fieldValue bean="${fileInstance}" field="id"/>
+                            <img  src="${createLink(controller:'MyProfile', action:'showPayload', id:"${session.user.id}")}" width='300' class="profile-img" />
+                        <g:fieldValue bean="${fileInstance}" field="fileName"/>
                     </div>
                 </div>
 	            
@@ -265,6 +227,47 @@
 	            </div>
 	        </div>
 	        
+	        
+	        
+	        <div class="row-fluid">
+                <g:each in="${UserEmploymentInstanceList }" var="data">
+                    <g:if test="${data.size() > 0 }">
+                        <div class="block span6">
+                            <h1 class="block-header">
+                                Employment Info
+                            </h1>
+                            <div class="block-text">
+                                <g:if test="${data.occupation != null }"><span>Occupation: ${data.occupation }</span><br /></g:if>
+                                <g:if test="${data.name != null }"><span>Company: ${data.name }</span><br /></g:if>
+                                <g:if test="${data.address_one != null }"><span>${data.address_one }</span><br /></g:if>
+                                <g:if test="${data.address_two != null }"><span>${data.address_two }</span><br /></g:if>
+                                <g:if test="${data.city != null }"><span>${data.city }, ${data.province }, ${data.country }&nbsp;&nbsp;${data.postal_code }</span><br /></g:if>
+                                <g:if test="${data.phone_number != null }"><span>${data.phone_number }</span><br /></g:if>
+                            </div>
+                        </div>
+                    </g:if>
+                </g:each>
+                
+                <g:each in="${UserContactsInstanceList }" var="data">
+                    <g:if test="${data.size() > 0 }">
+                        <div class="block span6">
+                            <h1 class="block-header">
+                                Emergency Contacts
+                            </h1>
+                            <div class="block-text">
+                                <g:if test="${data.name != null }"><span>${data.name }</span><br /></g:if>
+                                <g:if test="${data.address_one != null }"><span>${data.address_one }</span><br /></g:if>
+                                <g:if test="${data.address_two != null }"><span>${data.address_two }</span><br /></g:if>
+                                <g:if test="${data.city != null }"><span>${data.city }, ${data.province }, ${data.country }&nbsp;&nbsp;${data.postal_code }</span><br /></g:if>
+                                <g:if test="${data.phone_number_one != null }"><span>${data.phone_number_one }</span><br /></g:if>
+                                <g:if test="${data.phone_number_two != null }"><span>${data.phone_number_two }</span><br /></g:if>
+                                <g:if test="${data.relationship != null }"><span>Relationship: ${data.relationship }</span><br /></g:if>
+                            </div>
+                        </div>
+                    </g:if>
+                </g:each>
+            </div>
+            
 	        
 	    </div>
     </div>

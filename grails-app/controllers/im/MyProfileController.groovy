@@ -230,14 +230,14 @@ class MyProfileController {
         def db = new Sql(dataSource) // Create a new instance of groovy.sql.Sql with the DB of the Grails app
         
         // Check if you are updating an old image or creating a new entry
-        def row = db.firstRow("SELECT COUNT(*) FROM file WHERE user_id = ?", params.userId)
+        def row = db.firstRow("SELECT COUNT(*) FROM user_file WHERE user_id = ?", params.userId)
         
         def fileInstance;
         
         if (row[0]) {            
-            fileInstance = File.findByUserId(session.user.id)
+            fileInstance = UserFile.findByUserId(session.user.id)
         } else {
-            fileInstance = new File(params)
+            fileInstance = new UserFile(params)
         }
         
         def uploadedFile = request.getFile('filePayload')
@@ -266,11 +266,11 @@ class MyProfileController {
     def showPayload() {
         println("showPaylaod")
         
-        def fileInstance = File.findByUserId(session.user.id)
+        def fileInstance = UserFile.findByUserId(session.user.id)
         
         if (fileInstance == null) {
             println("fileInstance  =  " + fileInstance)
-            fileInstance = File.findByFileName("placeholder-img.png")
+            fileInstance = UserFile.findByFileName("placeholder-img.png")
         }
         
         response.outputStream << fileInstance.filePayload // write the image to the outputstream
@@ -280,7 +280,7 @@ class MyProfileController {
     def delete() {
         println("delete  =  " + session.user.id)
         
-        def fileInstance = File.findByUserId(session.user.id)
+        def fileInstance = UserFile.findByUserId(session.user.id)
         fileInstance.delete(flush: true) //flush:true ->flushes the persistence context, persisting the object immediately
         redirect(action: "myProfile")
     }
