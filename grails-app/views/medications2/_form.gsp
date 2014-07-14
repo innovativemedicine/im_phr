@@ -39,7 +39,7 @@
         <g:message code="userMedications2.strength.label" default="Strength" />
     </label>
     <g:select name="strength" from="${UserMedications2?.constraints.strength.inList}" keys="${UserMedications2?.constraints.strength.inList}" 
-        noSelection="['null':'Select a value']" optionKey="strength" value="${userAllergiesInstance?.strength}"/>
+        noSelection="['null':'Select a value']" optionKey="strength" value="${userMedicationsInstance?.strength}"/>
 </div>
 
 
@@ -56,7 +56,7 @@
         <g:message code="project.startDate.label" default="Start Date" />
         <span class="required-indicator">*</span>
     </label>
-    <g:datePicker name="startDate" precision="day"  value="${userMedicationsInstance?.startDate}" />
+    <calendar:datePicker name="startDate" value="${userMedicationsInstance?.startDate}" dateFormat="%d-%m-%Y" />
 </div>
 
 
@@ -65,7 +65,7 @@
         <g:message code="project.stopDate.label" default="Stop Date" />
         <span class="required-indicator">*</span>
     </label>
-    <g:datePicker name="stopDate" precision="day"  value="${userMedicationsInstance?.stopDate}" />
+    <calendar:datePicker name="stopDate" value="${userMedicationsInstance?.stopDate}" dateFormat="%d-%m-%Y" />
 </div>
 
 
@@ -74,7 +74,7 @@
         <g:message code="project.refillDate.label" default="Refill Date" />
         <span class="required-indicator">*</span>
     </label>
-    <g:datePicker name="refillDate" precision="day"  value="${userMedicationsInstance?.refillDate}" />
+    <calendar:datePicker name="refillDate" value="${userMedicationsInstance?.refillDate}" dateFormat="%d-%m-%Y" />
 </div>
 
 

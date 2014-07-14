@@ -32,7 +32,7 @@
         <g:message code="project.onsetDate.label" default="Onset Date" />
         <span class="required-indicator">*</span>
     </label>
-    <g:datePicker name="onsetDate" precision="day"  value="${userAllergiesInstance?.onsetDate}"  />
+    <calendar:datePicker name="onsetDate" value="${userAllergiesInstance?.onsetDate}" dateFormat="%d-%m-%Y" />
 </div>
 
 

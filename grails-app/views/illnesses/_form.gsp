@@ -31,7 +31,7 @@
         <g:message code="project.onsetDate.label" default="Onset Date" />
         <span class="required-indicator">*</span>
     </label>
-    <g:datePicker name="onsetDate" precision="day"  value="${userIllnessesInstance?.onsetDate}"  />
+    <calendar:datePicker name="onsetDate" value="${userIllnessesInstance?.onsetDate}" dateFormat="%d-%m-%Y" />
 </div>
 
 
@@ -40,7 +40,7 @@
         <g:message code="project.endDate.label" default="End Date" />
         <span class="required-indicator">*</span>
     </label>
-    <g:datePicker name="endDate" precision="day"  value="${userIllnessesInstance?.endDate}"  />
+    <calendar:datePicker name="endDate" value="${userIllnessesInstance?.endDate}" dateFormat="%d-%m-%Y" />
 </div>
 
 

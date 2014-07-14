@@ -23,7 +23,7 @@
         <g:message code="project.date.label" default="Date" />
         <span class="required-indicator">*</span>
     </label>
-    <g:datePicker name="date" precision="day"  value="${userImmunizationsInstance?.date}"  />
+    <calendar:datePicker name="date" value="${userImmunizationsInstance?.date}" dateFormat="%d-%m-%Y" />
 </div>
 
 

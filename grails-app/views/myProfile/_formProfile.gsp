@@ -123,7 +123,7 @@
         <g:message code="project.birthday.label" default="Birthday" />
         <span class="required-indicator">*</span>
     </label>
-    <g:datePicker name="birthday" precision="day"  value="${userProfileInstance?.birthday}" />
+    <calendar:datePicker name="birthday" value="${userProfileInstance?.birthday}" dateFormat="%d-%m-%Y" />
 </div>
 
 

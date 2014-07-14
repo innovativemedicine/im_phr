@@ -4,7 +4,7 @@
 
 	<g:set var="entityName" value="${message(code: 'illnesses.label', default: 'Illnesses')}" />
 	<title><g:message code="default.create.label" args="[entityName]" /></title>
-
+    <calendar:resources lang="en" theme="tiger"/>
 </head>
 <%@ page import="im.UserIllnesses" %>
 

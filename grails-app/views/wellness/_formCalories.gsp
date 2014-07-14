@@ -43,7 +43,7 @@
 	                    <g:message code="project.date.label" default="Date" />
 	                    <span class="required-indicator">*</span>
 	                </label>
-	                <g:datePicker name="date" precision="day"  value="${userCaloriesInstance?.date}"  />
+                    <g:datePicker name="date" precision="day"  value="${userCaloriesInstance?.date}"  />
 	            </div>
 	            
 	            

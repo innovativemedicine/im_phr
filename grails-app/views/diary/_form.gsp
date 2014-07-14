@@ -23,7 +23,7 @@
         <g:message code="project.date.label" default="Date" />
         <span class="required-indicator">*</span>
     </label>
-    <g:datePicker name="date" precision="day" default="${userDiaryInstance?.date}" value="${userDiaryInstance?.date}"  />
+    <calendar:datePicker name="date" value="${userDiaryInstance?.date}" dateFormat="%d-%m-%Y" />
 </div>
 
 
