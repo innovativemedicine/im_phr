@@ -43,6 +43,20 @@ grails.project.dependency.resolution = {
        //    runtime ':lesscss-resources:0.6.1'
            build ":tomcat:$grailsVersion"
            compile ":calendar:1.2.1"
+           compile ":quartz:1.0.2"
+           compile ":jquery-calendar:0.2.3"
            
+       
+       runtime ":jquery:1.8.3"
+       runtime ":resources:1.1.6"
+
+       // Uncomment these (or add new ones) to enable additional resources capabilities
+       //runtime ":zipped-resources:1.0"
+       //runtime ":cached-resources:1.0"
+       //runtime ":yui-minify-resources:0.1.4"
+
+       runtime ":database-migration:1.2.1"
+
+       compile ':cache:1.0.1'
     }
 }
