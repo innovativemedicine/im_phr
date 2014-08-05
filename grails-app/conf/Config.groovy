@@ -98,7 +98,7 @@ laf =[
     appName:'Innovative Medicine PHR',
     siteTitle:'Personal Health Record',
     analyticsTitle:'innovativemedicine.ca',
-    appColor: '#01FFEB',
+    appColor: '#99C3F5', // '#01FFEB',
     appCode: 'im'
 ]
 
