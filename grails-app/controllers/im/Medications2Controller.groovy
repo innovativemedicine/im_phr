@@ -36,7 +36,7 @@ class Medications2Controller {
             "SELECT um.medication_id, um.name, um.dose, um.frequency, um.form, um.strength, um.comments, " + 
             " DATE_FORMAT(um.start_date, '%d/%m/%Y') AS 'start_date', DATE_FORMAT(um.stop_date, '%d/%m/%Y') AS 'stop_date', DATE_FORMAT(um.refill_date, '%d/%m/%Y') AS 'refill_date' " + 
             " FROM user_medications2 um " + 
-            " WHERE um.user_id = ? AND um.stop_date >= CURDATE() ORDER BY um.start_date DESC ", session.user.id)
+            " WHERE um.user_id = ? AND (um.stop_date >= CURDATE() OR um.stop_date IS null) ORDER BY um.start_date DESC ", session.user.id)
         
         [UserCurrentMedicationsInstanceList: UserCurrentMedicationsInstanceList]
     }
@@ -72,7 +72,9 @@ class Medications2Controller {
             redirect(action: "create", params: params)
             return
         }
-        redirect(action: "medications", params: params)
+        
+        flash.message = message(code: 'Medication \"' + UserMedicationsInstance.name + '\" added successfully', args: [message(code: 'UserMedications.label', default: 'UserMedications'), UserMedicationsInstance.id])
+        redirect(controller: "healthInformation", action: "information", params: params)
     }
     
     def edit(Long id) {
@@ -82,7 +84,7 @@ class Medications2Controller {
         
         if (!UserMedicationsInstance) {
             flash.message = message(code: 'Could not find the specific entry. Please try again.', args: [message(code: 'UserMedications.label', default: 'UserMedications'), id])
-            redirect(action: "medications")
+            redirect(controller: "healthInformation", action: "information", params: params)
             return
         }
         
@@ -95,7 +97,7 @@ class Medications2Controller {
         
         if (!UserMedicationsInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'UserMedications.label', default: 'UserMedications'), id])
-            redirect(action: "medications")
+            redirect(controller: "healthInformation", action: "information", params: params)
             return
         }
 
@@ -118,7 +120,7 @@ class Medications2Controller {
         }
         
         flash.message = message(code: 'Medication \"' + UserMedicationsInstance.name + '\" updated successfully', args: [message(code: 'UserMedications.label', default: 'UserMedications'), UserMedicationsInstance.id])
-        redirect(action: "medications", id: UserMedicationsInstance.id)
+        redirect(controller: "healthInformation", action: "information", id: UserMedicationsInstance.id)
     }
 
     def delete(Long id) {
@@ -127,24 +129,20 @@ class Medications2Controller {
         if (!UserMedicationsInstance) {
             println("something failed")
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'UserMedications.label', default: 'UserMedications'), id])
-            redirect(action: "medications")
+            redirect(controller: "healthInformation", action: "information")
             return
         }
 
         try {
             UserMedicationsInstance.delete(flush: true)
-            flash.message = message(code: 'default.deleted.message', args: [message(code: 'UserMedications.label', default: 'UserMedications'), id])
-            redirect(action: "medications")
+            flash.message = message(code: 'Medicine \"' + UserMedicationsInstance.name + '\" deleted successfully', args: [message(code: 'UserMedications.label', default: 'UserMedications'), UserMedicationsInstance.id])
+            redirect(controller: "healthInformation", action: "information")
         }
         catch (DataIntegrityViolationException e) {
             flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'UserMedications.label', default: 'UserMedications'), id])
-            redirect(action: "medications", id: id)
+            redirect(controller: "healthInformation", action: "information", id: id)
         }
         
     }
     
 }
-
-
-
-

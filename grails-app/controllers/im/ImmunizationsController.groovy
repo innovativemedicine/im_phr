@@ -55,7 +55,9 @@ class ImmunizationsController {
             redirect(action: "create", params: params)
             return
         }
-        redirect(action: "immunizations", params: params)
+        
+        flash.message = message(code: 'Immunization \"' + UserImmunizationsInstance.name + '\" added successfully', args: [message(code: 'UserImmunizations.label', default: 'UserImmunizations'), UserImmunizationsInstance.id])
+        redirect(controller: "healthInformation", action: "information", params: params)
     }
     
     def edit(Long id) {
@@ -65,7 +67,7 @@ class ImmunizationsController {
         
         if (!UserImmunizationsInstance) {
             flash.message = message(code: 'Could not find the specific entry. Please try again.', args: [message(code: 'UserImmunizations.label', default: 'UserImmunizations'), id])
-            redirect(action: "immunizations")
+            redirect(controller: "healthInformation", action: "information")
             return
         }
         
@@ -77,7 +79,7 @@ class ImmunizationsController {
         def UserImmunizationsInstance = UserImmunizations.get(id)
         if (!UserImmunizationsInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'UserImmunizations.label', default: 'UserImmunizations'), id])
-            redirect(action: "immunizations")
+            redirect(controller: "healthInformation", action: "information")
             return
         }
 
@@ -100,7 +102,7 @@ class ImmunizationsController {
         }
 
         flash.message = message(code: 'Immunization \"' + UserImmunizationsInstance.name + '\" updated successfully', args: [message(code: 'UserImmunizations.label', default: 'UserImmunizations'), UserImmunizationsInstance.id])
-        redirect(action: "immunizations", id: UserImmunizationsInstance.id)
+        redirect(controller: "healthInformation", action: "information", id: UserImmunizationsInstance.id)
     }
 
     def delete(Long id) {
@@ -109,18 +111,18 @@ class ImmunizationsController {
         if (!UserImmunizationsInstance) {
             println("something failed")
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'UserImmunizations.label', default: 'UserImmunizations'), id])
-            redirect(action: "immunizations")
+            redirect(controller: "healthInformation", action: "information")
             return
         }
 
         try {
             UserImmunizationsInstance.delete(flush: true)
-            flash.message = message(code: 'default.deleted.message', args: [message(code: 'UserImmunizations.label', default: 'UserImmunizations'), id])
-            redirect(action: "immunizations")
+            flash.message = message(code: 'Immunization \"' + UserImmunizationsInstance.name + '\" deleted successfully', args: [message(code: 'UserImmunizations.label', default: 'UserImmunizations'), UserImmunizationsInstance.id])
+            redirect(controller: "healthInformation", action: "information")
         }
         catch (DataIntegrityViolationException e) {
             flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'UserImmunizations.label', default: 'UserImmunizations'), id])
-            redirect(action: "immunizations", id: id)
+            redirect(controller: "healthInformation", action: "information", id: id)
         }
         
     }
