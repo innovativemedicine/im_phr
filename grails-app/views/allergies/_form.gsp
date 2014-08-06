@@ -27,6 +27,15 @@
 </div>
 
 
+<div class="fieldcontain ${hasErrors(bean: userAllergiesInstance, field: 'severityValue', 'error')} ">
+    <label for="severityValue">
+        <g:message code="userAllergies.severityValue.label" default="Severity Value" />
+    </label>
+    <g:select name="severityValue" from="${UserAllergies?.constraints.severityValue.inList}" keys="${UserAllergies?.constraints.severityValue.inList}" 
+        noSelection="['null':'Select a Resource']" optionKey="severityValue" value="${userAllergiesInstance?.severityValue}"/>
+</div>
+
+
 <div class="fieldcontain ${hasErrors(bean: userAllergiesInstance, field: 'onsetDate', 'error')} required">
     <label for="onsetDate">
         <g:message code="project.onsetDate.label" default="Onset Date" />
@@ -46,4 +55,20 @@
 
 
 
-
+<script type="text/javascript">
+// Setting the drop-down menu for the severity value
+$("#severity").change(function () {
+    var end = this.value;
+    if (end == "Minor") {
+        $("#severityValue").val("1");
+    } else if (end == "Moderate") {
+        $("#severityValue").val("2");
+    } else if (end == "Serious") {
+        $("#severityValue").val("3");
+    } else if (end == "Severe") {
+        $("#severityValue").val("4");
+    } else if (end == "Critical") {
+        $("#severityValue").val("5");
+    }
+});
+</script>
