@@ -10,6 +10,10 @@
 					<g:link mapping="summary">Summary</g:link>
 				</li>
 				
+				<li class="${g.activePageClass(pageTitle:'Health Information') }">
+                    <g:link mapping="information">Health Information</g:link>
+                </li>
+                <!-- 
 				<li class="${g.activePageClass(pageTitle:'Medications') }">
 					<g:link mapping="medications">Medications</g:link>
 				</li>
@@ -19,6 +23,7 @@
 				<li class="${g.activePageClass(pageTitle:'Allergies') }">
 					<g:link mapping="allergies">Allergies</g:link>
 				</li>
+				-->
 				<li class="${g.activePageClass(pageTitle:'Illnesses') }">
 					<g:link mapping="illnesses">Illnesses</g:link>
 				</li>

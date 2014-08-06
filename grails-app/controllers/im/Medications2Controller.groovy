@@ -37,13 +37,23 @@ class Medications2Controller {
             " DATE_FORMAT(um.start_date, '%d/%m/%Y') AS 'start_date', DATE_FORMAT(um.stop_date, '%d/%m/%Y') AS 'stop_date', DATE_FORMAT(um.refill_date, '%d/%m/%Y') AS 'refill_date' " + 
             " FROM user_medications2 um " + 
             " WHERE um.user_id = ? AND um.stop_date >= CURDATE() ORDER BY um.start_date DESC ", session.user.id)
+        
+        [UserCurrentMedicationsInstanceList: UserCurrentMedicationsInstanceList]
+    }
+    
+    
+    def medicationsPrevious = {
+        println("medications");
+        
+        def db = new Sql(dataSource) // Create a new instance of groovy.sql.Sql with the DB of the Grails app
+        
         def UserPreviousMedicationsInstanceList = db.rows(
             "SELECT um.medication_id, um.name, um.dose, um.frequency, um.form, um.strength, um.comments, " +
             " DATE_FORMAT(um.start_date, '%d/%m/%Y') AS 'start_date', DATE_FORMAT(um.stop_date, '%d/%m/%Y') AS 'stop_date', DATE_FORMAT(um.refill_date, '%d/%m/%Y') AS 'refill_date' " +
             " FROM user_medications2 um " +
             " WHERE um.user_id = ? AND um.stop_date < CURDATE() ORDER BY um.start_date DESC ", session.user.id)
         
-        [UserCurrentMedicationsInstanceList: UserCurrentMedicationsInstanceList, UserPreviousMedicationsInstanceList: UserPreviousMedicationsInstanceList]
+        [UserPreviousMedicationsInstanceList: UserPreviousMedicationsInstanceList]
     }
     
     

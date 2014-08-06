@@ -5,9 +5,9 @@
             </g:link>
             
             
-            <h1>Current Medications</h1>
+            <h1>Previous Medications</h1>
             <table class="table table-hover table-striped">
-                <caption>Medication that is currently being taken. Will automatically update when date expires.</caption>
+                <caption>Medication that was taken prior to current date.</caption>
                 <thead>
                     <tr>
                         <th class="table-name">Name</th>
@@ -23,7 +23,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <g:each in="${UserCurrentMedicationsInstanceList }" var="data">
+                    <g:each in="${UserPreviousMedicationsInstanceList }" var="data">
                     <tr>
                         <td>${data.name }</td>
                         <td>${data.dose }</td>

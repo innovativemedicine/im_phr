@@ -44,8 +44,6 @@
                         <td class="table-editdelete">
                             <g:link class="icons-edit" action="edit" params='[id: "${data.illness_id }"]' title="Edit">
                                 <i class="icon-cog"></i>
-                                <i class="icon-pencil"></i>
-                                <i class="icon-wrench"></i>
                             </g:link>
                             <g:link class="icons-edit" action="delete" params='[id: "${data.illness_id }"]' onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" title="Delete">
                                 <i class="icon-remove"></i>
@@ -83,8 +81,6 @@
                         <td class="table-editdelete">
                             <g:link class="icons-edit" action="edit" params='[id: "${data.illness_id }"]' title="Edit">
                                 <i class="icon-cog"></i>
-                                <i class="icon-pencil"></i>
-                                <i class="icon-wrench"></i>
                             </g:link>
                             <g:link class="icons-edit" action="delete" params='[id: "${data.illness_id }"]' onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" title="Delete">
                                 <i class="icon-remove"></i>

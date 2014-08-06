@@ -1,31 +1,18 @@
-<!doctype html>
-<html>
-<head>
 
-<title>Immunizations</title>
-
-
-</head>
-<body>
-    
-    <div class="container home-body">
-        
-        <div id="main-body" style="clear: both">
-            
             
             <g:link class="add-button btn btn-primary form-button" action="create">
-                Add
+                Add Immunization
             </g:link>
             
             
-            <h1>Current Immunizations</h1>
+            <h1>Immunizations</h1>
             <table class="table table-hover table-striped">
-				<caption>Immunizations that is currently being given. Will automatically update when date expires.</caption>
+				<caption>Immunizations that have been taken.</caption>
 				<thead>
 					<tr>
                         <th class="table-name">Name</th>
-                        <th>Comments</th>
-                        <th class="table-date">Date</th>
+                        <th class="table-comments">Comments</th>
+                        <th class="table-date2">Date Immunized</th>
                         <th class="table-editdelete">Edit/Delete</th>
                     </tr>
 				</thead>
@@ -38,8 +25,6 @@
                         <td class="table-editdelete">
                             <g:link class="icons-edit" action="edit" params='[id: "${data.immunization_id }"]' title="Edit">
 				                <i class="icon-cog"></i>
-	                            <i class="icon-pencil"></i>
-	                            <i class="icon-wrench"></i>
 				            </g:link>
 				            <g:link class="icons-edit" action="delete" params='[id: "${data.immunization_id }"]' onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" title="Delete">
 				                <i class="icon-remove"></i>
@@ -51,6 +36,3 @@
             </table>
             
             
-        </div>
-    </div>
-</body>

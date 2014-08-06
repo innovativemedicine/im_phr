@@ -1,20 +1,7 @@
-<!doctype html>
-<html>
-<head>
 
-<title>Allergies</title>
-
-
-</head>
-<body>
-    
-    <div class="container home-body">
-        
-        <div id="main-body" style="clear: both">
-            
             
             <g:link class="add-button btn btn-primary form-button" action="create">
-                Add
+                Add Allergy
             </g:link>
             
             
@@ -40,8 +27,6 @@
                         <td class="table-editdelete">
                             <g:link class="icons-edit" action="edit" params='[id: "${data.allergy_id }"]' title="Edit">
                                 <i class="icon-cog"></i>
-                                <i class="icon-pencil"></i>
-                                <i class="icon-wrench"></i>
                             </g:link>
                             <g:link class="icons-edit" action="delete" params='[id: "${data.allergy_id }"]' onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" title="Delete">
                                 <i class="icon-remove"></i>
@@ -53,6 +38,3 @@
             </table>
             
             
-        </div>
-    </div>
-</body>

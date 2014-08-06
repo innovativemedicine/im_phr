@@ -158,8 +158,12 @@ form {
 	text-align: center !important;
 }
 
+.table-comments {
+	/* width: 579px;*/
+}
+
 .add-button {
-	width: 100px !important;
+	width: 115px !important;
 	margin-top: 10px;
 	position: static;
 }
