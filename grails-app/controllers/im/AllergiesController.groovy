@@ -57,7 +57,9 @@ class AllergiesController {
             redirect(action: "create", params: params)
             return
         }
-        redirect(action: "allergies", params: params)
+        
+        flash.message = message(code: 'Allergy \"' + UserAllergiesInstance.name + '\" added successfully', args: [message(code: 'UserAllergies.label', default: 'UserAllergies'), UserAllergiesInstance.id])
+        redirect(controller: "healthInformation", action: "information", params: params)
     }
     
     def edit(Long id) {
@@ -67,7 +69,7 @@ class AllergiesController {
         
         if (!UserAllergiesInstance) {
             flash.message = message(code: 'Could not find the specific entry. Please try again.', args: [message(code: 'UserAllergies.label', default: 'UserAllergies'), id])
-            redirect(action: "allergies")
+            redirect(controller: "healthInformation", action: "information")
             return
         }
         
@@ -80,7 +82,7 @@ class AllergiesController {
         
         if (!UserAllergiesInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'UserAllergies.label', default: 'UserAllergies'), id])
-            redirect(action: "allergies")
+            redirect(controller: "healthInformation", action: "information")
             return
         }
 
@@ -103,7 +105,7 @@ class AllergiesController {
         }
 
         flash.message = message(code: 'Allergy \"' + UserAllergiesInstance.name + '\" updated successfully', args: [message(code: 'UserAllergies.label', default: 'UserAllergies'), UserAllergiesInstance.id])
-        redirect(action: "allergies", id: UserAllergiesInstance.id)
+        redirect(controller: "healthInformation", action: "information", id: UserAllergiesInstance.id)
     }
 
     def delete(Long id) {
@@ -112,18 +114,18 @@ class AllergiesController {
         if (!UserAllergiesInstance) {
             println("something failed")
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'UserAllergies.label', default: 'UserAllergies'), id])
-            redirect(action: "allergies")
+            redirect(controller: "healthInformation", action: "information")
             return
         }
 
         try {
             UserAllergiesInstance.delete(flush: true)
-            flash.message = message(code: 'default.deleted.message', args: [message(code: 'UserAllergies.label', default: 'UserAllergies'), id])
-            redirect(action: "allergies")
+            flash.message = message(code: 'Allergy \"' + UserAllergiesInstance.name + '\" deleted successfully', args: [message(code: 'UserAllergies.label', default: 'UserAllergies'), UserAllergiesInstance.id])
+            redirect(controller: "healthInformation", action: "information")
         }
         catch (DataIntegrityViolationException e) {
             flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'UserAllergies.label', default: 'UserAllergies'), id])
-            redirect(action: "allergies", id: id)
+            redirect(controller: "healthInformation", action: "information", id: id)
         }
         
     }
