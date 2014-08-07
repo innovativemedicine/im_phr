@@ -26,8 +26,8 @@
 				-->
 				<!-- 
 				<li class="${g.activePageClass(pageTitle:'Illnesses') }">
-					<g:link mapping="illnesses">Illnesses</g:link>
-				</li>
+                    <g:link mapping="illnesses">Illnesses</g:link>
+                </li>
 				-->
 				<li class="${g.activePageClass(pageTitle:'Conditions') }">
 					<g:link mapping="conditions">Conditions</g:link>
@@ -35,6 +35,14 @@
 				<li class="${g.activePageClass(pageTitle:'Wellness') }">
 					<g:link mapping="wellness">Wellness</g:link>
 				</li>
+				
+				<li class="${g.activePageClass(pageTitle:'Questionnaires') }">
+                    <g:link mapping="questionnaire">Questionnaire</g:link>
+                </li>
+                <li class="${g.activePageClass(pageTitle:'Diary') }">
+                    <g:link mapping="diary">Diary</g:link>
+                </li>
+				
 				<li class="${g.activePageClass(pageTitle:'Calendar') }">
                     <g:link mapping="calendar">Calendar</g:link>
                 </li>
