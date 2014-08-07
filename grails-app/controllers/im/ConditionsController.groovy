@@ -34,13 +34,13 @@ class ConditionsController {
         def db = new Sql(dataSource) // Create a new instance of groovy.sql.Sql with the DB of the Grails app
         
         def UserCurrentConditionsInstanceList = db.rows(
-            "SELECT uc.condition_id, uc.name, uc.comments, " + 
+            "SELECT uc.condition_id, uc.name, uc.comments, uc.symptoms, " + 
             " DATE_FORMAT(uc.onset_date, '%d/%m/%Y') AS 'onset_date', DATE_FORMAT(uc.end_date, '%d/%m/%Y') AS 'end_date' " + 
             " FROM user_conditions uc " +
-            " WHERE uc.user_id = ? AND uc.end_date >= CURDATE() ORDER BY onset_date DESC", session.user.id)
+            " WHERE uc.user_id = ? AND (uc.end_date >= CURDATE() OR uc.end_date IS null) ORDER BY onset_date DESC", session.user.id)
         
         def UserPreviousConditionsInstanceList = db.rows(
-            "SELECT uc.condition_id, uc.name, uc.comments, " +
+            "SELECT uc.condition_id, uc.name, uc.comments, uc.symptoms, " +
             " DATE_FORMAT(uc.onset_date, '%d/%m/%Y') AS 'onset_date', DATE_FORMAT(uc.end_date, '%d/%m/%Y') AS 'end_date' " +
             " FROM user_conditions uc " +
             " WHERE uc.user_id = ? AND uc.end_date < CURDATE() ORDER BY onset_date DESC", session.user.id)
@@ -63,6 +63,8 @@ class ConditionsController {
             redirect(action: "create", params: params)
             return
         }
+        
+        flash.message = message(code: 'Condition \"' + UserConditionsInstance.name + '\" added successfully', args: [message(code: 'UserConditions.label', default: 'UserConditions'), UserConditionsInstance.id])
         redirect(action: "conditions", params: params)
     }
     
@@ -73,7 +75,7 @@ class ConditionsController {
         
         if (!UserConditionsInstance) {
             flash.message = message(code: 'Could not find the specific entry. Please try again.', args: [message(code: 'UserConditions.label', default: 'UserConditions'), id])
-            redirect(action: "immunizations")
+            redirect(action: "conditions")
             return
         }
         
@@ -124,7 +126,7 @@ class ConditionsController {
 
         try {
             UserConditionsInstance.delete(flush: true)
-            flash.message = message(code: 'default.deleted.message', args: [message(code: 'UserConditions.label', default: 'UserConditions'), id])
+            flash.message = message(code: 'Condition \"' + UserConditionsInstance.name + '\" deleted successfully', args: [message(code: 'UserConditions.label', default: 'UserConditions'), UserConditionsInstance.id])
             redirect(action: "conditions")
         }
         catch (DataIntegrityViolationException e) {

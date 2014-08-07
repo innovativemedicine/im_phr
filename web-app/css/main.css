@@ -258,6 +258,16 @@ form {
 }
 
 
+.old-links ul {
+	display: none;
+	position: absolute;
+	visibility: hidden;
+}
+
+.old-links:hover ul {
+	display: block;
+	visibility: visible;
+}
 
 
 

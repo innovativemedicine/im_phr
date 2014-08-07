@@ -21,10 +21,11 @@
             
             <h1>Current Conditions</h1>
             <table class="table table-hover table-striped">
-                <caption>Will automatically update when date expires.</caption>
+                <caption>Lists both Chronic (e.g. arthritis) and Acute (e.g. cold, flu) conditions. Will automatically update when date expires.</caption>
                 <thead>
                     <tr>
-                        <th class="table-name2">Name</th>
+                        <th class="table-name">Name</th>
+                        <th class="table-symptoms">Symptoms</th>
                         <th class="table-comments">Comments</th>
                         <th class="table-date2">Onset Date</th>
                         <th class="table-date2">End Date</th>
@@ -35,6 +36,7 @@
                     <g:each in="${UserCurrentConditionsInstanceList }" var="data">
                     <tr>
                         <td>${data.name }</td>
+                        <td>${data.symptoms }</td>
                         <td>${data.comments }</td>
                         <td>${data.onset_date }</td>
                         <td>${data.end_date }</td>
@@ -57,7 +59,8 @@
                 <caption>Conditions prior to current date.</caption>
                 <thead>
                     <tr>
-                        <th class="table-name2">Name</th>
+                        <th class="table-name">Name</th>
+                        <th class="table-symptoms">Symptoms</th>
                         <th class="table-comments">Comments</th>
                         <th class="table-date2">Onset Date</th>
                         <th class="table-date2">End Date</th>
@@ -68,6 +71,7 @@
                     <g:each in="${UserPreviousConditionsInstanceList }" var="data">
                     <tr>
                         <td>${data.name }</td>
+                        <td>${data.symptoms }</td>
                         <td>${data.comments }</td>
                         <td>${data.onset_date }</td>
                         <td>${data.end_date }</td>

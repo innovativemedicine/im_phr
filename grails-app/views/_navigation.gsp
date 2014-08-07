@@ -24,9 +24,11 @@
 					<g:link mapping="allergies">Allergies</g:link>
 				</li>
 				-->
+				<!-- 
 				<li class="${g.activePageClass(pageTitle:'Illnesses') }">
 					<g:link mapping="illnesses">Illnesses</g:link>
 				</li>
+				-->
 				<li class="${g.activePageClass(pageTitle:'Conditions') }">
 					<g:link mapping="conditions">Conditions</g:link>
 				</li>
@@ -40,6 +42,23 @@
                     <g:link mapping="profile">My Profile</g:link>
                 </li>
                 
+                <li class="old-links">
+                    <a href="#">Old Links</a>
+                    <ul>
+                        <li class="${g.activePageClass(pageTitle:'Medications') }">
+	                        <g:link mapping="medications">Medications</g:link>
+		                </li>
+		                <li class="${g.activePageClass(pageTitle:'Immunizations') }">
+		                    <g:link mapping="immunizations">Immunizations</g:link>
+		                </li>
+		                <li class="${g.activePageClass(pageTitle:'Allergies') }">
+		                    <g:link mapping="allergies">Allergies</g:link>
+		                </li>
+		                <li class="${g.activePageClass(pageTitle:'Illnesses') }">
+		                    <g:link mapping="illnesses">Illnesses</g:link>
+		                </li>
+                    </ul>
+                </li>
                 
 			</ul>
 		</div>

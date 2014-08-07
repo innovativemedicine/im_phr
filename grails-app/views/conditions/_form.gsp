@@ -10,6 +10,14 @@
 </div>
 
 
+<div class="fieldcontain ${hasErrors(bean: userConditionsInstance, field: 'symptoms', 'error')} ">
+    <label for="symptoms">
+        <g:message code="userConditions.symptoms.label" default="Symptoms" />
+    </label>
+    <g:textField name="symptoms" value="${userConditionsInstance?.symptoms}"/>
+</div>
+
+
 <div class="fieldcontain ${hasErrors(bean: userConditionsInstance, field: 'comments', 'error')} ">
     <label for="comments">
         <g:message code="userConditions.comments.label" default="Comments" />

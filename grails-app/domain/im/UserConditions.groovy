@@ -4,6 +4,7 @@ import java.util.Date;
 
 class UserConditions {
     String name
+    String symptoms
     String comments
     Date   onsetDate
     Date   endDate
@@ -22,6 +23,7 @@ class UserConditions {
     
     static constraints = {
         name(blank: false)
+        symptoms(blank: true, nullable: true)
         comments(blank: true, nullable: true)
         onsetDate(max: new Date(), blank: false, nullable: false)
         endDate(blank: true, nullable: true)
