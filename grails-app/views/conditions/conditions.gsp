@@ -53,6 +53,7 @@
                 </tbody>
             </table>
             
+            <hr>
             
             <h1>Previous Conditions</h1>
             <table class="table table-hover table-striped">
