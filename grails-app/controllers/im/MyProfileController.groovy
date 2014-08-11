@@ -112,7 +112,7 @@ class MyProfileController {
         } else if (page == "contacts") {
             println("CONTACTS PAGE")
             def UserContactsInstance = UserEmergencyContacts.get(id)
-            println(UserContactsInstance)
+            println(UserContactsInstance.version)
             if (!UserContactsInstance) {
                 flash.message = message(code: 'There was an error loading your Emergency Contacts information', args: [message(code: 'UserProfile.label', default: 'UserProfile'), id])
                 redirect(action: "edit", id: params.id, page: "contacts")
@@ -122,27 +122,22 @@ class MyProfileController {
             
         } else if (page == "physician") {
             println("PHYSICIANS PAGE")
-            def userPhysicianInstance = UserPhysicianInfo.get(id)
-            println(userPhysicianInstance)
+            def userPhysicianInfoInstance = UserPhysicianInfo.get(id)
+            println(userPhysicianInfoInstance)
             
-            if (!userPhysicianInstance) {
-                userPhysicianInstance = new UserImmunizations(params)
-            }
-            
-            if (!userPhysicianInstance) {
-                println("THING IS STILL NULL")
+            if (!userPhysicianInfoInstance) {
                 flash.message = message(code: 'There was an error loading your Physicians information', args: [message(code: 'UserProfile.label', default: 'UserProfile'), id])
                 redirect(action: "edit", id: params.id, page: "contacts")
                 return
             }
-            [page: page, userPhysicianInstance: userPhysicianInstance]
+            [page: page, userPhysicianInfoInstance: userPhysicianInfoInstance]
             
         }
         
     }
     
     def updateProfile(Long id, Long version) {
-        println("update profile");
+        println("update profile = " + id);
         def UserProfileInstance = UserProfile.get(id)
         
         if (!UserProfileInstance) {
@@ -176,7 +171,7 @@ class MyProfileController {
     
     
     def updateEmployment(Long id, Long version) {
-        println("update employment");
+        println("update employment = " + id);
         def UserEmploymentInfoInstance = UserEmploymentInfo.get(session.user.id)
         
         if (!UserEmploymentInfoInstance) {
@@ -210,7 +205,7 @@ class MyProfileController {
     
     
     def updateContacts(Long id, Long version) {
-        println("update contacts");
+        println("update contacts = " + id);
         def UserEmergencyContactsInstance = UserEmergencyContacts.get(session.user.id)
         
         if (!UserEmergencyContactsInstance) {
@@ -245,43 +240,55 @@ class MyProfileController {
     
     def updatePhysician(Long id, Long version) {
         println("update physician");
-        def UserPhysicianInstance = UserPhysicianInfo.get(session.user.id)
-        
-        if (!UserPhysicianInstance) {
-            UserPhysicianInstance = new UserPhysicianInfo(params)
-        }
-        
-        if (!UserPhysicianInstance) {
+        def UserPhysicianInfoInstance = UserPhysicianInfo.get(id)
+        println(id)
+        if (!UserPhysicianInfoInstance) {
             flash.message = message(code: 'There was an error saving your physician information', args: [message(code: 'UserPhysicianInfo.label', default: 'UserPhysicianInfo'), id])
             redirect(action: "myProfile")
             return
         }
 
         if (version != null) {
-            if (UserPhysicianInstance.version > version) {
-                UserPhysicianInstance.errors.rejectValue("version", "default.optimistic.locking.failure",
+            if (UserPhysicianInfoInstance.version > version) {
+                UserPhysicianInfoInstance.errors.rejectValue("version", "default.optimistic.locking.failure",
                           [message(code: 'UserPhysicianInfo.label', default: 'UserPhysicianInfo')] as Object[],
                           "Another user has updated this UserPhysicianInfo while you were editing")
-                render(view: "edit", model: [UserPhysicianInfoInstance: UserPhysicianInstance])
+                render(view: "edit", model: [UserPhysicianInfoInstance: UserPhysicianInfoInstance])
                 return
             }
         }
 
-        UserPhysicianInstance.properties = params
+        UserPhysicianInfoInstance.properties = params
 
-        if (!UserPhysicianInstance.save(flush: true)) {
+        if (!UserPhysicianInfoInstance.save(flush: true)) {
             flash.message = message(code: 'There was an error updating your Employment Info. Make sure all the fields are correct and try again.', args: [message(code: 'UserEmploymentInfo.label', default: 'UserEmploymentInfo'), id])
             redirect(action: "edit", page123: 'test', id: params.id, page: "employment")
             return
         }
         
-        flash.message = message(code: 'Emergency contacts updated successfully', args: [message(code: 'UserPhysicianInfo.label', default: 'UserPhysicianInfo'), UserPhysicianInstance.id])
-        redirect(action: "myProfile", id: UserPhysicianInstance.id)
+        flash.message = message(code: UserPhysicianInfoInstance.name + '&#39;s information updated successfully', args: [message(code: 'UserPhysicianInfo.label', default: 'UserPhysicianInfo'), UserPhysicianInfoInstance.id])
+        redirect(action: "myProfile", id: UserPhysicianInfoInstance.id)
     }
     
+    def create() {
+        println("create physician");
+        [UserPhysicianInfoInstance: new UserPhysicianInfo(params)]
+    }
     
-    
-    
+    def savePhysician() {
+        println("save physician");
+        
+        def UserPhysicianInfoInstance = new UserPhysicianInfo(params)
+        
+        if (!UserPhysicianInfoInstance.save(flush: true)) {
+            flash.message = message(code: 'Error saving the entry. Please ensure the values are correct.', args: [message(code: 'UserPhysicianInfo.label', default: 'UserPhysicianInfo')])
+            redirect(action: "create", params: params)
+            return
+        }
+        
+        flash.message = message(code: 'Physician info saved successfully', args: [message(code: 'UserPhysicianInfo.label', default: 'UserPhysicianInfo'), UserPhysicianInfoInstance.id])
+        redirect(action: "myProfile", id: UserPhysicianInfoInstance.id)
+    }
     
     
     def saveImage() {

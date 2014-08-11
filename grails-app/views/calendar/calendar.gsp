@@ -12,7 +12,7 @@
 <script src='../fullcalendar/lib/jquery-ui.custom.min.js'></script>
 <script src='../fullcalendar/fullcalendar.js'></script>
 
-<script>
+<script><%--
 
     $(document).ready(function() {
         
@@ -68,9 +68,9 @@
         
     });
 
-</script>
+--%></script>
 
-
+<jqueryCalendar:monthResources />
 
 </head>
 <body>
@@ -84,6 +84,36 @@
             
             
             <div id='calendar'></div>
+            <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+            
+            
+            <jqueryCalendar:month
+                    year="2014"
+                    month="05"
+                    weekStart="1"
+                    draggable="true"
+                    fixedWeeks="true"
+                    abbrevDayHeadings="false"
+                    title="TITLE_HERE"
+                    showTime="guess" />
+            
+            <%-- 
+            <g:each in="${UserImmunizationsInstanceList }" var="data">
+	            <jqueryCalendar:month
+			        year="${data.year }"
+			        month="${data.month }"
+			        weekStart="1"
+			        draggable="true"
+			        fixedWeeks="true"
+			        abbrevDayHeadings="false"
+			        title="${data.title }"
+			        showTime="guess"
+			        controller="${CalendarController }" />
+	            
+            </g:each>
+             --%>
+            
+            
         </div>
     </div>
 </body>

@@ -12,9 +12,8 @@
         
         <div id="main-body" style="clear: both">
             
-            
-            <g:link class="add-button btn btn-primary form-button" action="edit" params='[id: "${session.user.id }", page: "physician"]' >
-                Edit Physician Info
+            <g:link class="add-button btn btn-primary form-button" action="create" params='[id: "${session.user.id }", page: "physician"]' >
+                Add Physician Info
             </g:link>
             <g:link class="add-button btn btn-primary form-button" action="edit" params='[id: "${session.user.id }", page: "contacts"]' >
                 Edit Contacts
@@ -120,10 +119,15 @@
                     <g:if test="${data.size() > 0 }">
                         <div class="block span6">
                             <h1 class="block-header">
-                                Physicians
+                                <!-- Physicians -->
+                                ${data.occupation }
                             </h1>
+                            
+                            <g:link class="add-button btn btn-primary form-button" action="edit" params='[id: "${data.physician_id }", page: "physician"]' >
+				                Edit Physician Info
+				            </g:link>
+				            
                             <div class="block-text">
-                            <g:if test="${data.occupation != null }"><p>Occupation: ${data.occupation }</p></g:if>
                                 <g:if test="${data.name != null }"><p>${data.name }</p></g:if>
                                 <g:if test="${data.address_one != null }"><p>${data.address_one }</p></g:if>
                                 <g:if test="${data.address_two != null }"><p>${data.address_two }</p></g:if>
