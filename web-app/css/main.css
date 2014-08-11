@@ -37,6 +37,10 @@ form {
 
 /*      Custom CSS      */
 
+body {
+	font-size: 14px;
+}
+
 .float-right {
 	float: right;
 }

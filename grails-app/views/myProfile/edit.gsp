@@ -11,7 +11,19 @@
 <body>
 
 	<div id="edit-userProfile" class="content scaffold-edit" role="main">
-		<h1><g:message code="default.edit.label" args="[entityName]" /></h1>
+	    <g:if test="${page == 'profile'}">
+	        <h1>Edit Profile</h1>
+	    </g:if>
+        <g:if test="${page == 'employment'}">
+            <h1>Edit Employment Info</h1>
+        </g:if>
+        <g:if test="${page == 'contacts'}">
+            <h1>Edit Emergency Contacts</h1>
+        </g:if>
+        <g:if test="${page == 'physician'}">
+            <h1>Edit Physician Info</h1>
+        </g:if>
+		
 		<g:if test="${flash.message}">
 		<div class="message" role="status">${flash.message}</div>
 		</g:if>
@@ -45,10 +57,18 @@
             <g:if test="${page == 'contacts'}">
                 <fieldset class="form">
                     <g:render template="formContacts"/>
-	            </fieldset>
-	            <fieldset class="buttons">
-	                <g:actionSubmit class="save" action="updateContacts" value="${message(code: 'default.button.update.label', default: 'Update')}" />
-	            </fieldset>
+                </fieldset>
+                <fieldset class="buttons">
+                    <g:actionSubmit class="save" action="updateContacts" value="${message(code: 'default.button.update.label', default: 'Update')}" />
+                </fieldset>
+            </g:if>
+            <g:if test="${page == 'physician'}">
+                <fieldset class="form">
+                    <g:render template="formPhysician"/>
+                </fieldset>
+                <fieldset class="buttons">
+                    <g:actionSubmit class="save" action="updatePhysician" value="${message(code: 'default.button.update.label', default: 'Update')}" />
+                </fieldset>
             </g:if>
             
 		</g:form>

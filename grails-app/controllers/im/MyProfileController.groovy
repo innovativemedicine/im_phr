@@ -54,9 +54,13 @@ class MyProfileController {
             "SELECT uei.* " +
             " FROM user_employment_info uei " +
             " WHERE uei.user_id = ? ", session.user.id)
+        def UserPhysicianInstanceList = db.rows(
+            "SELECT upi.* " +
+            " FROM user_physician_info upi " +
+            " WHERE upi.user_id = ? ", session.user.id)
         
         [UserProfileInstanceList: UserProfileInstanceList, UserContactsInstanceList: UserContactsInstanceList, 
-         UserEmploymentInstanceList: UserEmploymentInstanceList]
+         UserEmploymentInstanceList: UserEmploymentInstanceList, UserPhysicianInstanceList: UserPhysicianInstanceList]
     }
     
     
@@ -115,6 +119,23 @@ class MyProfileController {
                 return
             }
             [page: page, userContactsInstance: UserContactsInstance]
+            
+        } else if (page == "physician") {
+            println("PHYSICIANS PAGE")
+            def userPhysicianInstance = UserPhysicianInfo.get(id)
+            println(userPhysicianInstance)
+            
+            if (!userPhysicianInstance) {
+                userPhysicianInstance = new UserImmunizations(params)
+            }
+            
+            if (!userPhysicianInstance) {
+                println("THING IS STILL NULL")
+                flash.message = message(code: 'There was an error loading your Physicians information', args: [message(code: 'UserProfile.label', default: 'UserProfile'), id])
+                redirect(action: "edit", id: params.id, page: "contacts")
+                return
+            }
+            [page: page, userPhysicianInstance: userPhysicianInstance]
             
         }
         
@@ -211,7 +232,7 @@ class MyProfileController {
         UserEmergencyContactsInstance.properties = params
 
         if (!UserEmergencyContactsInstance.save(flush: true)) {
-            flash.message = message(code: 'There was an error updating your Employment Info. Make sure all the fields are correct and try again.', args: [message(code: 'UserEmploymentInfo.label', default: 'UserEmploymentInfo'), id])
+            flash.message = message(code: 'There was an error updating your Contacts Info. Make sure all the fields are correct and try again.', args: [message(code: 'UserContactInfo.label', default: 'UserContactInfo'), id])
             redirect(action: "edit", page123: 'test', id: params.id, page: "employment")
             return
         }
@@ -219,6 +240,45 @@ class MyProfileController {
         flash.message = message(code: 'Emergency contacts updated successfully', args: [message(code: 'UserEmergencyContacts.label', default: 'UserEmergencyContacts'), UserEmergencyContactsInstance.id])
         redirect(action: "myProfile", id: UserEmergencyContactsInstance.id)
     }
+    
+    
+    
+    def updatePhysician(Long id, Long version) {
+        println("update physician");
+        def UserPhysicianInstance = UserPhysicianInfo.get(session.user.id)
+        
+        if (!UserPhysicianInstance) {
+            UserPhysicianInstance = new UserPhysicianInfo(params)
+        }
+        
+        if (!UserPhysicianInstance) {
+            flash.message = message(code: 'There was an error saving your physician information', args: [message(code: 'UserPhysicianInfo.label', default: 'UserPhysicianInfo'), id])
+            redirect(action: "myProfile")
+            return
+        }
+
+        if (version != null) {
+            if (UserPhysicianInstance.version > version) {
+                UserPhysicianInstance.errors.rejectValue("version", "default.optimistic.locking.failure",
+                          [message(code: 'UserPhysicianInfo.label', default: 'UserPhysicianInfo')] as Object[],
+                          "Another user has updated this UserPhysicianInfo while you were editing")
+                render(view: "edit", model: [UserPhysicianInfoInstance: UserPhysicianInstance])
+                return
+            }
+        }
+
+        UserPhysicianInstance.properties = params
+
+        if (!UserPhysicianInstance.save(flush: true)) {
+            flash.message = message(code: 'There was an error updating your Employment Info. Make sure all the fields are correct and try again.', args: [message(code: 'UserEmploymentInfo.label', default: 'UserEmploymentInfo'), id])
+            redirect(action: "edit", page123: 'test', id: params.id, page: "employment")
+            return
+        }
+        
+        flash.message = message(code: 'Emergency contacts updated successfully', args: [message(code: 'UserPhysicianInfo.label', default: 'UserPhysicianInfo'), UserPhysicianInstance.id])
+        redirect(action: "myProfile", id: UserPhysicianInstance.id)
+    }
+    
     
     
     

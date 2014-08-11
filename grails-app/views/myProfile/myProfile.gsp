@@ -13,7 +13,9 @@
         <div id="main-body" style="clear: both">
             
             
-            
+            <g:link class="add-button btn btn-primary form-button" action="edit" params='[id: "${session.user.id }", page: "physician"]' >
+                Edit Physician Info
+            </g:link>
             <g:link class="add-button btn btn-primary form-button" action="edit" params='[id: "${session.user.id }", page: "contacts"]' >
                 Edit Contacts
             </g:link>
@@ -108,6 +110,26 @@
                                 <g:if test="${data.phone_number_one != null }"><p>${data.phone_number_one }</p></g:if>
                                 <g:if test="${data.phone_number_two != null }"><p>${data.phone_number_two }</p></g:if>
                                 <g:if test="${data.relationship != null }"><p>Relationship: ${data.relationship }</p></g:if>
+                            </div>
+                        </div>
+                    </g:if>
+                </g:each>
+                
+                
+                <g:each in="${UserPhysicianInstanceList }" var="data">
+                    <g:if test="${data.size() > 0 }">
+                        <div class="block span6">
+                            <h1 class="block-header">
+                                Physicians
+                            </h1>
+                            <div class="block-text">
+                            <g:if test="${data.occupation != null }"><p>Occupation: ${data.occupation }</p></g:if>
+                                <g:if test="${data.name != null }"><p>${data.name }</p></g:if>
+                                <g:if test="${data.address_one != null }"><p>${data.address_one }</p></g:if>
+                                <g:if test="${data.address_two != null }"><p>${data.address_two }</p></g:if>
+                                <g:if test="${data.city != null }"><p>${data.city }, ${data.province }, ${data.country }&nbsp;&nbsp;${data.postal_code }</p></g:if>
+                                <g:if test="${data.phone_number_one != null }"><p>${data.phone_number_one }</p></g:if>
+                                <g:if test="${data.phone_number_two != null }"><p>${data.phone_number_two }</p></g:if>
                             </div>
                         </div>
                     </g:if>
