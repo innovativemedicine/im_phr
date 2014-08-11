@@ -130,7 +130,7 @@ class QuestionnaireController {
 //        SELECT
 //        uqa.qa_id AS 'qaID', uqa.date AS 'dateAdded', uqa.user_id AS 'userID', 
 //        q.question_id AS 'questionID', q.page_name AS 'page', q.question_text AS 'question',
-//        a.answer_id AS 'answerId', a.answer_text AS 'answer',
+//        a.answer_id AS 'answerId', a.answer_text AS 'answer', qa.other AS 'other', 
 //        l.user_name AS 'username'
 //        FROM user_questions_answers uqa
 //            JOIN questions_answers qa

@@ -5,7 +5,7 @@
     <a id="wellness-button" class="wellness-button">Add</a>
     
     <h1 class="block-header">
-        BloodPressure
+        Blood Pressure
     </h1>
     <div class="block-text">
         <div id="holder"></div>

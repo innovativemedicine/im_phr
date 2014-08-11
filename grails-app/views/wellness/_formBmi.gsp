@@ -1,11 +1,17 @@
 
-
 <div class="block span4">
     
     <a id="wellness-button" class="wellness-button">Add</a>
     
     <h1 class="block-header">
-        BMI
+        BMI&nbsp;
+        <span id="bmi-tooltip" type="button" class="pointer" data-toggle="tooltip" data-placement="right" title="Body Mass Index - A relative measure of your mass and height. It is used to assess weight categories to check if it could lead to health problems.
+        BMI Categories: 
+		Underweight = <18.5
+		Normal weight = 18.5–24.9 
+		Overweight = 25–29.9 
+		Obesity = BMI of 30 or greater
+        "><i class="icon-question-sign"></i></span>
     </h1>
     <div class="block-text">
         <div id="holder"></div>
@@ -18,7 +24,7 @@
             <g:else>
                 <g:each in="${UserBmiInstanceList }" var="data">
                     <li>
-                        <span class="value-block">${data.bmi } kg/m2</span> 
+                        <span class="value-block">${data.bmi }</span> 
                         <span class="date-block">[ ${data.date } ]</span>
                     </li>
                 </g:each>
@@ -127,6 +133,9 @@
 </div>
 
 
+<script type="text/javascript">
+$('#bmi-tooltip').tooltip()
+</script>
 
 
 

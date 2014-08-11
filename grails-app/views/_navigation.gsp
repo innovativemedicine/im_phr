@@ -42,10 +42,11 @@
                 <li class="${g.activePageClass(pageTitle:'Diary') }">
                     <g:link mapping="diary">Diary</g:link>
                 </li>
-				
+				<!-- 
 				<li class="${g.activePageClass(pageTitle:'Calendar') }">
                     <g:link mapping="calendar">Calendar</g:link>
                 </li>
+                -->
 				<li class="${g.activePageClass(pageTitle:'My Profile') }">
                     <g:link mapping="profile">My Profile</g:link>
                 </li>

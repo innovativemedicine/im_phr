@@ -58,7 +58,15 @@
             
             <div class="row-fluid">
                 
-                <g:render template="formCalories"/>
+                <g:render template="formBmi"/>
+                
+            </div>
+            
+            
+            
+            <div class="row-fluid">
+                
+                <g:render template="formBloodPressure"/>
                 
                 
                 <g:render template="formCarbohydrates"/>
@@ -72,7 +80,7 @@
                 <g:render template="formCholestrol"/>
                 
                 
-                <g:render template="formBloodPressure"/>
+                <g:render template="formCalories"/>
                 
             </div>
             
@@ -81,7 +89,16 @@
             
             <div class="row-fluid">
                 
-                <g:render template="formBmi"/>
+                <g:render template="formBloodPressure"/>
+                
+                
+                <g:render template="formCarbohydrates"/>
+                
+                
+                <g:render template="formCholestrol"/>
+                
+                
+                <g:render template="formCalories"/>
                 
             </div>
             
