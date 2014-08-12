@@ -62,6 +62,7 @@
 	            </fieldset>
 	            <fieldset class="buttons">
 	                <g:actionSubmit class="save" action="updateEmployment" value="${message(code: 'default.button.update.label', default: 'Update')}" />
+	                <g:actionSubmit class="delete" action="deleteEmployment" value="${message(code: 'default.button.delete.label', default: 'Delete')}" formnovalidate="" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
 	            </fieldset>
             </g:if>
             <g:if test="${page == 'contacts'}">
@@ -70,6 +71,7 @@
                 </fieldset>
                 <fieldset class="buttons">
                     <g:actionSubmit class="save" action="updateContacts" value="${message(code: 'default.button.update.label', default: 'Update')}" />
+                    <g:actionSubmit class="delete" action="deleteContacts" value="${message(code: 'default.button.delete.label', default: 'Delete')}" formnovalidate="" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
                 </fieldset>
             </g:if>
             <g:if test="${page == 'physician'}">
@@ -78,9 +80,9 @@
                 </fieldset>
                 <fieldset class="buttons">
                     <g:actionSubmit class="save" action="updatePhysician" value="${message(code: 'default.button.update.label', default: 'Update')}" />
+                    <g:actionSubmit class="delete" action="deletePhysician" value="${message(code: 'default.button.delete.label', default: 'Delete')}" formnovalidate="" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
                 </fieldset>
             </g:if>
-            
 		</g:form>
 	</div>
 </body>

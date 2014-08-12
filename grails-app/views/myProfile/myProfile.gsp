@@ -15,11 +15,21 @@
             <g:link class="add-button btn btn-primary form-button" action="create" params='[id: "${session.user.id }", page: "physician"]' >
                 Add Physician Info
             </g:link>
-            <g:link class="add-button btn btn-primary form-button" action="edit" params='[id: "${session.user.id }", page: "contacts"]' >
-                Edit Contacts
+            <g:link class="add-button btn btn-primary form-button" action="edit" params='[id: "${UserContactsInstanceList.emergency_id[0] }", page: "contacts"]' >
+                <g:if test="${UserContactsInstanceList != [] }">
+                    Edit Contacts
+                </g:if>
+                <g:else>
+                    Add Contacts
+                </g:else>
             </g:link>
-            <g:link class="add-button btn btn-primary form-button" action="edit" params='[id: "${session.user.id }", page: "employment"]' >
-                Edit Employment
+            <g:link class="add-button btn btn-primary form-button" action="edit" params='[id: "${UserEmploymentInstanceList.employer_id[0] }", page: "employment"]' >
+                <g:if test="${UserEmploymentInstanceList != [] }">
+                    Edit Employment
+                </g:if>
+                <g:else>
+                    Add Employment
+                </g:else>
             </g:link>
             <g:link class="add-button btn btn-primary form-button" action="edit" params='[id: "${session.user.id }", page: "profile"]' >
                 Edit Profile

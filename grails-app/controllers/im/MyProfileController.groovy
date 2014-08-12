@@ -1,9 +1,9 @@
 package im
 
 import org.springframework.dao.DataIntegrityViolationException
-
 import org.springframework.web.multipart.MultipartFile
 import org.springframework.web.multipart.MultipartHttpServletRequest
+
 import javax.servlet.http.HttpServletRequest
 
 import groovy.sql.Sql
@@ -102,6 +102,13 @@ class MyProfileController {
             println("EMPLOYMENT PAGE")
             def UserEmploymentInstance = UserEmploymentInfo.get(id)
             println(UserEmploymentInstance)
+            
+            if (!UserEmploymentInstance) {
+                //TODO
+                UserEmploymentInstance = new UserEmploymentInfo(params)
+                //TODO: if not found / no entries in Employment table, go to new function to create one (like Physicians)
+            }
+            
             if (!UserEmploymentInstance) {
                 flash.message = message(code: 'There was an error loading your Employment information', args: [message(code: 'UserProfile.label', default: 'UserProfile'), id])
                 redirect(action: "edit", id: params.id, page: "employment")
@@ -172,7 +179,26 @@ class MyProfileController {
     
     def updateEmployment(Long id, Long version) {
         println("update employment = " + id);
-        def UserEmploymentInfoInstance = UserEmploymentInfo.get(session.user.id)
+        def UserEmploymentInfoInstance = UserEmploymentInfo.get(id)
+        
+        
+        
+        if (!UserEmploymentInfoInstance) {
+            //TODO
+            UserEmploymentInfoInstance = new UserEmploymentInfo(params)
+            
+            if (!UserEmploymentInfoInstance.save(flush: true)) {
+                flash.message = message(code: 'Error saving the entry. Please ensure the values are correct.', args: [message(code: 'UserEmploymentInfo.label', default: 'UserEmploymentInfo')])
+                redirect(action: "create", params: params)
+                return
+            }
+            
+            flash.message = message(code: 'Employment status updated successfully', args: [message(code: 'UserEmploymentInfo.label', default: 'UserEmploymentInfo'), UserEmploymentInfoInstance.id])
+         //   redirect(action: "myProfile")
+        }
+        
+        
+        
         
         if (!UserEmploymentInfoInstance) {
             flash.message = message(code: 'There was an error loading your employment info', args: [message(code: 'UserEmploymentInfo.label', default: 'UserEmploymentInfo'), id])
@@ -206,7 +232,7 @@ class MyProfileController {
     
     def updateContacts(Long id, Long version) {
         println("update contacts = " + id);
-        def UserEmergencyContactsInstance = UserEmergencyContacts.get(session.user.id)
+        def UserEmergencyContactsInstance = UserEmergencyContacts.get(id)
         
         if (!UserEmergencyContactsInstance) {
             flash.message = message(code: 'There was an error loading your emergency contacts', args: [message(code: 'UserEmergencyContacts.label', default: 'UserEmergencyContacts'), id])
@@ -291,6 +317,51 @@ class MyProfileController {
     }
     
     
+    
+    
+    
+    
+    def deleteEmployment(Long id) {
+        println("delete employment")
+        def UserEmploymentInfoInstance = UserEmploymentInfo.get(id)
+        
+        if (!UserEmploymentInfoInstance) {
+            println("something failed")
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'UserEmploymentInfo.label', default: 'UserEmploymentInfo'), id])
+            redirect(action: "myProfile")
+            return
+        }
+
+        try {
+            UserEmploymentInfoInstance.delete(flush: true)
+            flash.message = message(code: 'Medicine \"' + UserEmploymentInfoInstance.name + '\" deleted successfully', args: [message(code: 'UserEmploymentInfo.label', default: 'UserEmploymentInfo'), UserEmploymentInfoInstance.id])
+            redirect(action: "myProfile")
+        }
+        catch (DataIntegrityViolationException e) {
+            flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'UserEmploymentInfo.label', default: 'UserEmploymentInfo'), id])
+            redirect(action: "myProfile", id: UserEmploymentInfoInstance.id)
+        }
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     def saveImage() {
         println("saveImage")
         
@@ -331,7 +402,7 @@ class MyProfileController {
     }
     
     def showPayload() {
-        println("showPaylaod")
+        println("showPayload")
         
         def fileInstance = UserFile.findByUserId(session.user.id)
         
