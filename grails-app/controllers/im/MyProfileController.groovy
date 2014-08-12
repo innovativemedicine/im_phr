@@ -334,12 +334,36 @@ class MyProfileController {
 
         try {
             UserEmploymentInfoInstance.delete(flush: true)
-            flash.message = message(code: 'Medicine \"' + UserEmploymentInfoInstance.name + '\" deleted successfully', args: [message(code: 'UserEmploymentInfo.label', default: 'UserEmploymentInfo'), UserEmploymentInfoInstance.id])
+            flash.message = message(code: 'Employment info deleted successfully', args: [message(code: 'UserEmploymentInfo.label', default: 'UserEmploymentInfo'), UserEmploymentInfoInstance.id])
             redirect(action: "myProfile")
         }
         catch (DataIntegrityViolationException e) {
             flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'UserEmploymentInfo.label', default: 'UserEmploymentInfo'), id])
             redirect(action: "myProfile", id: UserEmploymentInfoInstance.id)
+        }
+        
+    }
+    
+    
+    def deleteContacts(Long id) {
+        println("delete contacts")
+        def UserEmergencyContactsInstance = UserEmergencyContacts.get(id)
+        
+        if (!UserEmergencyContactsInstance) {
+            println("something failed")
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'UserEmergencyContacts.label', default: 'UserEmergencyContacts'), id])
+            redirect(action: "myProfile")
+            return
+        }
+
+        try {
+            UserEmergencyContactsInstance.delete(flush: true)
+            flash.message = message(code: 'Contact information deleted successfully', args: [message(code: 'UserEmergencyContacts.label', default: 'UserEmergencyContacts'), UserEmergencyContactsInstance.id])
+            redirect(action: "myProfile")
+        }
+        catch (DataIntegrityViolationException e) {
+            flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'UserEmergencyContacts.label', default: 'UserEmergencyContacts'), id])
+            redirect(action: "myProfile", id: UserEmergencyContactsInstance.id)
         }
         
     }
