@@ -109,7 +109,7 @@ class QuestionnaireController {
                     answerId = 23
                 }
                 // Questions with ranges
-                else if (e.key == "Q60" || e.key == "Q61") {
+                else if (e.key == "Q60" || e.key == "Q61" || e.key == "Q62" ) {
                     other = e.value
                     answerId = 44
                 }
@@ -127,6 +127,8 @@ class QuestionnaireController {
         }
         
         
+        /* The following query gets the latest entry in the Questionnaires tables. Thus, it will check 
+         * the corresponding question and answer of the user. */
 //        SELECT
 //        uqa.qa_id AS 'qaID', uqa.date AS 'dateAdded', uqa.user_id AS 'userID', 
 //        q.question_id AS 'questionID', q.page_name AS 'page', q.question_text AS 'question',

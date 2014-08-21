@@ -30,7 +30,11 @@
 				        <g:elseif test="${params.var1 == 'Health Assessment Questionnaire' }">
                             <g:render template="form3"/>
                             <g:set var="counter" value="${24}" />
-				        </g:elseif>
+                        </g:elseif>
+                        <g:elseif test="${params.var1 == 'PGA' }">
+                            <g:render template="form4"/>
+                            <g:set var="counter" value="${24}" />
+                        </g:elseif>
 				        
 				        <%-- 
 						<g:each in="${QuestionsInstanceList }" var="data">
@@ -82,6 +86,7 @@
 						<li><a href="/questionnaire/questionnaire/BASDAI">BASDAI</a></li>
 						<li><a href="/questionnaire/questionnaire/BASFI">BASFI</a></li>
 						<li><a href="/questionnaire/questionnaire/Health Assessment Questionnaire">Health Assessment Questionnaire</a></li>
+						<li><a href="/questionnaire/questionnaire/PGA">PGA</a></li>
 						<li class="divider"></li>
 						<li class="nav-header">Question Number</li>
 						<g:set var="counter" value="${1}" />
