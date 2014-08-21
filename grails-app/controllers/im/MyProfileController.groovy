@@ -369,7 +369,28 @@ class MyProfileController {
     }
     
     
-    
+    def deletePhysician(Long id) {
+        println("delete physician")
+        def UserPhysicianInfoInstance = UserPhysicianInfo.get(id)
+        
+        if (!UserPhysicianInfoInstance) {
+            println("something failed")
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'UserPhysicianInfo.label', default: 'UserPhysicianInfo'), id])
+            redirect(action: "myProfile")
+            return
+        }
+
+        try {
+            UserPhysicianInfoInstance.delete(flush: true)
+            flash.message = message(code: 'Physician info deleted successfully', args: [message(code: 'UserPhysicianInfo.label', default: 'UserPhysicianInfo'), UserPhysicianInfoInstance.id])
+            redirect(action: "myProfile")
+        }
+        catch (DataIntegrityViolationException e) {
+            flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'UserPhysicianInfo.label', default: 'UserPhysicianInfo'), id])
+            redirect(action: "myProfile", id: UserPhysicianInfoInstance.id)
+        }
+        
+    }
     
     
     
