@@ -92,22 +92,15 @@ class SummaryController {
         def UserConditionsInstanceList = db.rows(
             "SELECT uc.name " +
             " FROM user_conditions uc " +
-            " WHERE uc.user_id = ? AND uc.end_date > curdate() " + 
+            " WHERE uc.user_id = ? AND (uc.end_date >= CURDATE() OR uc.end_date IS null) " + 
             " ORDER BY uc.onset_date DESC", session.user.id)
         
         // Medications
         def UserMedicationsInstanceList = db.rows(
             "SELECT um.name, um.dose, um.frequency, um.form " +
             " FROM user_medications2 um " +
-            " WHERE um.user_id = ? AND um.stop_date > curdate() " + 
+            " WHERE um.user_id = ? AND (um.stop_date >= CURDATE() OR um.stop_date IS null) " + 
             " ORDER BY um.start_date DESC", session.user.id)
-        
-        // Illnesses
-        def UserIllnessesInstanceList = db.rows(
-            "SELECT ui.name, ui.symptoms, DATE_FORMAT(ui.onset_date, '%d/%m/%Y') AS 'onset_date' " +
-            " FROM user_illnesses ui " +
-            " WHERE ui.user_id = ? AND ui.end_date > curdate() " + 
-            " ORDER BY ui.onset_date DESC", session.user.id)
         
         // Immunizations
         def UserImmunizationsInstanceList = db.rows(
@@ -121,14 +114,14 @@ class SummaryController {
             "SELECT ua.name, ua.reaction, ua.severity " +
             " FROM user_allergies ua " +
             " WHERE ua.user_id = ? " + 
-            " ORDER BY ua.onset_date DESC", session.user.id)
+            " ORDER BY ua.severity_value DESC, ua.onset_date DESC", session.user.id)
         
         
         
         
         [UserProfileInstanceList: UserProfileInstanceList, UserContactsInstanceList: UserContactsInstanceList, 
          UserEmploymentInstanceList: UserEmploymentInstanceList, UserConditionsInstanceList: UserConditionsInstanceList, 
-         UserMedicationsInstanceList: UserMedicationsInstanceList, UserIllnessesInstanceList: UserIllnessesInstanceList, 
+         UserMedicationsInstanceList: UserMedicationsInstanceList, 
          UserImmunizationsInstanceList: UserImmunizationsInstanceList, UserAllergiesInstanceList: UserAllergiesInstanceList, 
          UserPushupsInstanceList: UserPushupsInstanceList, UserSitupsInstanceList: UserSitupsInstanceList, 
          UserSquatsInstanceList: UserSquatsInstanceList, UserStepsInstanceList: UserStepsInstanceList, 

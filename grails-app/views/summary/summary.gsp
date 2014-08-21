@@ -112,11 +112,52 @@
             
             <div class="row-fluid">
                 <div class="block span6">
-	                <h1 class="block-header">
-	                    Current Conditions
-	                </h1>
-	                <div class="block-text">
-	                    <g:if test="${UserConditionsInstanceList.size == 0 }">
+                    <h1 class="block-header">
+                        Current Medications
+                    </h1>
+                    <div class="block-text">
+                        <g:if test="${UserMedicationsInstanceList.size == 0 }">
+                            <h4>None</h4>
+                        </g:if>
+                        <g:else>
+                            <ul>
+                                <g:each in="${UserMedicationsInstanceList }" var="data">
+                                    <li>${data.name } ( ${data.dose } ) - ${data.form }, ${data.frequency }</li>
+                                </g:each>
+                            </ul>
+                        </g:else>
+                    </div>
+                </div>
+                
+                <div class="block span6">
+                    <h1 class="block-header">
+                        Immunization
+                    </h1>
+                    <div class="block-text">
+                        <g:if test="${UserImmunizationsInstanceList.size == 0 }">
+                            <h4>None</h4>
+                        </g:if>
+                        <g:else>
+                            <ul>
+                                <g:each in="${UserImmunizationsInstanceList }" var="data">
+                                <li>${data.name } [${data.date }]</li>
+                                </g:each>
+                            </ul>
+                        </g:else>
+                    </div>
+                </div>
+	        </div>
+            
+            
+            
+            
+            <div class="row-fluid">
+                <div class="block span6">
+                    <h1 class="block-header">
+                        Current Conditions
+                    </h1>
+                    <div class="block-text">
+                        <g:if test="${UserConditionsInstanceList.size == 0 }">
                             <h4>None</h4>
                         </g:if>
                         <g:else>
@@ -126,87 +167,8 @@
                                 </g:each>
                             </ul>
                         </g:else>
-	                </div>
-	            </div>
-                
-                <div class="block span6">
-	                <h1 class="block-header">
-	                    Upcoming Appointments
-	                </h1>
-	                <div class="block-text">
-	                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisi cing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim.
-                        <br /><br />
-                        Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo . Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.
-                        </p>
-	                </div>
-	            </div>
-	        </div>
-            
-            
-            
-            
-            <div class="row-fluid">
-                <div class="block span6">
-	                <h1 class="block-header">
-	                    Current Medications
-	                </h1>
-	                <div class="block-text">
-	                    <g:if test="${UserMedicationsInstanceList == null }">
-	                        <h3>None</h3>
-	                    </g:if>
-	                    <g:else>
-		                    <ul>
-		                        <g:each in="${UserMedicationsInstanceList }" var="data">
-		                            <li>${data.name } ( ${data.dose } ) - ${data.form }, ${data.frequency }</li>
-			                    </g:each>
-			                </ul>
-		                </g:else>
-	                </div>
-	            </div>
-	            
-	            
-                <div class="block span6">
-	                <h1 class="block-header">
-	                    Current Illnesses
-	                </h1>
-	                <div class="block-text">
-	                    <g:if test="${UserIllnessesInstanceList.size == 0 }">
-                            <h4>None</h4>
-                        </g:if>
-                        <g:else>
-                            <ul>
-                                <g:each in="${UserIllnessesInstanceList }" var="data">
-                                    <li>${data.name }, ${data.symptoms } [${data.onset_date }]</li>
-                                </g:each>
-                            </ul>
-                        </g:else>
-	                </div>
-	            </div>
-	        </div>
-            
-            
-            
-            
-            
-            <div class="row-fluid">
-                <div class="block span6">
-	                <h1 class="block-header">
-	                    Immunization
-	                </h1>
-	                <div class="block-text">
-	                    <g:if test="${UserImmunizationsInstanceList.size == 0 }">
-                            <h4>None</h4>
-                        </g:if>
-                        <g:else>
-                            <ul>
-	                            <g:each in="${UserImmunizationsInstanceList }" var="data">
-	                            <li>${data.name } [${data.date }]</li>
-	                            </g:each>
-	                        </ul>
-                        </g:else>
-	                </div>
-	            </div>
+                    </div>
+                </div>
 	            
                 <div class="block span6">
 	                <h1 class="block-header">
@@ -225,11 +187,14 @@
                         </g:else>
 	                </div>
 	            </div>
-	        </div>
-	        
-	        
-	        
-	        <div class="row-fluid">
+	            
+            </div>
+            
+            
+            
+            
+            
+            <div class="row-fluid">
                 <g:each in="${UserEmploymentInstanceList }" var="data">
                     <g:if test="${data.size() > 0 }">
                         <div class="block span6">
