@@ -115,13 +115,6 @@ class MyProfileController {
             println("EMPLOYMENT PAGE")
             def UserEmploymentInstance = UserEmploymentInfo.get(id)
             println(UserEmploymentInstance)
-            
-            if (!UserEmploymentInstance) {
-                //TODO
-                UserEmploymentInstance = new UserEmploymentInfo(params)
-                //TODO: if not found / no entries in Employment table, go to new function to create one (like Physicians)
-            }
-            
             if (!UserEmploymentInstance) {
                 flash.message = message(code: 'There was an error loading your Employment information', args: [message(code: 'UserProfile.label', default: 'UserProfile'), id])
                 redirect(action: "edit", id: params.id, page: "employment")
@@ -202,21 +195,6 @@ class MyProfileController {
     def updateEmployment(Long id, Long version) {
         println("update employment = " + id);
         def UserEmploymentInfoInstance = UserEmploymentInfo.get(id)
-        
-        if (!UserEmploymentInfoInstance) {
-            //TODO
-            UserEmploymentInfoInstance = new UserEmploymentInfo(params)
-            
-            if (!UserEmploymentInfoInstance.save(flush: true)) {
-                flash.message = message(code: 'Error saving the entry. Please ensure the values are correct.', args: [message(code: 'UserEmploymentInfo.label', default: 'UserEmploymentInfo')])
-                redirect(action: "create", params: params)
-                return
-            }
-            
-            flash.message = message(code: 'Employment status updated successfully', args: [message(code: 'UserEmploymentInfo.label', default: 'UserEmploymentInfo'), UserEmploymentInfoInstance.id])
-         //   redirect(action: "myProfile")
-        }
-        
         
         if (!UserEmploymentInfoInstance) {
             flash.message = message(code: 'There was an error loading your employment info', args: [message(code: 'UserEmploymentInfo.label', default: 'UserEmploymentInfo'), id])
@@ -323,16 +301,24 @@ class MyProfileController {
     }
     
     /**
-     * Opens the 'create' view to allow users to add a new physician entry.
+     * Opens the 'create' view to allow users to add a new data entry according to the page.
      */
-    def create() {
-        println("create physician");
-        [UserPhysicianInfoInstance: new UserPhysicianInfo(params)]
+    def create(String page) {
+        if (page == "employment") {
+            println("EMPLOYMENT PAGE")
+            [page: page, userEmploymentInstance: new UserEmploymentInfo(params)]
+        } else if (page == "contacts") {
+            println("CONTACTS PAGE")
+            [page: page, userContactsInfoInstance: new UserEmergencyContacts(params)]
+        } else if (page == "physician") {
+            println("PHYSICIANS PAGE")
+            [page: page, userPhysicianInfoInstance: new UserPhysicianInfo(params)]
+        }
     }
     
     /**
      * Saves a new data entry for user physicians into the database.
-     * @return the function fails if it is unable to savw the data
+     * @return the function fails if it is unable to save the data
      */
     def savePhysician() {
         println("save physician");
@@ -349,10 +335,43 @@ class MyProfileController {
         redirect(action: "myProfile", id: UserPhysicianInfoInstance.id)
     }
     
-    //TODO createEmployment, createContacts
-    //TODO saveEmployment, saveContacts
+    /**
+     * Saves a new data entry for user contacts into the database.
+     * @return the function fails if it is unable to save the data
+     */
+    def saveContacts() {
+        println("save contact");
+        
+        def UserEmergencyContactsInstance = new UserEmergencyContacts(params)
+        
+        if (!UserEmergencyContactsInstance.save(flush: true)) {
+            flash.message = message(code: 'Error saving the entry. Please ensure the values are correct.', args: [message(code: 'UserEmergencyContacts.label', default: 'UserEmergencyContacts')])
+            redirect(action: "create", params: params)
+            return
+        }
+        
+        flash.message = message(code: 'Contact info saved successfully', args: [message(code: 'UserEmergencyContacts.label', default: 'UserEmergencyContacts'), UserEmergencyContactsInstance.id])
+        redirect(action: "myProfile", id: UserEmergencyContactsInstance.id)
+    }
     
-    
+    /**
+     * Saves a new data entry for user employment information into the database.
+     * @return the function fails if it is unable to save the data
+     */
+    def saveEmployment() {
+        println("save employment information");
+        
+        def UserEmploymentInstance = new UserEmploymentInfo(params)
+        
+        if (!UserEmploymentInstance.save(flush: true)) {
+            flash.message = message(code: 'Error saving the entry. Please ensure the values are correct.', args: [message(code: 'UserEmployment.label', default: 'UserEmployment')])
+            redirect(action: "create", params: params)
+            return
+        }
+        
+        flash.message = message(code: 'Employment information saved successfully', args: [message(code: 'UserEmployment.label', default: 'UserEmployment'), UserEmploymentInstance.id])
+        redirect(action: "myProfile", id: UserEmploymentInstance.id)
+    }
     
     /**
      * Deletes the specific employment entry from the database

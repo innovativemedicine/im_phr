@@ -15,26 +15,32 @@
             <g:link class="add-button btn btn-primary form-button" action="create" params='[id: "${session.user.id }", page: "physician"]' >
                 Add Physician Info
             </g:link>
-            <g:link class="add-button btn btn-primary form-button" action="edit" params='[id: "${UserContactsInstanceList.emergency_id[0] }", page: "contacts"]' >
-                <g:if test="${UserContactsInstanceList != [] }">
+            
+            <g:if test="${UserContactsInstanceList != [] }">
+                <g:link class="add-button btn btn-primary form-button" action="edit" params='[id: "${UserContactsInstanceList.emergency_id[0] }", page: "contacts"]' >
                     Edit Contacts
-                </g:if>
-                <g:else>
+                </g:link>
+            </g:if>
+            <g:else>
+                <g:link class="add-button btn btn-primary form-button" action="create" params='[id: "${session.user.id }", page: "contacts"]' >
                     Add Contacts
-                </g:else>
-            </g:link>
-            <g:link class="add-button btn btn-primary form-button" action="edit" params='[id: "${UserEmploymentInstanceList.employer_id[0] }", page: "employment"]' >
-                <g:if test="${UserEmploymentInstanceList != [] }">
+                </g:link>
+            </g:else>
+            
+            <g:if test="${UserEmploymentInstanceList != [] }">
+                <g:link class="add-button btn btn-primary form-button" action="edit" params='[id: "${UserEmploymentInstanceList.employer_id[0] }", page: "employment"]' >
                     Edit Employment
-                </g:if>
-                <g:else>
+                </g:link>
+            </g:if>
+            <g:else>
+                <g:link class="add-button btn btn-primary form-button" action="create" params='[id: "${session.user.id }", page: "employment"]' >
                     Add Employment
-                </g:else>
-            </g:link>
+                </g:link>
+            </g:else>
+            
             <g:link class="add-button btn btn-primary form-button" action="edit" params='[id: "${session.user.id }", page: "profile"]' >
                 Edit Profile
             </g:link>
-            
             
             <h1>My Profile</h1>
             <div class="row-fluid">
