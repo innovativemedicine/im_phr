@@ -17,13 +17,15 @@ class AllergiesController {
         redirect(action: "allergies", params: params)
     }
     
+    /**
+     * Checks to see whether the user is logged in before loading the page
+     */
     def auth() {
         if(!session.user) {
             redirect(controller:"Login", action:"login")
             return false
         }
     }
-    
     
     /**
      * Main landing page for Allergies tab.
@@ -41,12 +43,18 @@ class AllergiesController {
         [UserAllergiesInstanceList: UserAllergiesInstanceList]
     }
     
-    
+    /**
+     * Opens the 'create' view to allow users to add a new allergy entry.
+     */
     def create() {
         println("create");
         [UserAllergiesInstance: new UserAllergies(params)]
     }
     
+    /**
+     * Saves a new data entry for allergies into the database.
+     * @return the function fails if it is unable to save the data
+     */
     def save() {
         println("save");
         
@@ -62,6 +70,11 @@ class AllergiesController {
         redirect(controller: "healthInformation", action: "information", params: params)
     }
     
+    /**
+     * Loads an existing allergy entry into the page to allow the user to edit the different fields.
+     * @param id - the id number of the specific allergy entry
+     * @return the function fails if it is unable to load the data
+     */
     def edit(Long id) {
         println("edit : " + id);
         
@@ -76,6 +89,12 @@ class AllergiesController {
         [userAllergiesInstance: UserAllergiesInstance]
     }
     
+    /**
+     * Saves the updated allergy entry into the database.
+     * @param id      - the id number of the specific allergy entry
+     * @param version - the number of times the specific entry has been edited
+     * @return the function fails if it is unable to load the data, if the database entry's version is greater than the version loaded in the page, or if the save to the database doesn't work
+     */
     def update(Long id, Long version) {
         println("update");
         def UserAllergiesInstance = UserAllergies.get(id)
@@ -107,7 +126,12 @@ class AllergiesController {
         flash.message = message(code: 'Allergy \"' + UserAllergiesInstance.name + '\" updated successfully', args: [message(code: 'UserAllergies.label', default: 'UserAllergies'), UserAllergiesInstance.id])
         redirect(controller: "healthInformation", action: "information", id: UserAllergiesInstance.id)
     }
-
+    
+    /**
+     * Deletes the allergy entry from the database
+     * @param id - the id number of the specific allergy entry
+     * @return the function fails if it is unable to load the data
+     */
     def delete(Long id) {
         println("delete")
         def UserAllergiesInstance = UserAllergies.get(id)
@@ -127,7 +151,6 @@ class AllergiesController {
             flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'UserAllergies.label', default: 'UserAllergies'), id])
             redirect(controller: "healthInformation", action: "information", id: id)
         }
-        
     }
     
 }

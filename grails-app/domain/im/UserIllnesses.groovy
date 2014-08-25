@@ -1,4 +1,5 @@
 package im
+// Unused controller now, as Illnesses are now combined with Conditions.
 
 import java.util.Date;
 

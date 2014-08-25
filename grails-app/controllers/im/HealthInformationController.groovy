@@ -17,6 +17,9 @@ class HealthInformationController {
         redirect(action: "information", params: params)
     }
     
+    /**
+     * Checks to see whether the user is logged in before loading the page
+     */
     def auth() {
         if(!session.user) {
             redirect(controller:"Login", action:"login")
@@ -25,13 +28,9 @@ class HealthInformationController {
     }
     
     /** 
-     * Main landing page for Medications tab.
+     * Main landing page for the Health Information tab.
      */
     def information = {
     }
     
 }
-
-
-
-

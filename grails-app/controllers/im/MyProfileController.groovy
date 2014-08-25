@@ -27,6 +27,9 @@ class MyProfileController {
         redirect(action: "myProfile", params: params)
     }
     
+    /**
+     * Checks to see whether the user is logged in before loading the page
+     */
     def auth() {
         if(!session.user) {
             redirect(controller:"Login", action:"login")
@@ -35,7 +38,7 @@ class MyProfileController {
     }
     
     /**
-     * Main landing page for Profile tab. List the details about the current user's information
+     * Main landing page for Profile tab, listing the details about the current user's information.
      */
     def myProfile = {
         println("profile");
@@ -63,29 +66,39 @@ class MyProfileController {
          UserEmploymentInstanceList: UserEmploymentInstanceList, UserPhysicianInstanceList: UserPhysicianInstanceList]
     }
     
+//    /**
+//     * Saves the data for the user's profile
+//     * @return the function fails if it is unable to load the data
+//     */
+//    def save() {
+//        println("save");
+//        
+//        def LoginInstance = new Login(params)
+//        def UserProfileInstance = new UserProfile(params)
+//        
+//        if (!LoginInstance.save(flush: true)) {
+//            println("didn't save Login :  " + LoginInstance.errors);
+//            render(view: "create", model: [LoginInstance: LoginInstance])
+//            return
+//        }
+//        
+//        if (!UserProfileInstance.save(flush: true)) {
+//            flash.message = message(code: 'There was an error saving your Profile. Make sure all the fields are correct and try again.', args: [message(code: 'UserProfile.label', default: 'UserProfile'), id])
+//            redirect(action: "edit", id: params.id)
+//            return
+//        }
+//        redirect(action: "myProfile", params: params)
+//    }
     
-    def save() {
-        println("save");
-        
-        def LoginInstance = new Login(params)
-        def UserProfileInstance = new UserProfile(params)
-        
-        if (!LoginInstance.save(flush: true)) {
-            println("didn't save Login :  " + LoginInstance.errors);
-            render(view: "create", model: [LoginInstance: LoginInstance])
-            return
-        }
-        
-        if (!UserProfileInstance.save(flush: true)) {
-            flash.message = message(code: 'There was an error saving your Profile. Make sure all the fields are correct and try again.', args: [message(code: 'UserProfile.label', default: 'UserProfile'), id])
-            redirect(action: "edit", id: params.id)
-            return
-        }
-        redirect(action: "myProfile", params: params)
-    }
-    
-    def edit(Long id, String page, String page123) {
-        println("--- edit : " + id + " : " + page + " | " + page123);
+    /**
+     * Loads the corresponding data to allow the user to edit the different fields. 
+     * Able to edit the user profile, employment info, emergency contacts, and physician info.
+     * @param id   - the corresponding ID for the specific entry
+     * @param page - the type of page that gets updated
+     * @return the function fails if it is unable to load the data
+     */
+    def edit(Long id, String page) {
+        println("--- edit : " + id + " : " + page + " | ");
         
         if (page == "profile") {
             println("PROFILE PAGE")
@@ -140,9 +153,14 @@ class MyProfileController {
             [page: page, userPhysicianInfoInstance: userPhysicianInfoInstance]
             
         }
-        
     }
     
+    /**
+     * Saves the updated profile data.
+     * @param id      - the id number of the specific user
+     * @param version - the number of times the specific user data has been edited
+     * @return the function fails if it is unable to load the data, if the database entry's version is greater than the version loaded in the page, or if the save to the database doesn't work
+     */
     def updateProfile(Long id, Long version) {
         println("update profile = " + id);
         def UserProfileInstance = UserProfile.get(id)
@@ -167,7 +185,7 @@ class MyProfileController {
         
         if (!UserProfileInstance.save(flush: true)) {
             flash.message = message(code: 'There was an error updating your Profile. Make sure all the fields are correct and try again.', args: [message(code: 'UserProfile.label', default: 'UserProfile'), id])
-            redirect(action: "edit", page123: 'test', id: params.id, page: "profile")
+            redirect(action: "edit", id: params.id, page: "profile")
             return
         }
         
@@ -175,13 +193,15 @@ class MyProfileController {
         redirect(action: "myProfile", id: UserProfileInstance.id)
     }
     
-    
-    
+    /**
+     * Saves the updated employment information data.
+     * @param id      - the id number of the employment information
+     * @param version - the number of times the specific employment information has been edited
+     * @return the function fails if it is unable to load the data, if the database entry's version is greater than the version loaded in the page, or if the save to the database doesn't work
+     */
     def updateEmployment(Long id, Long version) {
         println("update employment = " + id);
         def UserEmploymentInfoInstance = UserEmploymentInfo.get(id)
-        
-        
         
         if (!UserEmploymentInfoInstance) {
             //TODO
@@ -196,8 +216,6 @@ class MyProfileController {
             flash.message = message(code: 'Employment status updated successfully', args: [message(code: 'UserEmploymentInfo.label', default: 'UserEmploymentInfo'), UserEmploymentInfoInstance.id])
          //   redirect(action: "myProfile")
         }
-        
-        
         
         
         if (!UserEmploymentInfoInstance) {
@@ -220,7 +238,7 @@ class MyProfileController {
 
         if (!UserEmploymentInfoInstance.save(flush: true)) {
             flash.message = message(code: 'There was an error updating your Employment Info. Make sure all the fields are correct and try again.', args: [message(code: 'UserEmploymentInfo.label', default: 'UserEmploymentInfo'), id])
-            redirect(action: "edit", page123: 'test', id: params.id, page: "employment")
+            redirect(action: "edit", id: params.id, page: "employment")
             return
         }
         
@@ -228,8 +246,12 @@ class MyProfileController {
         redirect(action: "myProfile", id: UserEmploymentInfoInstance.id)
     }
     
-    
-    
+    /**
+     * Saves the updated emergency contacts information.
+     * @param id      - the id number of the emergency contact information
+     * @param version - the number of times the specific contact has been edited
+     * @return the function fails if it is unable to load the data, if the database entry's version is greater than the version loaded in the page, or if the save to the database doesn't work
+     */
     def updateContacts(Long id, Long version) {
         println("update contacts = " + id);
         def UserEmergencyContactsInstance = UserEmergencyContacts.get(id)
@@ -254,7 +276,7 @@ class MyProfileController {
 
         if (!UserEmergencyContactsInstance.save(flush: true)) {
             flash.message = message(code: 'There was an error updating your Contacts Info. Make sure all the fields are correct and try again.', args: [message(code: 'UserContactInfo.label', default: 'UserContactInfo'), id])
-            redirect(action: "edit", page123: 'test', id: params.id, page: "employment")
+            redirect(action: "edit", id: params.id, page: "employment")
             return
         }
         
@@ -262,8 +284,12 @@ class MyProfileController {
         redirect(action: "myProfile", id: UserEmergencyContactsInstance.id)
     }
     
-    
-    
+    /**
+     * Saves the updated physician information.
+     * @param id      - the id number of the physician
+     * @param version - the number of times the specific physician data has been edited
+     * @return the function fails if it is unable to load the data, if the database entry's version is greater than the version loaded in the page, or if the save to the database doesn't work
+     */
     def updatePhysician(Long id, Long version) {
         println("update physician");
         def UserPhysicianInfoInstance = UserPhysicianInfo.get(id)
@@ -288,7 +314,7 @@ class MyProfileController {
 
         if (!UserPhysicianInfoInstance.save(flush: true)) {
             flash.message = message(code: 'There was an error updating your Employment Info. Make sure all the fields are correct and try again.', args: [message(code: 'UserEmploymentInfo.label', default: 'UserEmploymentInfo'), id])
-            redirect(action: "edit", page123: 'test', id: params.id, page: "employment")
+            redirect(action: "edit", id: params.id, page: "employment")
             return
         }
         
@@ -296,11 +322,18 @@ class MyProfileController {
         redirect(action: "myProfile", id: UserPhysicianInfoInstance.id)
     }
     
+    /**
+     * Opens the 'create' view to allow users to add a new physician entry.
+     */
     def create() {
         println("create physician");
         [UserPhysicianInfoInstance: new UserPhysicianInfo(params)]
     }
     
+    /**
+     * Saves a new data entry for user physicians into the database.
+     * @return the function fails if it is unable to savw the data
+     */
     def savePhysician() {
         println("save physician");
         
@@ -316,11 +349,16 @@ class MyProfileController {
         redirect(action: "myProfile", id: UserPhysicianInfoInstance.id)
     }
     
+    //TODO createEmployment, createContacts
+    //TODO saveEmployment, saveContacts
     
     
     
-    
-    
+    /**
+     * Deletes the specific employment entry from the database
+     * @param id - the id number of the specific employment entry
+     * @return the function fails if it is unable to load the data
+     */
     def deleteEmployment(Long id) {
         println("delete employment")
         def UserEmploymentInfoInstance = UserEmploymentInfo.get(id)
@@ -341,10 +379,13 @@ class MyProfileController {
             flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'UserEmploymentInfo.label', default: 'UserEmploymentInfo'), id])
             redirect(action: "myProfile", id: UserEmploymentInfoInstance.id)
         }
-        
     }
     
-    
+    /**
+     * Deletes the specific contact data from the database
+     * @param id - the id number of the specific contact data
+     * @return the function fails if it is unable to load the data
+     */
     def deleteContacts(Long id) {
         println("delete contacts")
         def UserEmergencyContactsInstance = UserEmergencyContacts.get(id)
@@ -365,10 +406,13 @@ class MyProfileController {
             flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'UserEmergencyContacts.label', default: 'UserEmergencyContacts'), id])
             redirect(action: "myProfile", id: UserEmergencyContactsInstance.id)
         }
-        
     }
     
-    
+    /**
+     * Deletes the specific physician information from the database
+     * @param id - the id number of the specific physician information 
+     * @return the function fails if it is unable to load the data
+     */
     def deletePhysician(Long id) {
         println("delete physician")
         def UserPhysicianInfoInstance = UserPhysicianInfo.get(id)
@@ -389,24 +433,12 @@ class MyProfileController {
             flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'UserPhysicianInfo.label', default: 'UserPhysicianInfo'), id])
             redirect(action: "myProfile", id: UserPhysicianInfoInstance.id)
         }
-        
     }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    /**
+     * Saves an uploaded profile image from the user into the database
+     * @return the function fails if the uploaded file is empty or if it couldn't save properly into the database
+     */
     def saveImage() {
         println("saveImage")
         
@@ -446,6 +478,9 @@ class MyProfileController {
         redirect(action: "myProfile")
     }
     
+    /**
+     * Loads up the profile image of the user and displays it in the view
+     */
     def showPayload() {
         println("showPayload")
         
@@ -460,6 +495,9 @@ class MyProfileController {
         response.outputStream.flush()
     }
     
+    /**
+     * Deletes the specific user's profile image
+     */
     def delete() {
         println("delete  =  " + session.user.id)
         
@@ -469,7 +507,3 @@ class MyProfileController {
     }
     
 }
-
-
-
-

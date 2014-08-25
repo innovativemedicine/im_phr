@@ -17,6 +17,9 @@ class ImmunizationsController {
         redirect(action: "immunizations", params: params)
     }
     
+    /**
+     * Checks to see whether the user is logged in before loading the page
+     */
     def auth() {
         if(!session.user) {
             redirect(controller:"Login", action:"login")
@@ -40,11 +43,18 @@ class ImmunizationsController {
         [UserImmunizationsInstanceList: UserImmunizationsInstanceList]
     }
     
+    /**
+     * Opens the 'create' view to allow users to add a new immunization entry.
+     */
     def create() {
         println("create");
         [UserImmunizationsInstance: new UserImmunizations(params)]
     }
     
+    /**
+     * Saves a new data entry for immunization into the database.
+     * @return the function fails if it is unable to save the data
+     */
     def save() {
         println("save");
         
@@ -60,6 +70,11 @@ class ImmunizationsController {
         redirect(controller: "healthInformation", action: "information", params: params)
     }
     
+    /**
+     * Loads an existing immunization entry into the page to allow the user to edit the different fields.
+     * @param id - the id number of the specific immunization entry
+     * @return the function fails if it is unable to load the data
+     */
     def edit(Long id) {
         println("edit : " + id);
         
@@ -74,6 +89,12 @@ class ImmunizationsController {
         [userImmunizationsInstance: UserImmunizationsInstance]
     }
     
+    /**
+     * Saves the updated immunization entry into the database.
+     * @param id      - the id number of the specific immunization entry
+     * @param version - the number of times the specific entry has been edited
+     * @return the function fails if it is unable to load the data, if the database entry's version is greater than the version loaded in the page, or if the save to the database doesn't work
+     */
     def update(Long id, Long version) {
         println("update");
         def UserImmunizationsInstance = UserImmunizations.get(id)
@@ -104,7 +125,12 @@ class ImmunizationsController {
         flash.message = message(code: 'Immunization \"' + UserImmunizationsInstance.name + '\" updated successfully', args: [message(code: 'UserImmunizations.label', default: 'UserImmunizations'), UserImmunizationsInstance.id])
         redirect(controller: "healthInformation", action: "information", id: UserImmunizationsInstance.id)
     }
-
+    
+    /**
+     * Deletes the immunization entry from the database
+     * @param id - the id number of the specific immunization entry
+     * @return the function fails if it is unable to load the data
+     */
     def delete(Long id) {
         println("delete")
         def UserImmunizationsInstance = UserImmunizations.get(id)
@@ -124,7 +150,6 @@ class ImmunizationsController {
             flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'UserImmunizations.label', default: 'UserImmunizations'), id])
             redirect(controller: "healthInformation", action: "information", id: id)
         }
-        
     }
     
 }

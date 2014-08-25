@@ -5,7 +5,6 @@ import groovy.sql.Sql
 
 class DiaryController {
     
-    
     static allowedMethods = [save: "POST", update: "POST", delete: ["GET", "POST"]]
     
     def dataSource // the Spring-Bean "dataSource" is auto-injected
@@ -18,6 +17,9 @@ class DiaryController {
         redirect(action: "diary", params: params)
     }
     
+    /**
+     * Checks to see whether the user is logged in before loading the page
+     */
     def auth() {
         if(!session.user) {
             redirect(controller:"Login", action:"login")
@@ -42,24 +44,38 @@ class DiaryController {
         [UserDiaryInstanceList: UserDiaryInstanceList]
     }
     
+    /**
+     * Opens the 'create' view to allow users to add a new diary entry.
+     */
     def create() {
         println("create");
         [UserDiaryInstance: new UserDiary(params)]
     }
     
+    /**
+     * Saves a new diary entry into the database.
+     * @return the function fails if it is unable to save the data
+     */
     def save() {
         println("save");
         
         def UserDiaryInstance = new UserDiary(params)
         
         if (!UserDiaryInstance.save(flush: true)) {
-            println("didn't save :  " + UserDiaryInstance.errors);
+            flash.message = message(code: 'There was an error saving the diary entry.', args: [message(code: 'UserDiary.label', default: 'UserDiary')])
             render(view: "create", model: [UserDiaryInstance: UserDiaryInstance])
             return
         }
+        
+        flash.message = message(code: 'Diary entry added successfully', args: [message(code: 'UserDiary.label', default: 'UserDiary'), UserDiaryInstance.id])
         redirect(action: "diary", params: params)
     }
     
+    /**
+     * Loads an existing diary entry into the page to allow the user to edit the different fields.
+     * @param id - the id number of the specific diary entry
+     * @return the function fails if it is unable to load the data
+     */
     def edit(Long id) {
         println("edit : " + id);
         
@@ -74,6 +90,12 @@ class DiaryController {
         [userDiaryInstance: UserDiaryInstance]
     }
     
+    /**
+     * Saves the updated diary entry into the database.
+     * @param id      - the id number of the specific diary entry
+     * @param version - the number of times the specific entry has been edited
+     * @return the function fails if it is unable to load the data, if the database entry's version is greater than the version loaded in the page, or if the save to the database doesn't work
+     */
     def update(Long id, Long version) {
         println("update");
         def UserDiaryInstance = UserDiary.get(id)
@@ -103,7 +125,12 @@ class DiaryController {
         flash.message = message(code: 'default.updated.message', args: [message(code: 'UserDiary.label', default: 'UserDiary'), UserDiaryInstance.id])
         redirect(action: "diary", id: UserDiaryInstance.id)
     }
-
+    
+    /**
+     * Deletes the diary entry from the database
+     * @param id - the id number of the specific diary entry
+     * @return the function fails if it is unable to load the data
+     */
     def delete(Long id) {
         println("delete")
         def UserDiaryInstance = UserDiary.get(id)
@@ -123,7 +150,6 @@ class DiaryController {
             flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'UserDiary.label', default: 'UserDiary'), id])
             redirect(action: "diary", id: id)
         }
-        
     }
     
 }

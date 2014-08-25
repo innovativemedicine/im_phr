@@ -5,7 +5,6 @@ import groovy.sql.Sql
 
 class ConditionsController {
     
-    
     static allowedMethods = [save: "POST", update: "POST", delete: ["GET", "POST"]]
     
     def dataSource // the Spring-Bean "dataSource" is auto-injected
@@ -18,6 +17,9 @@ class ConditionsController {
         redirect(action: "conditions", params: params)
     }
     
+    /**
+     * Checks to see whether the user is logged in before loading the page
+     */
     def auth() {
         if(!session.user) {
             redirect(controller:"Login", action:"login")
@@ -48,11 +50,18 @@ class ConditionsController {
         [UserCurrentConditionsInstanceList: UserCurrentConditionsInstanceList, UserPreviousConditionsInstanceList: UserPreviousConditionsInstanceList]
     }
     
+    /**
+     * Opens the 'create' view to allow users to add a new conditions entry.
+     */
     def create() {
         println("create");
         [UserConditionsInstance: new UserConditions(params)]
     }
     
+    /**
+     * Saves a new data entry for conditions into the database.
+     * @return the function fails if it is unable to save the data
+     */
     def save() {
         println("save");
         
@@ -68,6 +77,11 @@ class ConditionsController {
         redirect(action: "conditions", params: params)
     }
     
+    /**
+     * Loads an existing condition entry into the page to allow the user to edit the different fields.
+     * @param id - the id number of the specific condition entry
+     * @return the function fails if it is unable to load the data
+     */
     def edit(Long id) {
         println("edit : " + id);
         
@@ -82,6 +96,12 @@ class ConditionsController {
         [userConditionsInstance: UserConditionsInstance]
     }
     
+    /**
+     * Saves the updated condition entry into the database.
+     * @param id      - the id number of the specific condition entry
+     * @param version - the number of times the specific entry has been edited
+     * @return the function fails if it is unable to load the data, if the database entry's version is greater than the version loaded in the page, or if the save to the database doesn't work
+     */
     def update(Long id, Long version) {
         println("update");
         def UserConditionsInstance = UserConditions.get(id)
@@ -110,10 +130,14 @@ class ConditionsController {
         }
 
         flash.message = message(code: 'Condition \"' + UserConditionsInstance.name + '\" updated successfully', args: [message(code: 'UserConditions.label', default: 'UserConditions'), UserConditionsInstance.id])
-        
         redirect(action: "conditions", id: UserConditionsInstance.id)
     }
-
+    
+    /**
+     * Deletes the condition entry from the database
+     * @param id - the id number of the specific condition entry
+     * @return the function fails if it is unable to load the data
+     */
     def delete(Long id) {
         println("delete")
         def UserConditionsInstance = UserConditions.get(id)
@@ -133,7 +157,6 @@ class ConditionsController {
             flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'UserConditions.label', default: 'UserConditions'), id])
             redirect(action: "conditions", id: id)
         }
-        
     }
     
 }

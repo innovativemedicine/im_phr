@@ -2,10 +2,6 @@ package im
 
 import groovy.sql.Sql
 
-import java.text.ParseException;
-import java.util.Date
-
-
 class WellnessController {
     
     def dataSource // the Spring-Bean "dataSource" is auto-injected
@@ -17,6 +13,9 @@ class WellnessController {
         redirect(action: "wellness")
     }
     
+    /**
+     * Checks to see whether the user is logged in before loading the page
+     */
     def auth() {
         if(!session.user) {
             redirect(controller:"Login", action:"login")
@@ -24,10 +23,8 @@ class WellnessController {
         }
     }
     
-    
-    
     /**
-     * Main landing page for Profile tab. List the details about the current user's information
+     * Main landing page for Profile tab. List the details about the current user's well-being information.
      */
     def wellness = {
         println("wellness")
@@ -94,10 +91,10 @@ class WellnessController {
          UserStepsInstanceList: UserStepsInstanceList]
     }
     
-    
-    
-    
-    
+    /**
+     * Saves a new data entry for calories into the database.
+     * @return the function fails if it is unable to save the data
+     */
     def saveCalories() {
         println("Save - CALORIES");
         
@@ -118,7 +115,6 @@ class WellnessController {
             "INSERT INTO user_calories (version, amount, date, previous_change, user_id) " +
             " VALUES (0, ?, ?, ?, ?) ", params.amount, params.date, change, params.user.id)
         
-        
         // Update next value's amount change if the user updated a date between other entries
         println("NextCaloriesInstance =  " + NextCaloriesInstance)
         for (e in NextCaloriesInstance) {
@@ -131,6 +127,10 @@ class WellnessController {
         redirect(action: "wellness", params: params)
     }
     
+    /**
+     * Saves a new data entry for carbohydrates into the database.
+     * @return the function fails if it is unable to save the data
+     */
     def saveCarbohydrates() {
         println("Save - CARBOHYDRATES");
         
@@ -151,7 +151,6 @@ class WellnessController {
             "INSERT INTO user_carbohydrates (version, amount, date, previous_change, user_id) " +
             " VALUES (0, ?, ?, ?, ?) ", params.amount, params.date, change, params.user.id)
         
-        
         // Update next value's amount change if the user updated a date between other entries
         println("NextCarbohydratesInstance =  " + NextCarbohydratesInstance)
         for (e in NextCarbohydratesInstance) {
@@ -164,6 +163,10 @@ class WellnessController {
         redirect(action: "wellness", params: params)
     }
     
+    /**
+     * Saves a new data entry for cholestrol into the database.
+     * @return the function fails if it is unable to save the data
+     */
     def saveCholestrol() {
         println("Save - CHOLESTROL");
         
@@ -184,7 +187,6 @@ class WellnessController {
             "INSERT INTO user_cholestrol (version, amount, date, previous_change, user_id) " +
             " VALUES (0, ?, ?, ?, ?) ", params.amount, params.date, change, params.user.id)
         
-        
         // Update next value's amount change if the user updated a date between other entries
         println("NextCholestrolInstance =  " + NextCholestrolInstance)
         for (e in NextCholestrolInstance) {
@@ -197,6 +199,10 @@ class WellnessController {
         redirect(action: "wellness", params: params)
     }
     
+    /**
+     * Saves a new data entry for blood pressures into the database.
+     * @return the function fails if it is unable to save the data
+     */
     def saveBloodPressure() {
         println("Save - BLOODPRESSURE");
         
@@ -209,6 +215,10 @@ class WellnessController {
         redirect(action: "wellness", params: params)
     }
     
+    /**
+     * Saves a new data entry for BMI (height and weight) into the database.
+     * @return the function fails if it is unable to save the data
+     */
     def saveBmi() {
         println("Save - BMI");
         
@@ -226,8 +236,10 @@ class WellnessController {
         redirect(action: "wellness", params: params)
     }
     
-    
-    
+    /**
+     * Saves a new data entry for the exercise information into the database.
+     * @return the function fails if it is unable to save the data
+     */
     def saveExercise() {
         println("Save - EXERCISE");
         
@@ -245,6 +257,3 @@ class WellnessController {
     }
     
 }
-
-
-

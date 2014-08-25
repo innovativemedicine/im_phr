@@ -1,12 +1,7 @@
 package im
 
+import org.springframework.dao.DataIntegrityViolationException
 import groovy.sql.Sql
-
-import java.text.ParseException;
-import java.util.Calendar;
-
-import java.util.Date
-import java.text.SimpleDateFormat
 
 class SummaryController {
     
@@ -19,6 +14,9 @@ class SummaryController {
         redirect(action: "summary")
     }
     
+    /**
+     * Checks to see whether the user is logged in before loading the page
+     */
     def auth() {
         if(!session.user) {
             redirect(controller:"Login", action:"login")
@@ -26,10 +24,8 @@ class SummaryController {
         }
     }
     
-    
-    
     /**
-     * Main landing page for Summary tab.
+     * Main landing page for Summary tab. Gets all of the data from the other tables and displays it to the user.
      */
     def summary = {
         
@@ -87,7 +83,6 @@ class SummaryController {
             " FROM user_bmi ub " +
             " WHERE ub.user_id = ? ORDER BY ub.date DESC LIMIT 1", session.user.id)
         
-        
         // Conditions
         def UserConditionsInstanceList = db.rows(
             "SELECT uc.name " +
@@ -116,9 +111,6 @@ class SummaryController {
             " WHERE ua.user_id = ? " + 
             " ORDER BY ua.severity_value DESC, ua.onset_date DESC", session.user.id)
         
-        
-        
-        
         [UserProfileInstanceList: UserProfileInstanceList, UserContactsInstanceList: UserContactsInstanceList, 
          UserEmploymentInstanceList: UserEmploymentInstanceList, UserConditionsInstanceList: UserConditionsInstanceList, 
          UserMedicationsInstanceList: UserMedicationsInstanceList, 
@@ -128,8 +120,6 @@ class SummaryController {
          UserCaloriesInstanceList: UserCaloriesInstanceList, UserCarbohydratesInstanceList: UserCarbohydratesInstanceList, 
          UserCholestrolInstanceList: UserCholestrolInstanceList, UserBloodPressureInstanceList: UserBloodPressureInstanceList, 
          UserBmiInstanceList: UserBmiInstanceList]
-        
     }
-    
     
 }

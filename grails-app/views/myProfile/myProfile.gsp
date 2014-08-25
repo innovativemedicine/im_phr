@@ -66,7 +66,7 @@
 		            
 		            <div class="user-image-small">
 	                    <g:fieldValue bean="${fileInstance}" field="id"/>
-                            <img  src="${createLink(controller:'MyProfile', action:'showPayload', id:"${session.user.id}")}" width='300' class="profile-img" />
+                            <img src="${createLink(controller:'MyProfile', action:'showPayload', id:"${session.user.id}")}" width='300' class="profile-img" />
                         <g:fieldValue bean="${fileInstance}" field="fileName"/>
                         <br /><br />
 						<g:form action="saveImage" enctype="multipart/form-data">

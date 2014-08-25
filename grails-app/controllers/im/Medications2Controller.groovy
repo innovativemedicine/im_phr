@@ -17,6 +17,9 @@ class Medications2Controller {
         redirect(action: "medications", params: params)
     }
     
+    /**
+     * Checks to see whether the user is logged in before loading the page
+     */
     def auth() {
         if(!session.user) {
             redirect(controller:"Login", action:"login")
@@ -25,7 +28,7 @@ class Medications2Controller {
     }
     
     /** 
-     * Main landing page for Medications tab.
+     * Main landing page for Medications tab for the current medications list.
      */
     def medications = {
         println("medications");
@@ -41,7 +44,9 @@ class Medications2Controller {
         [UserCurrentMedicationsInstanceList: UserCurrentMedicationsInstanceList]
     }
     
-    
+    /**
+     * Main landing page for Medications tab for the previous medications list.
+     */
     def medicationsPrevious = {
         println("medications");
         
@@ -56,12 +61,18 @@ class Medications2Controller {
         [UserPreviousMedicationsInstanceList: UserPreviousMedicationsInstanceList]
     }
     
-    
+    /**
+     * Opens the 'create' view to allow users to add a new medication entry.
+     */
     def create() {
         println("create");
         [UserMedicationsInstance: new UserMedications2(params)]
     }
     
+    /**
+     * Saves a new data entry for medications into the database.
+     * @return the function fails if it is unable to save the data
+     */
     def save() {
         println("save");
         
@@ -77,6 +88,11 @@ class Medications2Controller {
         redirect(controller: "healthInformation", action: "information", params: params)
     }
     
+    /**
+     * Loads an existing medication entry into the page to allow the user to edit the different fields.
+     * @param id - the id number of the specific medication entry
+     * @return the function fails if it is unable to load the data
+     */
     def edit(Long id) {
         println("edit : " + id);
         
@@ -91,6 +107,12 @@ class Medications2Controller {
         [userMedicationsInstance: UserMedicationsInstance]
     }
     
+    /**
+     * Saves the updated medication entry into the database.
+     * @param id      - the id number of the specific medication entry
+     * @param version - the number of times the specific entry has been edited
+     * @return the function fails if it is unable to load the data, if the database entry's version is greater than the version loaded in the page, or if the save to the database doesn't work
+     */
     def update(Long id, Long version) {
         println("update");
         def UserMedicationsInstance = UserMedications2.get(id)
@@ -122,7 +144,12 @@ class Medications2Controller {
         flash.message = message(code: 'Medication \"' + UserMedicationsInstance.name + '\" updated successfully', args: [message(code: 'UserMedications.label', default: 'UserMedications'), UserMedicationsInstance.id])
         redirect(controller: "healthInformation", action: "information", id: UserMedicationsInstance.id)
     }
-
+    
+    /**
+     * Deletes the medication entry from the database
+     * @param id - the id number of the specific medication entry
+     * @return the function fails if it is unable to load the data
+     */
     def delete(Long id) {
         println("delete")
         def UserMedicationsInstance = UserMedications2.get(id)
@@ -142,7 +169,6 @@ class Medications2Controller {
             flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'UserMedications.label', default: 'UserMedications'), id])
             redirect(controller: "healthInformation", action: "information", id: id)
         }
-        
     }
     
 }

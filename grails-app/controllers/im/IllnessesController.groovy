@@ -1,9 +1,7 @@
 package im
-
-import java.util.Date;
+// Unused controller now, as Illnesses are now combined with Conditions.
 
 import org.springframework.dao.DataIntegrityViolationException
-
 import groovy.sql.Sql
 
 class IllnessesController {
@@ -20,6 +18,9 @@ class IllnessesController {
         redirect(action: "illnesses", params: params)
     }
     
+    /**
+     * Checks to see whether the user is logged in before loading the page
+     */
     def auth() {
         if(!session.user) {
             redirect(controller:"Login", action:"login")
@@ -49,12 +50,18 @@ class IllnessesController {
         [UserCurrentIllnessesInstanceList: UserCurrentIllnessesInstanceList, UserPreviousIllnessesInstanceList: UserPreviousIllnessesInstanceList]
     }
     
-    
+    /**
+     * Opens the 'create' view to allow users to add a new illness entry.
+     */
     def create() {
         println("create");
         [UserIllnessesInstance: new UserIllnesses(params)]
     }
     
+    /**
+     * Saves a new data entry for illnesses into the database.
+     * @return
+     */
     def save() {
         println("save");
         
@@ -68,6 +75,11 @@ class IllnessesController {
         redirect(action: "illnesses", params: params)
     }
     
+    /**
+     * Loads an existing illness entry into the page to allow the user to edit the different fields.
+     * @param id - the id number of the specific illness entry
+     * @return the function fails if it is unable to load the data
+     */
     def edit(Long id) {
         println("edit : " + id);
         
@@ -82,6 +94,12 @@ class IllnessesController {
         [userIllnessesInstance: UserIllnessesInstance]
     }
     
+    /**
+     * Saves the updated illness entry into the database.
+     * @param id      - the id number of the specific illness entry
+     * @param version - the number of times the specific entry has been edited
+     * @return the function fails if it is unable to load the data, if the database entry's version is greater than the version loaded in the page, or if the save to the database doesn't work
+     */
     def update(Long id, Long version) {
         println("update");
         def UserIllnessesInstance = UserIllnesses.get(id)
@@ -116,7 +134,12 @@ class IllnessesController {
         flash.message = message(code: 'Illness \"' + UserIllnessesInstance.name + '\" updated successfully', args: [message(code: 'UserIllnesses.label', default: 'UserIllnesses'), UserIllnessesInstance.id])
         redirect(action: "illnesses", id: UserIllnessesInstance.id)
     }
-
+    
+    /**
+     * Deletes the illness entry from the database
+     * @param id - the id number of the specific illness entry
+     * @return the function fails if it is unable to load the data
+     */
     def delete(Long id) {
         println("delete")
         def UserIllnessesInstance = UserIllnesses.get(id)
@@ -136,7 +159,6 @@ class IllnessesController {
             flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'UserIllnesses.label', default: 'UserIllnesses'), id])
             redirect(action: "illnesses", id: id)
         }
-        
     }
     
 }
