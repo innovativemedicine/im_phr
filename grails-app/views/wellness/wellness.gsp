@@ -86,25 +86,6 @@
             
             
             
-            
-            <div class="row-fluid">
-                
-                <g:render template="formBloodPressure"/>
-                
-                
-                <g:render template="formCarbohydrates"/>
-                
-                
-                <g:render template="formCholestrol"/>
-                
-                
-                <g:render template="formCalories"/>
-                
-            </div>
-            
-            
-            
-            
             <div class="row-fluid">
                 
                 <g:render template="formExercise"/>

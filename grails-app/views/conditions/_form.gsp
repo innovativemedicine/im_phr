@@ -44,7 +44,7 @@
 </div>
 
 
-<div class="fieldcontain ${hasErrors(bean: userConditionsInstance, field: 'user', 'error')} required">
+<div class="fieldcontain ${hasErrors(bean: userConditionsInstance, field: 'user', 'error')} required hidden">
     <label for="user">
         <g:message code="project.user.label" default="User" />
         <span class="required-indicator">*</span>
