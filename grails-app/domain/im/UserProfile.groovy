@@ -38,10 +38,10 @@ class UserProfile {
     }
     
     static constraints = {
-        firstName(blank: false, nullable: true)
+        firstName(blank: true, nullable: true)
         middleName(blank: true, nullable: true)
-        lastName(blank: false, nullable: true)
-        email(blank: false, email: true, unique: true, nullable: true)
+        lastName(blank: true, nullable: true)
+        email(blank: true, email: true, unique: true, nullable: true)
         addressOne(blank:true, nullable: true)
         addressTwo(blank:true, nullable: true)
         city(blank:true, nullable: true)

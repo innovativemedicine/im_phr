@@ -13,7 +13,6 @@ class Medications2Controller {
     def beforeInterceptor = [action:this.&auth]
     
     def index() {
-        println("index  {params = " + params + "}");
         redirect(action: "medications", params: params)
     }
     
@@ -31,8 +30,6 @@ class Medications2Controller {
      * Main landing page for Medications tab for the current medications list.
      */
     def medications = {
-        println("medications");
-        
         def db = new Sql(dataSource) // Create a new instance of groovy.sql.Sql with the DB of the Grails app
         
         def UserCurrentMedicationsInstanceList = db.rows(
@@ -48,8 +45,6 @@ class Medications2Controller {
      * Main landing page for Medications tab for the previous medications list.
      */
     def medicationsPrevious = {
-        println("medications");
-        
         def db = new Sql(dataSource) // Create a new instance of groovy.sql.Sql with the DB of the Grails app
         
         def UserPreviousMedicationsInstanceList = db.rows(
@@ -65,7 +60,6 @@ class Medications2Controller {
      * Opens the 'create' view to allow users to add a new medication entry.
      */
     def create() {
-        println("create");
         [UserMedicationsInstance: new UserMedications2(params)]
     }
     
@@ -74,8 +68,6 @@ class Medications2Controller {
      * @return the function fails if it is unable to save the data
      */
     def save() {
-        println("save");
-        
         def UserMedicationsInstance = new UserMedications2(params)
         
         if (!UserMedicationsInstance.save(flush: true)) {
@@ -94,8 +86,6 @@ class Medications2Controller {
      * @return the function fails if it is unable to load the data
      */
     def edit(Long id) {
-        println("edit : " + id);
-        
         def UserMedicationsInstance = UserMedications2.get(id)
         
         if (!UserMedicationsInstance) {
@@ -114,7 +104,6 @@ class Medications2Controller {
      * @return the function fails if it is unable to load the data, if the database entry's version is greater than the version loaded in the page, or if the save to the database doesn't work
      */
     def update(Long id, Long version) {
-        println("update");
         def UserMedicationsInstance = UserMedications2.get(id)
         
         if (!UserMedicationsInstance) {
@@ -151,10 +140,8 @@ class Medications2Controller {
      * @return the function fails if it is unable to load the data
      */
     def delete(Long id) {
-        println("delete")
         def UserMedicationsInstance = UserMedications2.get(id)
         if (!UserMedicationsInstance) {
-            println("something failed")
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'UserMedications.label', default: 'UserMedications'), id])
             redirect(controller: "healthInformation", action: "information")
             return

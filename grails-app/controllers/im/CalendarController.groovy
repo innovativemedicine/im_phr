@@ -16,7 +16,6 @@ class CalendarController {
     def beforeInterceptor = [action:this.&auth]
     
     def index() {
-        println("index  {params = " + params + "}");
         redirect(action: "calendar", params: params)
     }
     
@@ -31,8 +30,6 @@ class CalendarController {
      * Main landing page for Calendar tab. Display the main calendar.
      */
     def calendar = {
-        println("calendar")
-        
         def db = new Sql(dataSource) // Create a new instance of groovy.sql.Sql with the DB of the Grails app
         
         def UserCalendarInstanceList = db.rows(

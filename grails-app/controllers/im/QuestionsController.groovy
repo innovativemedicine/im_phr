@@ -14,7 +14,6 @@ class QuestionsController {
     def beforeInterceptor = [action:this.&auth]
     
     def index() {
-        println("index  {params = " + params + "}");
         redirect(action: "questions", params: params)
     }
     
@@ -29,8 +28,6 @@ class QuestionsController {
      * Main landing page for Questions tab.
      */
     def questions = {
-        println("questions");
-        
         def db = new Sql(dataSource) // Create a new instance of groovy.sql.Sql with the DB of the Grails app
         
         def QuestionsInstanceList = db.rows(
@@ -42,17 +39,13 @@ class QuestionsController {
     }
     
     def create() {
-        println("create");
         [QuestionsInstance: new Questions(params)]
     }
     
     def save() {
-        println("save");
-        
         def QuestionsInstance = new Questions(params)
         
         if (!QuestionsInstance.save(flush: true)) {
-            println("didn't save :  " + QuestionsInstance.errors);
             render(view: "create", model: [QuestionsInstance: QuestionsInstance])
             return
         }
@@ -60,8 +53,6 @@ class QuestionsController {
     }
     
     def edit(Long id) {
-        println("edit : " + id);
-        
         def QuestionsInstance = Questions.get(id)
         
         if (!QuestionsInstance) {
@@ -74,7 +65,6 @@ class QuestionsController {
     }
     
     def update(Long id, Long version) {
-        println("update : " + id);
         def QuestionsInstance = Questions.get(id)
         if (!QuestionsInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'Questions.label', default: 'Questions'), id])
@@ -104,10 +94,8 @@ class QuestionsController {
     }
 
     def delete(Long id) {
-        println("delete")
         def QuestionsInstance = Questions.get(id)
         if (!QuestionsInstance) {
-            println("something failed")
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'Questions.label', default: 'Questions'), id])
             redirect(action: "questions")
             return

@@ -14,7 +14,6 @@ class IllnessesController {
     def beforeInterceptor = [action:this.&auth]
     
     def index() {
-        println("index  {params = " + params + "}");
         redirect(action: "illnesses", params: params)
     }
     
@@ -32,8 +31,6 @@ class IllnessesController {
      * Main landing page for Illnesses tab.
      */
     def illnesses = {
-        println("illnesses");
-        
         def db = new Sql(dataSource) // Create a new instance of groovy.sql.Sql with the DB of the Grails app
         
         def UserCurrentIllnessesInstanceList = db.rows(
@@ -54,7 +51,6 @@ class IllnessesController {
      * Opens the 'create' view to allow users to add a new illness entry.
      */
     def create() {
-        println("create");
         [UserIllnessesInstance: new UserIllnesses(params)]
     }
     
@@ -63,8 +59,6 @@ class IllnessesController {
      * @return
      */
     def save() {
-        println("save");
-        
         def UserIllnessesInstance = new UserIllnesses(params)
         
         if (!UserIllnessesInstance.save(flush: true)) {
@@ -81,8 +75,6 @@ class IllnessesController {
      * @return the function fails if it is unable to load the data
      */
     def edit(Long id) {
-        println("edit : " + id);
-        
         def UserIllnessesInstance = UserIllnesses.get(id)
         
         if (!UserIllnessesInstance) {
@@ -101,11 +93,7 @@ class IllnessesController {
      * @return the function fails if it is unable to load the data, if the database entry's version is greater than the version loaded in the page, or if the save to the database doesn't work
      */
     def update(Long id, Long version) {
-        println("update");
         def UserIllnessesInstance = UserIllnesses.get(id)
-        
-        println(id)
-        println(UserIllnessesInstance)
         
         if (!UserIllnessesInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'UserIllnesses.label', default: 'UserIllnesses'), id])
@@ -141,10 +129,8 @@ class IllnessesController {
      * @return the function fails if it is unable to load the data
      */
     def delete(Long id) {
-        println("delete")
         def UserIllnessesInstance = UserIllnesses.get(id)
         if (!UserIllnessesInstance) {
-            println("something failed")
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'UserIllnesses.label', default: 'UserIllnesses'), id])
             redirect(action: "illnesses")
             return

@@ -13,7 +13,6 @@ class QuestionnaireController {
     def beforeInterceptor = [action:this.&auth]
     
     def index() {
-        println("index  {params = " + params + "}");
         redirect(action: "questionnaire", params: params)
     }
     
@@ -31,10 +30,7 @@ class QuestionnaireController {
      * Main landing page for Questionnaires tab.
      */
     def questionnaire = {
-        println("questions  {params = " + params + "}");
-        
         if (params.var1 == null) {
-            println("params1 ")
             params.var1 = "BASDAI"
             redirect(action: "questionnaire", params: params)
         }
@@ -53,15 +49,10 @@ class QuestionnaireController {
     
     /**
      * Saves the user's questionnaire answers into the database. Goes through each question and pulls the answer values.
-     * @return the function fails if it is unable ot save the data
+     * @return the function fails if it is unable to save the data
      */
     def save() {
-        println("save");
-        
         Date test = new Date()
-        
-        println("userId = " + params.user.id)
-        println("date = " + test)
         
         def db = new Sql(dataSource) // Create a new instance of groovy.sql.Sql with the DB of the Grails app
         
@@ -69,20 +60,16 @@ class QuestionnaireController {
         def UserQuestionsAnswersInstance = db.execute(
             "INSERT INTO user_questions_answers (version, date, user_id) " +
             " VALUES (0, ?, ?) ", new Date(), params.user.id)
-        println(UserQuestionsAnswersInstance.dump())
         
         // Get the ID that was created in last MySQL call
         def lastId = db.rows("SELECT LAST_INSERT_ID() AS 'id';")
         long qaId = lastId.get(0).id   //lastId.id
-        println("qaId = " + qaId)
         
         // Save the data into the QuestionAnswers Table that links the userId with the Questions and Answers
         def arr1 = []
         for (e in params) {
-            println(e.key + "  ~~~~~  " + e.value)
             if (e.key.contains("Q")) {
                 arr1.add(e)
-                println(arr1)
                 
                 def questionId = e.key.substring(1)
                 def answerId = e.value
@@ -91,12 +78,10 @@ class QuestionnaireController {
                 // Questions with "other, specify" fields
                 if (e.key == "Q33") {
                     other = params.other33b
-                    println("OTHER = " + other + "   key = " + e.key)
                     answerId = 23
                 }
                 else if (e.key == "Q55") {
                     other = params.other55b
-                    println("OTHER = " + other + "   key = " + e.key)
                     answerId = 23
                 }
                 // Questions with ranges
@@ -108,7 +93,6 @@ class QuestionnaireController {
                 def QuestionsAnswersInstance = new QuestionsAnswers(qaId: qaId, questionId: questionId, answerId: answerId, other: other)
                 
                 if (!QuestionsAnswersInstance.save(flush: true)) {
-                    println("didn't save :  " + QuestionsAnswersInstance.errors);
                     render(action: "questionnaire", params: params)
                     return
                 }
@@ -140,7 +124,6 @@ class QuestionnaireController {
         */
         
 //        //TODO Redirect to the next questionnaire
-//        println("`````````` SAVE DONE ````````````   " + params.var1)
 //        println("params = " + params.dump())
 //        if (params.var1 == "BASDAI") {
 //            params.var1 = "BASFI"

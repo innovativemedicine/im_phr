@@ -13,7 +13,6 @@ class HealthInformationController {
     def beforeInterceptor = [action:this.&auth]
     
     def index() {
-        println("index  {params = " + params + "}");
         redirect(action: "information", params: params)
     }
     

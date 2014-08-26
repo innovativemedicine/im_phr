@@ -13,7 +13,6 @@ class DiaryController {
     def beforeInterceptor = [action:this.&auth]
     
     def index() {
-        println("index  {params = " + params + "}");
         redirect(action: "diary", params: params)
     }
     
@@ -31,8 +30,6 @@ class DiaryController {
      * Main landing page for Diary tab.
      */
     def diary = {
-        println("diary");
-        
         def db = new Sql(dataSource) // Create a new instance of groovy.sql.Sql with the DB of the Grails app
         
         def UserDiaryInstanceList = db.rows(
@@ -48,7 +45,6 @@ class DiaryController {
      * Opens the 'create' view to allow users to add a new diary entry.
      */
     def create() {
-        println("create");
         [UserDiaryInstance: new UserDiary(params)]
     }
     
@@ -57,8 +53,6 @@ class DiaryController {
      * @return the function fails if it is unable to save the data
      */
     def save() {
-        println("save");
-        
         def UserDiaryInstance = new UserDiary(params)
         
         if (!UserDiaryInstance.save(flush: true)) {
@@ -77,8 +71,6 @@ class DiaryController {
      * @return the function fails if it is unable to load the data
      */
     def edit(Long id) {
-        println("edit : " + id);
-        
         def UserDiaryInstance = UserDiary.get(id)
         
         if (!UserDiaryInstance) {
@@ -97,7 +89,6 @@ class DiaryController {
      * @return the function fails if it is unable to load the data, if the database entry's version is greater than the version loaded in the page, or if the save to the database doesn't work
      */
     def update(Long id, Long version) {
-        println("update");
         def UserDiaryInstance = UserDiary.get(id)
         if (!UserDiaryInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'UserDiary.label', default: 'UserDiary'), id])
@@ -132,10 +123,8 @@ class DiaryController {
      * @return the function fails if it is unable to load the data
      */
     def delete(Long id) {
-        println("delete")
         def UserDiaryInstance = UserDiary.get(id)
         if (!UserDiaryInstance) {
-            println("something failed")
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'UserDiary.label', default: 'UserDiary'), id])
             redirect(action: "diary")
             return

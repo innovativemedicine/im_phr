@@ -13,7 +13,6 @@ class AnswersController {
     def beforeInterceptor = [action:this.&auth]
     
     def index() {
-        println("index  {params = " + params + "}");
         redirect(action: "answers", params: params)
     }
     
@@ -31,8 +30,6 @@ class AnswersController {
      * Main landing page for Answers tab. 
      */
     def answers = {
-        println("answers");
-        
         def db = new Sql(dataSource) // Create a new instance of groovy.sql.Sql with the DB of the Grails app
         
         def AnswersInstanceList = db.rows(
@@ -47,7 +44,6 @@ class AnswersController {
      * Opens the 'create' view to allow users to add a new answer.
      */
     def create() {
-        println("create");
         [AnswersInstance: new Answers(params)]
     }
     
@@ -56,8 +52,6 @@ class AnswersController {
      * @return the function fails if it is unable to save the data
      */
     def save() {
-        println("save");
-        
         def AnswersInstance = new Answers(params)
         
         if (!AnswersInstance.save(flush: true)) {
@@ -76,8 +70,6 @@ class AnswersController {
      * @return the function fails if it is unable to load the data
      */
     def edit(Long id) {
-        println("edit : " + id);
-        
         def AnswersInstance = Answers.get(id)
         
         if (!AnswersInstance) {
@@ -96,7 +88,6 @@ class AnswersController {
      * @return the function fails if it is unable to load the data, if the database entry's version is greater than the version loaded in the page, or if the save to the database doesn't work
      */
     def update(Long id, Long version) {
-        println("update : " + id);
         def AnswersInstance = Answers.get(id)
         if (!AnswersInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'Answers.label', default: 'Answers'), id])
@@ -131,10 +122,8 @@ class AnswersController {
      * @return the function fails if it is unable to load the data
      */
     def delete(Long id) {
-        println("delete")
         def AnswersInstance = Answers.get(id)
         if (!AnswersInstance) {
-            println("something failed")
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'Answers.label', default: 'Answers'), id])
             redirect(action: "answers")
             return

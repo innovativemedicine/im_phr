@@ -13,7 +13,6 @@ class ConditionsController {
     def beforeInterceptor = [action:this.&auth]
     
     def index() {
-        println("index  {params = " + params + "}");
         redirect(action: "conditions", params: params)
     }
     
@@ -31,8 +30,6 @@ class ConditionsController {
      * Main landing page for Conditions tab.
      */
     def conditions = {
-        println("conditions");
-        
         def db = new Sql(dataSource) // Create a new instance of groovy.sql.Sql with the DB of the Grails app
         
         def UserCurrentConditionsInstanceList = db.rows(
@@ -54,7 +51,6 @@ class ConditionsController {
      * Opens the 'create' view to allow users to add a new conditions entry.
      */
     def create() {
-        println("create");
         [UserConditionsInstance: new UserConditions(params)]
     }
     
@@ -63,8 +59,6 @@ class ConditionsController {
      * @return the function fails if it is unable to save the data
      */
     def save() {
-        println("save");
-        
         def UserConditionsInstance = new UserConditions(params)
         
         if (!UserConditionsInstance.save(flush: true)) {
@@ -83,8 +77,6 @@ class ConditionsController {
      * @return the function fails if it is unable to load the data
      */
     def edit(Long id) {
-        println("edit : " + id);
-        
         def UserConditionsInstance = UserConditions.get(id)
         
         if (!UserConditionsInstance) {
@@ -103,7 +95,6 @@ class ConditionsController {
      * @return the function fails if it is unable to load the data, if the database entry's version is greater than the version loaded in the page, or if the save to the database doesn't work
      */
     def update(Long id, Long version) {
-        println("update");
         def UserConditionsInstance = UserConditions.get(id)
         if (!UserConditionsInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'UserConditions.label', default: 'UserConditions'), id])
@@ -139,10 +130,8 @@ class ConditionsController {
      * @return the function fails if it is unable to load the data
      */
     def delete(Long id) {
-        println("delete")
         def UserConditionsInstance = UserConditions.get(id)
         if (!UserConditionsInstance) {
-            println("something failed")
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'UserConditions.label', default: 'UserConditions'), id])
             redirect(action: "conditions")
             return

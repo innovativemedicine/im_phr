@@ -13,7 +13,6 @@ class ImmunizationsController {
     def beforeInterceptor = [action:this.&auth]
     
     def index() {
-        println("index  {params = " + params + "}");
         redirect(action: "immunizations", params: params)
     }
     
@@ -31,8 +30,6 @@ class ImmunizationsController {
      * Main landing page for Immunizations tab.
      */
     def immunizations = {
-        println("immunizations");
-        
         def db = new Sql(dataSource) // Create a new instance of groovy.sql.Sql with the DB of the Grails app
         
         def UserImmunizationsInstanceList = db.rows(
@@ -47,7 +44,6 @@ class ImmunizationsController {
      * Opens the 'create' view to allow users to add a new immunization entry.
      */
     def create() {
-        println("create");
         [UserImmunizationsInstance: new UserImmunizations(params)]
     }
     
@@ -56,8 +52,6 @@ class ImmunizationsController {
      * @return the function fails if it is unable to save the data
      */
     def save() {
-        println("save");
-        
         def UserImmunizationsInstance = new UserImmunizations(params)
         
         if (!UserImmunizationsInstance.save(flush: true)) {
@@ -76,8 +70,6 @@ class ImmunizationsController {
      * @return the function fails if it is unable to load the data
      */
     def edit(Long id) {
-        println("edit : " + id);
-        
         def UserImmunizationsInstance = UserImmunizations.get(id)
         
         if (!UserImmunizationsInstance) {
@@ -96,7 +88,6 @@ class ImmunizationsController {
      * @return the function fails if it is unable to load the data, if the database entry's version is greater than the version loaded in the page, or if the save to the database doesn't work
      */
     def update(Long id, Long version) {
-        println("update");
         def UserImmunizationsInstance = UserImmunizations.get(id)
         if (!UserImmunizationsInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'UserImmunizations.label', default: 'UserImmunizations'), id])
@@ -132,10 +123,8 @@ class ImmunizationsController {
      * @return the function fails if it is unable to load the data
      */
     def delete(Long id) {
-        println("delete")
         def UserImmunizationsInstance = UserImmunizations.get(id)
         if (!UserImmunizationsInstance) {
-            println("something failed")
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'UserImmunizations.label', default: 'UserImmunizations'), id])
             redirect(controller: "healthInformation", action: "information")
             return

@@ -13,7 +13,6 @@ class AllergiesController {
     def beforeInterceptor = [action:this.&auth]
     
     def index() {
-        println("index  {params = " + params + "}");
         redirect(action: "allergies", params: params)
     }
     
@@ -31,8 +30,6 @@ class AllergiesController {
      * Main landing page for Allergies tab.
      */
     def allergies = {
-        println("allergies");
-        
         def db = new Sql(dataSource) // Create a new instance of groovy.sql.Sql with the DB of the Grails app
         
         def UserAllergiesInstanceList = db.rows(
@@ -47,7 +44,6 @@ class AllergiesController {
      * Opens the 'create' view to allow users to add a new allergy entry.
      */
     def create() {
-        println("create");
         [UserAllergiesInstance: new UserAllergies(params)]
     }
     
@@ -56,8 +52,6 @@ class AllergiesController {
      * @return the function fails if it is unable to save the data
      */
     def save() {
-        println("save");
-        
         def UserAllergiesInstance = new UserAllergies(params)
         
         if (!UserAllergiesInstance.save(flush: true)) {
@@ -76,8 +70,6 @@ class AllergiesController {
      * @return the function fails if it is unable to load the data
      */
     def edit(Long id) {
-        println("edit : " + id);
-        
         def UserAllergiesInstance = UserAllergies.get(id)
         
         if (!UserAllergiesInstance) {
@@ -96,7 +88,6 @@ class AllergiesController {
      * @return the function fails if it is unable to load the data, if the database entry's version is greater than the version loaded in the page, or if the save to the database doesn't work
      */
     def update(Long id, Long version) {
-        println("update");
         def UserAllergiesInstance = UserAllergies.get(id)
         
         if (!UserAllergiesInstance) {
@@ -133,10 +124,8 @@ class AllergiesController {
      * @return the function fails if it is unable to load the data
      */
     def delete(Long id) {
-        println("delete")
         def UserAllergiesInstance = UserAllergies.get(id)
         if (!UserAllergiesInstance) {
-            println("something failed")
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'UserAllergies.label', default: 'UserAllergies'), id])
             redirect(controller: "healthInformation", action: "information")
             return

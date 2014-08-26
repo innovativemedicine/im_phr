@@ -23,7 +23,6 @@ class MyProfileController {
     def beforeInterceptor = [action:this.&auth]
     
     def index() {
-        println("index  {params = " + params + "}");
         redirect(action: "myProfile", params: params)
     }
     
@@ -41,8 +40,6 @@ class MyProfileController {
      * Main landing page for Profile tab, listing the details about the current user's information.
      */
     def myProfile = {
-        println("profile");
-        
         def db = new Sql(dataSource) // Create a new instance of groovy.sql.Sql with the DB of the Grails app
         
         def UserProfileInstanceList = db.rows(
@@ -71,13 +68,10 @@ class MyProfileController {
 //     * @return the function fails if it is unable to load the data
 //     */
 //    def save() {
-//        println("save");
-//        
 //        def LoginInstance = new Login(params)
 //        def UserProfileInstance = new UserProfile(params)
 //        
 //        if (!LoginInstance.save(flush: true)) {
-//            println("didn't save Login :  " + LoginInstance.errors);
 //            render(view: "create", model: [LoginInstance: LoginInstance])
 //            return
 //        }
@@ -98,12 +92,8 @@ class MyProfileController {
      * @return the function fails if it is unable to load the data
      */
     def edit(Long id, String page) {
-        println("--- edit : " + id + " : " + page + " | ");
-        
         if (page == "profile") {
-            println("PROFILE PAGE")
             def UserProfileInstance = UserProfile.get(id)
-            println(UserProfileInstance)
             if (!UserProfileInstance) {
                 flash.message = message(code: 'There was an error loading your Profile', args: [message(code: 'UserProfile.label', default: 'UserProfile'), id])
                 redirect(action: "edit", id: params.id, page: "profile")
@@ -112,9 +102,7 @@ class MyProfileController {
             [page: page, userProfileInstance: UserProfileInstance]
             
         } else if (page == "employment") {
-            println("EMPLOYMENT PAGE")
             def UserEmploymentInstance = UserEmploymentInfo.get(id)
-            println(UserEmploymentInstance)
             if (!UserEmploymentInstance) {
                 flash.message = message(code: 'There was an error loading your Employment information', args: [message(code: 'UserProfile.label', default: 'UserProfile'), id])
                 redirect(action: "edit", id: params.id, page: "employment")
@@ -123,9 +111,7 @@ class MyProfileController {
             [page: page, userEmploymentInstance: UserEmploymentInstance]
             
         } else if (page == "contacts") {
-            println("CONTACTS PAGE")
             def UserContactsInstance = UserEmergencyContacts.get(id)
-            println(UserContactsInstance.version)
             if (!UserContactsInstance) {
                 flash.message = message(code: 'There was an error loading your Emergency Contacts information', args: [message(code: 'UserProfile.label', default: 'UserProfile'), id])
                 redirect(action: "edit", id: params.id, page: "contacts")
@@ -134,10 +120,7 @@ class MyProfileController {
             [page: page, userContactsInstance: UserContactsInstance]
             
         } else if (page == "physician") {
-            println("PHYSICIANS PAGE")
             def userPhysicianInfoInstance = UserPhysicianInfo.get(id)
-            println(userPhysicianInfoInstance)
-            
             if (!userPhysicianInfoInstance) {
                 flash.message = message(code: 'There was an error loading your Physicians information', args: [message(code: 'UserProfile.label', default: 'UserProfile'), id])
                 redirect(action: "edit", id: params.id, page: "contacts")
@@ -155,7 +138,6 @@ class MyProfileController {
      * @return the function fails if it is unable to load the data, if the database entry's version is greater than the version loaded in the page, or if the save to the database doesn't work
      */
     def updateProfile(Long id, Long version) {
-        println("update profile = " + id);
         def UserProfileInstance = UserProfile.get(id)
         
         if (!UserProfileInstance) {
@@ -193,7 +175,6 @@ class MyProfileController {
      * @return the function fails if it is unable to load the data, if the database entry's version is greater than the version loaded in the page, or if the save to the database doesn't work
      */
     def updateEmployment(Long id, Long version) {
-        println("update employment = " + id);
         def UserEmploymentInfoInstance = UserEmploymentInfo.get(id)
         
         if (!UserEmploymentInfoInstance) {
@@ -231,7 +212,6 @@ class MyProfileController {
      * @return the function fails if it is unable to load the data, if the database entry's version is greater than the version loaded in the page, or if the save to the database doesn't work
      */
     def updateContacts(Long id, Long version) {
-        println("update contacts = " + id);
         def UserEmergencyContactsInstance = UserEmergencyContacts.get(id)
         
         if (!UserEmergencyContactsInstance) {
@@ -269,9 +249,7 @@ class MyProfileController {
      * @return the function fails if it is unable to load the data, if the database entry's version is greater than the version loaded in the page, or if the save to the database doesn't work
      */
     def updatePhysician(Long id, Long version) {
-        println("update physician");
         def UserPhysicianInfoInstance = UserPhysicianInfo.get(id)
-        println(id)
         if (!UserPhysicianInfoInstance) {
             flash.message = message(code: 'There was an error saving your physician information', args: [message(code: 'UserPhysicianInfo.label', default: 'UserPhysicianInfo'), id])
             redirect(action: "myProfile")
@@ -305,13 +283,10 @@ class MyProfileController {
      */
     def create(String page) {
         if (page == "employment") {
-            println("EMPLOYMENT PAGE")
             [page: page, userEmploymentInstance: new UserEmploymentInfo(params)]
         } else if (page == "contacts") {
-            println("CONTACTS PAGE")
             [page: page, userContactsInfoInstance: new UserEmergencyContacts(params)]
         } else if (page == "physician") {
-            println("PHYSICIANS PAGE")
             [page: page, userPhysicianInfoInstance: new UserPhysicianInfo(params)]
         }
     }
@@ -321,8 +296,6 @@ class MyProfileController {
      * @return the function fails if it is unable to save the data
      */
     def savePhysician() {
-        println("save physician");
-        
         def UserPhysicianInfoInstance = new UserPhysicianInfo(params)
         
         if (!UserPhysicianInfoInstance.save(flush: true)) {
@@ -340,8 +313,6 @@ class MyProfileController {
      * @return the function fails if it is unable to save the data
      */
     def saveContacts() {
-        println("save contact");
-        
         def UserEmergencyContactsInstance = new UserEmergencyContacts(params)
         
         if (!UserEmergencyContactsInstance.save(flush: true)) {
@@ -359,8 +330,6 @@ class MyProfileController {
      * @return the function fails if it is unable to save the data
      */
     def saveEmployment() {
-        println("save employment information");
-        
         def UserEmploymentInstance = new UserEmploymentInfo(params)
         
         if (!UserEmploymentInstance.save(flush: true)) {
@@ -379,11 +348,9 @@ class MyProfileController {
      * @return the function fails if it is unable to load the data
      */
     def deleteEmployment(Long id) {
-        println("delete employment")
         def UserEmploymentInfoInstance = UserEmploymentInfo.get(id)
         
         if (!UserEmploymentInfoInstance) {
-            println("something failed")
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'UserEmploymentInfo.label', default: 'UserEmploymentInfo'), id])
             redirect(action: "myProfile")
             return
@@ -406,11 +373,9 @@ class MyProfileController {
      * @return the function fails if it is unable to load the data
      */
     def deleteContacts(Long id) {
-        println("delete contacts")
         def UserEmergencyContactsInstance = UserEmergencyContacts.get(id)
         
         if (!UserEmergencyContactsInstance) {
-            println("something failed")
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'UserEmergencyContacts.label', default: 'UserEmergencyContacts'), id])
             redirect(action: "myProfile")
             return
@@ -433,11 +398,9 @@ class MyProfileController {
      * @return the function fails if it is unable to load the data
      */
     def deletePhysician(Long id) {
-        println("delete physician")
         def UserPhysicianInfoInstance = UserPhysicianInfo.get(id)
         
         if (!UserPhysicianInfoInstance) {
-            println("something failed")
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'UserPhysicianInfo.label', default: 'UserPhysicianInfo'), id])
             redirect(action: "myProfile")
             return
@@ -459,8 +422,6 @@ class MyProfileController {
      * @return the function fails if the uploaded file is empty or if it couldn't save properly into the database
      */
     def saveImage() {
-        println("saveImage")
-        
         def db = new Sql(dataSource) // Create a new instance of groovy.sql.Sql with the DB of the Grails app
         
         // Check if you are updating an old image or creating a new entry
@@ -501,12 +462,9 @@ class MyProfileController {
      * Loads up the profile image of the user and displays it in the view
      */
     def showPayload() {
-        println("showPayload")
-        
         def fileInstance = UserFile.findByUserId(session.user.id)
         
         if (fileInstance == null) {
-            println("fileInstance  =  " + fileInstance)
             fileInstance = UserFile.findByFileName("placeholder-img.png")
         }
         
@@ -518,8 +476,6 @@ class MyProfileController {
      * Deletes the specific user's profile image
      */
     def delete() {
-        println("delete  =  " + session.user.id)
-        
         def fileInstance = UserFile.findByUserId(session.user.id)
         fileInstance.delete(flush: true) //flush:true ->flushes the persistence context, persisting the object immediately
         redirect(action: "myProfile")

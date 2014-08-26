@@ -27,8 +27,6 @@ class WellnessController {
      * Main landing page for Profile tab. List the details about the current user's well-being information.
      */
     def wellness = {
-        println("wellness")
-        
         def db = new Sql(dataSource) // Create a new instance of groovy.sql.Sql with the DB of the Grails app
         
         // Calories
@@ -96,8 +94,6 @@ class WellnessController {
      * @return the function fails if it is unable to save the data
      */
     def saveCalories() {
-        println("Save - CALORIES");
-        
         def db = new Sql(dataSource) // Create a new instance of groovy.sql.Sql with the DB of the Grails app
         
         def LastCaloriesInstance = db.rows(
@@ -116,7 +112,6 @@ class WellnessController {
             " VALUES (0, ?, ?, ?, ?) ", params.amount, params.date, change, params.user.id)
         
         // Update next value's amount change if the user updated a date between other entries
-        println("NextCaloriesInstance =  " + NextCaloriesInstance)
         for (e in NextCaloriesInstance) {
             def newDiff = e.amount.toInteger() - params.amount.toInteger()
             def UpdateNextCaloriesInstance = db.execute(
@@ -132,8 +127,6 @@ class WellnessController {
      * @return the function fails if it is unable to save the data
      */
     def saveCarbohydrates() {
-        println("Save - CARBOHYDRATES");
-        
         def db = new Sql(dataSource) // Create a new instance of groovy.sql.Sql with the DB of the Grails app
         
         def LastCarbohydratesInstance = db.rows(
@@ -152,7 +145,6 @@ class WellnessController {
             " VALUES (0, ?, ?, ?, ?) ", params.amount, params.date, change, params.user.id)
         
         // Update next value's amount change if the user updated a date between other entries
-        println("NextCarbohydratesInstance =  " + NextCarbohydratesInstance)
         for (e in NextCarbohydratesInstance) {
             def newDiff = e.amount.toInteger() - params.amount.toInteger()
             def UpdateNextCarbohydratesInstance = db.execute(
@@ -168,8 +160,6 @@ class WellnessController {
      * @return the function fails if it is unable to save the data
      */
     def saveCholestrol() {
-        println("Save - CHOLESTROL");
-        
         def db = new Sql(dataSource) // Create a new instance of groovy.sql.Sql with the DB of the Grails app
         
         def LastCholestrolInstance = db.rows(
@@ -188,7 +178,6 @@ class WellnessController {
             " VALUES (0, ?, ?, ?, ?) ", params.amount, params.date, change, params.user.id)
         
         // Update next value's amount change if the user updated a date between other entries
-        println("NextCholestrolInstance =  " + NextCholestrolInstance)
         for (e in NextCholestrolInstance) {
             def newDiff = e.amount.toInteger() - params.amount.toInteger()
             def UpdateNextCholestrolInstance = db.execute(
@@ -204,8 +193,6 @@ class WellnessController {
      * @return the function fails if it is unable to save the data
      */
     def saveBloodPressure() {
-        println("Save - BLOODPRESSURE");
-        
         def db = new Sql(dataSource) // Create a new instance of groovy.sql.Sql with the DB of the Grails app
         
         def UserBloodPressureInstance = db.execute(
@@ -220,15 +207,10 @@ class WellnessController {
      * @return the function fails if it is unable to save the data
      */
     def saveBmi() {
-        println("Save - BMI");
-        
         def db = new Sql(dataSource) // Create a new instance of groovy.sql.Sql with the DB of the Grails app
         
         def bmi = params.weight.toInteger() * 703 / (params.height.toInteger() * params.height.toInteger())
         
-        print("" + params.weight.toInteger() + "/" + (params.height.toInteger() * params.height.toInteger()))
-        print("  =  " + params.weight.toInteger() / (params.height.toInteger() * params.height.toInteger()))
-        println(bmi)
         def UserBloodPressureInstance = db.execute(
             "INSERT INTO user_bmi (version, bmi, height, weight, date, user_id) " +
             " VALUES (0, ?, ?, ?, ?, ?) ", bmi, params.height, params.weight, params.date, params.user.id)
@@ -241,17 +223,11 @@ class WellnessController {
      * @return the function fails if it is unable to save the data
      */
     def saveExercise() {
-        println("Save - EXERCISE");
-        
         def db = new Sql(dataSource) // Create a new instance of groovy.sql.Sql with the DB of the Grails app
-        
-        println(params)
         
         def UserBloodPressureInstance = db.execute(
             "INSERT INTO user_exercise (version, pushups, situps, squats, steps, date, user_id) " +
             " VALUES (0, ?, ?, ?, ?, ?, ?) ", params.pushups, params.situps, params.squats, params.steps, params.date, params.user.id)
-        
-        println("saving worked")
         
         redirect(action: "wellness", params: params)
     }
