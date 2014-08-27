@@ -131,6 +131,11 @@
                 </g:each>
                 
                 
+            </div>
+            
+            
+            <div class="row-fluid">
+            
                 <g:each in="${UserPhysicianInstanceList }" var="data">
                     <g:if test="${data.size() > 0 }">
                         <div class="block span6">
@@ -140,9 +145,9 @@
                             </h1>
                             
                             <g:link class="add-button btn btn-primary form-button" action="edit" params='[id: "${data.physician_id }", page: "physician"]' >
-				                Edit Physician Info
-				            </g:link>
-				            
+                                Edit Physician Info
+                            </g:link>
+                            
                             <div class="block-text">
                                 <g:if test="${data.name != null }"><p>${data.name }</p></g:if>
                                 <g:if test="${data.address_one != null }"><p>${data.address_one }</p></g:if>
@@ -154,6 +159,7 @@
                         </div>
                     </g:if>
                 </g:each>
+                
             </div>
             
             
