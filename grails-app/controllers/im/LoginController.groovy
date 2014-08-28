@@ -23,64 +23,47 @@ class LoginController {
      * Checks whether the user credentials matched any existing users in the database
      */
     def authenticate = {
-        println("authenticate")
         def user = Login.findByUserNameAndPassword(params.userName, params.password)
         if (user) {
-            println("user = " + user)
             session.user = user
             redirect(uri:'/')
         } else {
-            println("failed = " + user)
             flash.message = "Sorry. Please try again."
             redirect(action:"login")
         }
     }
     
     /**
-     * zzzzzzzzz
+     * Opens the view to create a new user
      */
     def createUser() {
-        println("create user")
         [LoginInstance: new Login(params)]
     }
     
     /**
-     * Saves a new 
-     * @return the function fails if it is unable to save the data
+     * Saves the new user info into the database
+     * @return the function fails if the username already exists, if the passwords do not match, if the password field is empty, or if it is unable to save the data
      */
     def saveNewUser() {
-        println("saveNewUser = " + params)
-        
         def user = Login.findByUserName(params.userName)
         if (user) {
-            println("username exists")
             flash.message = "The username already exists. Please use another one."
             redirect(action: "createUser")
             return
         }
         
         if (params.password != params.password2) {
-            println("passwords do not match")
             flash.message = message(code: 'The passwords do not match.', args: [message(code: 'Login.label', default: 'Login')])
             redirect(action: "createUser")
             return
         }
         if (params.password == "") {
-            println("passwords do not match")
             flash.message = message(code: 'The password cannot be blank.', args: [message(code: 'Login.label', default: 'Login')])
             redirect(action: "createUser")
             return
         }
         
-//        println("encoded p1  =  " + params.password.encodeAsPassword())
-//        println("encoded p2  =  " + params.password2.encodeAsPassword())
-//        println("~~~~~~~~")
-//      
-//        def LoginInstance = new Login("user_name": params.username, "password": password.encodeAsPassword())
-        
-        println("so far so good")
         def LoginInstance = new Login(userName: params.userName, password: params.password)
-        println("loginInstance = " + LoginInstance.dump())
         
         if (!LoginInstance.save(failOnError: true)) {
             flash.message = message(code: 'There was an error creating the user.', args: [message(code: 'Login.label', default: 'Login')])
@@ -89,19 +72,8 @@ class LoginController {
         }
         
         flash.message = message(code: 'User created successfully', args: [message(code: 'Login.label', default: 'UserMedications'), LoginInstance.id])
-//        redirect(controller: "healthInformation", action: "information", params: params)
         redirect(action: "login")
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     /**
      * Logs the user out. Currently there are no ways to log out manually unless the user idles a long time, 
