@@ -8,6 +8,7 @@ class Login {
     
     String toString () {
         "${userName}"
+        "${password}"
     }
     
     static mapping = {
@@ -20,6 +21,6 @@ class Login {
     
     static constraints = {
         userName(blank: false, unique: true)
-        password(password: true)
+        password(blank: false)
     }
 }

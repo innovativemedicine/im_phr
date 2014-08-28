@@ -55,7 +55,7 @@
 	                    Wellness
 	                </h1>
 	                <div class="block-text">
-	                    <g:if test="${UserStepsInstanceList.size != 0 }">
+	                    <g:if test="${UserStepsInstanceList.date == 0}">
                             <g:each in="${UserStepsInstanceList }" var="data">
                                 <span><strong>Most recent steps taken:</strong> ${data.steps } [${data.date }]</span><br />
                                 <span><strong>Total steps:</strong> ${data.total } steps</span><br />
