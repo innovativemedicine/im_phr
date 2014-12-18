@@ -1,16 +1,16 @@
 <div class="navbar navbar-static-top">
 	<div class="navbar-inner">
 		<div class="container">
-			<a class="brand" href="/">Personal Health Record</a>
+			<a class="brand" href="/phr">myHealth</a>
 
 			<ul class="nav">
-                
+
 				<li class="${g.activePageClass(pageTitle:'Summary') }">
 					<g:link mapping="summary">Summary</g:link>
 				</li>
 				<li class="${g.activePageClass(pageTitle:'Health Information') }">
-                    <g:link mapping="information">Health Information</g:link>
-                </li>
+					<g:link mapping="information">Medications</g:link>
+				</li>
 				<li class="${g.activePageClass(pageTitle:'Conditions') }">
 					<g:link mapping="conditions">Conditions</g:link>
 				</li>
@@ -18,16 +18,14 @@
 					<g:link mapping="wellness">Wellness</g:link>
 				</li>
 				<li class="${g.activePageClass(pageTitle:'Questionnaires') }">
-                    <g:link mapping="questionnaire">Questionnaire</g:link>
-                </li>
-                <li class="${g.activePageClass(pageTitle:'Diary') }">
-                    <g:link mapping="diary">Diary</g:link>
-                </li>
-				<li class="${g.activePageClass(pageTitle:'My Profile') }">
-                    <g:link mapping="profile">My Profile</g:link>
-                </li>
-                
-                <!-- 
+					<g:link mapping="questionnaire">Questionnaire</g:link>
+				</li>
+				<li class="${g.activePageClass(pageTitle:'Diary') }">
+					<g:link mapping="diary">Diary</g:link>
+				</li>
+
+
+				<!-- 
                 <li class="old-links">
                     <a href="#">Old Links</a>
                     <ul>
@@ -49,8 +47,29 @@
                     </ul>
                 </li>
                 -->
-                
+
 			</ul>
+
+			<g:if test="${session.user != null}">
+
+				<g:img dir="images/custom" file="mshlogo_new.gif" style="width: 13%; float: right;" />
+
+				<ul class="nav pull-right">
+					<li class="${g.activePageClass(pageTitle:'My Profile') }">
+						<g:link mapping="profile">My Profile</g:link>
+					</li>
+					<li>
+						<a href="/login/logout">Logout</a>
+					</li>
+
+
+				</ul>
+
+
+			</g:if>
+
+
+
 		</div>
 	</div>
 
