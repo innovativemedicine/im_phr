@@ -6,16 +6,32 @@
 
 #upperNav {
     background-image: url(../images/custom/dnaBG.png) !important;
+    display: none;
 }
 
+.layoutBody {
+	padding-bottom: 25px;	
+}
+#brandBar {
+	display: none;
+}
 
+.page-alert {
+	margin-top: 6px;
+}
 
-
+.laf-alert, .laf-header, .footer {
+	display: none;
+}
 
 /*      Bootstrap CSS       */
 
-h1 {
-    color: black;
+h1, h2, h3, h4, h5 {
+/*     color: black; */
+/*     color: #002a80; */
+    color: #2c67ab;
+    ;
+    
 }
 
 .hero-unit {
