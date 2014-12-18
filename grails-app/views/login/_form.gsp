@@ -1,4 +1,4 @@
-<%@ page import="im.UserProfile" %>
+<%@ page import="phr.UserProfile" %>
 
 
 <div class="fieldcontain ${hasErrors(bean: loginInstance, field: 'userName', 'error')} required">

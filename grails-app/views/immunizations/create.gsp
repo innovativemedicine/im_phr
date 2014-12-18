@@ -6,7 +6,7 @@
 	<title><g:message code="default.create.label" args="[entityName]" /></title>
     <calendar:resources lang="en" theme="tiger"/>
 </head>
-<%@ page import="im.UserImmunizations" %>
+<%@ page import="phr.UserImmunizations" %>
 
 <body>
 

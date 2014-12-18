@@ -1,4 +1,4 @@
-<%@ page import="im.UserAllergies" %>
+<%@ page import="phr.UserAllergies" %>
 
 
 <div class="fieldcontain ${hasErrors(bean: userAllergiesInstance, field: 'name', 'error')} required">
@@ -50,7 +50,7 @@
         <g:message code="project.user.label" default="User" />
         <span class="required-indicator">*</span>
     </label>
-    <g:select id="user" name="user.id" from="${im.Login.findByUserName(session.user.userName)}" optionKey="id" required="" value="${userAllergiesInstance?.user?.id}" class="many-to-one"/>
+    <g:select id="user" name="user.id" from="${phr.Login.findByUserName(session.user.userName)}" optionKey="id" required="" value="${userAllergiesInstance?.user?.id}" class="many-to-one"/>
 </div>
 
 

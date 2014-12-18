@@ -6,7 +6,7 @@
 	<title><g:message code="default.create.label" args="[entityName]" /></title>
 
 </head>
-<%@ page import="im.Questions" %>
+<%@ page import="phr.Questions" %>
 
 <body>
 

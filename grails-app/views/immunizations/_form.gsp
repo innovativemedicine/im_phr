@@ -1,4 +1,4 @@
-<%@ page import="im.UserImmunizations" %>
+<%@ page import="phr.UserImmunizations" %>
 
 
 <div class="fieldcontain ${hasErrors(bean: userImmunizationsInstance, field: 'name', 'error')} required">
@@ -32,7 +32,7 @@
         <g:message code="project.user.label" default="User" />
         <span class="required-indicator">*</span>
     </label>
-    <g:select id="user" name="user.id" from="${im.Login.findByUserName(session.user.userName)}" optionKey="id" required="" value="${userImmunizationsInstance?.user?.id}" class="many-to-one"/>
+    <g:select id="user" name="user.id" from="${phr.Login.findByUserName(session.user.userName)}" optionKey="id" required="" value="${userImmunizationsInstance?.user?.id}" class="many-to-one"/>
 </div>
 
 
