@@ -42,7 +42,6 @@
                 Edit Profile
             </g:link>
             
-            <h1>My Profile</h1>
             <div class="row-fluid">
                 <div class="block span6">
 	                <div class="half-text-width">
