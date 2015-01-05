@@ -1,9 +1,3 @@
-
-            
-            <g:link class="add-button btn btn-primary form-button" action="create">
-                Add Medication
-            </g:link>
-            
             
             <h1>Previous Medications</h1>
             <table class="table table-hover table-striped">
