@@ -133,11 +133,6 @@
 </div>
 
 
-<script type="text/javascript">
-$('#bmi-tooltip').tooltip()
-</script>
-
-
 
 
 
