@@ -15,7 +15,7 @@
 	    <g:set var="pageVersion" value="${0}" />
 	    <g:if test="${page == 'profile'}">
 	        <h1>Edit Profile</h1>
-	        <g:set var="pageId" value="${session.user.id }" />
+	        <g:set var="pageId" value="${userProfileInstance.id }" />
 	        <g:set var="pageVersion" value="${userProfileInstance?.version }" />
 	    </g:if>
         <g:if test="${page == 'employment'}">
