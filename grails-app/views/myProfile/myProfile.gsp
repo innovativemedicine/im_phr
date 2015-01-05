@@ -16,7 +16,7 @@
                 Add Physician Info
             </g:link>
             
-            <g:if test="${UserContactsInstanceList != [] }">
+            <g:if test="${UserContactsInstanceList}">
                 <g:link class="add-button btn btn-primary form-button" action="edit" params='[id: "${UserContactsInstanceList.emergency_id[0] }", page: "contacts"]' >
                     Edit Contacts
                 </g:link>
@@ -27,7 +27,7 @@
                 </g:link>
             </g:else>
             
-            <g:if test="${UserEmploymentInstanceList != [] }">
+            <g:if test="${UserEmploymentInstanceList}">
                 <g:link class="add-button btn btn-primary form-button" action="edit" params='[id: "${UserEmploymentInstanceList.employer_id[0] }", page: "employment"]' >
                     Edit Employment
                 </g:link>
@@ -38,10 +38,16 @@
                 </g:link>
             </g:else>
             
-            <g:link class="add-button btn btn-primary form-button" action="edit" params='[id: "${session.user.id }", page: "profile"]' >
-                Edit Profile
-            </g:link>
-            
+            <g:if test="${UserProfileInstanceList}">
+	            <g:link class="add-button btn btn-primary form-button" action="edit" params='[id: "${UserProfileInstanceList.profile_id[0] }", page: "profile"]' >
+	                Edit Profile
+	            </g:link>
+            </g:if>
+            <g:else>
+            	<g:link class="add-button btn btn-primary form-button" action="create" params='[id: "${session.user.id }", page: "profile"]' >
+	                Add Profile
+	            </g:link>
+            </g:else>
             <div class="row-fluid">
                 <div class="block span6">
 	                <div class="half-text-width">
