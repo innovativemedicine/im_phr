@@ -350,7 +350,31 @@ class MyProfileController {
 			[page: page, userContactsInfoInstance: new UserEmergencyContacts(params)]
 		} else if (page == "physician") {
 			[page: page, userPhysicianInfoInstance: new UserPhysicianInfo(params)]
+		} else if (page == "profile") {
+			[page: page, userProfileInstance: new UserProfile(params)]
 		}
+	}
+
+	/**
+	 * Saves a new data entry for user physicians into the database.
+	 * @return the function fails if it is unable to save the data
+	 */
+	def saveProfile() {
+		def UserProfileInstance = new UserProfile(params)
+
+		if (!UserProfileInstance.save(flush: true)) {
+			flash.message = message(code: 'Error saving the entry. Please ensure the values are correct.', args: [
+				message(code: 'UserProfile.label', default: 'UserProfile')
+			])
+			redirect(action: "create", params: params)
+			return
+		}
+
+		flash.message = message(code: 'Profile saved successfully', args: [
+			message(code: 'UserProfile.label', default: 'UserProfile'),
+			UserProfileInstance.id
+		])
+		redirect(action: "myProfile", id: UserProfileInstance.id)
 	}
 
 	/**
