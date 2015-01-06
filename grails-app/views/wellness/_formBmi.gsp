@@ -1,7 +1,7 @@
 
 <div class="block span4">
     
-    <a id="wellness-button" class="wellness-button">Add</a>
+    <a id="wellness-button" class="wellness-button btn btn-primary">Add</a>
     
     <h1 class="block-header">
         BMI&nbsp;
