@@ -38,14 +38,6 @@ h1, h2, h3, h4, h5 {
     border-radius: 0 !important;
 }
 
-/* .row-fluid [class*="span"] {
-	margin-left: 20px;
-}
-
-.row-fluid [class*="span"]:first-child {
-	margin-left: 0px;
-} */
-
 form {
 	margin: 0px !important;
 }
@@ -97,7 +89,7 @@ body {
 
 .block {
     background-color: #EEF4FF; /*#f2eeff;*/
-    border-radius: 20px;
+    border-radius: 4px;
     padding: 25px;
     margin-top: 20px;
     float: left;
@@ -222,7 +214,7 @@ body {
     border: 1px gray solid;
     background-color: #D6E5F8; /*rgb(212, 209, 252);*/
     padding: 5px 15px;
-    border-radius: 10px;
+    border-radius: 4px;
     cursor: pointer;
 }
 
