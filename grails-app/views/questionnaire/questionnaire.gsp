@@ -83,10 +83,10 @@
 				<div class="well sidebar-nav">
 					<ul class="nav nav-list">
 						<li class="nav-header">Questionnaires</li>
-						<li><a href="/questionnaire/questionnaire/BASDAI">BASDAI</a></li>
-						<li><a href="/questionnaire/questionnaire/BASFI">BASFI</a></li>
-						<li><a href="/questionnaire/questionnaire/Health Assessment Questionnaire">Health Assessment Questionnaire</a></li>
-						<li><a href="/questionnaire/questionnaire/PGA">PGA</a></li>
+						<li><a href="/phr/questionnaire/questionnaire/BASDAI">BASDAI</a></li>
+						<li><a href="/phr/questionnaire/questionnaire/BASFI">BASFI</a></li>
+						<li><a href="/phr/questionnaire/questionnaire/Health Assessment Questionnaire">Health Assessment Questionnaire</a></li>
+						<li><a href="/phr/questionnaire/questionnaire/PGA">PGA</a></li>
 						<li class="divider"></li>
 						<li class="nav-header">Question Number</li>
 						<g:set var="counter" value="${1}" />
@@ -94,10 +94,6 @@
 							<li><a href="#${counter }">Question #${counter }</a></li>
 							<g:set var="counter" value="${counter + 1}" />
 						</g:each>
-						<li class="divider"></li>
-						<li class="nav-header">Categories</li>
-						<li>ad1</li>
-						<li>ad2</li>
 					</ul>
 				</div>
 			</div>
