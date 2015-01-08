@@ -53,7 +53,7 @@
                     <g:render template="formProfile"/>
 	            </fieldset>
 	            <fieldset class="buttons">
-	                <g:actionSubmit class="save" action="updateProfile" value="${message(code: 'default.button.update.label', default: 'Update')}" />
+	                <g:actionSubmit class="btn btn-primary" action="updateProfile" value="${message(code: 'default.button.update.label', default: 'Update')}" />
 	            </fieldset>
             </g:if>
             <g:if test="${page == 'employment'}">
@@ -61,8 +61,8 @@
                     <g:render template="formEmployment"/>
 	            </fieldset>
 	            <fieldset class="buttons">
-	                <g:actionSubmit class="save" action="updateEmployment" value="${message(code: 'default.button.update.label', default: 'Update')}" />
-	                <g:actionSubmit class="delete" action="deleteEmployment" value="${message(code: 'default.button.delete.label', default: 'Delete')}" formnovalidate="" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
+	                <g:actionSubmit class="btn btn-primary" action="updateEmployment" value="${message(code: 'default.button.update.label', default: 'Update')}" />
+	                <g:actionSubmit class="btn" action="deleteEmployment" value="${message(code: 'default.button.delete.label', default: 'Delete')}" formnovalidate="" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
 	            </fieldset>
             </g:if>
             <g:if test="${page == 'contacts'}">
@@ -70,8 +70,8 @@
                     <g:render template="formContacts"/>
                 </fieldset>
                 <fieldset class="buttons">
-                    <g:actionSubmit class="save" action="updateContacts" value="${message(code: 'default.button.update.label', default: 'Update')}" />
-                    <g:actionSubmit class="delete" action="deleteContacts" value="${message(code: 'default.button.delete.label', default: 'Delete')}" formnovalidate="" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
+                    <g:actionSubmit class="btn btn-primary" action="updateContacts" value="${message(code: 'default.button.update.label', default: 'Update')}" />
+                    <g:actionSubmit class="btn" action="deleteContacts" value="${message(code: 'default.button.delete.label', default: 'Delete')}" formnovalidate="" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
                 </fieldset>
             </g:if>
             <g:if test="${page == 'physician'}">
@@ -79,8 +79,8 @@
                     <g:render template="formPhysician"/>
                 </fieldset>
                 <fieldset class="buttons">
-                    <g:actionSubmit class="save" action="updatePhysician" value="${message(code: 'default.button.update.label', default: 'Update')}" />
-                    <g:actionSubmit class="delete" action="deletePhysician" value="${message(code: 'default.button.delete.label', default: 'Delete')}" formnovalidate="" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
+                    <g:actionSubmit class="btn btn-primary" action="updatePhysician" value="${message(code: 'default.button.update.label', default: 'Update')}" />
+                    <g:actionSubmit class="btn" action="deletePhysician" value="${message(code: 'default.button.delete.label', default: 'Delete')}" formnovalidate="" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
                 </fieldset>
             </g:if>
 		</g:form>
