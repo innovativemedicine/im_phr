@@ -75,16 +75,25 @@ body {
 	margin-top: -25px;
 }
 
+.form-horizontal .control-group-narrow
+{
+	margin-bottom: 10px;
+}
 .block-header {
     font-size: 26px;
 }
 
 .block-text {
     font-size: 15px;
+    overflow-y: auto;
 }
 
 .block-text-18 {
     font-size: 18px;
+}
+
+.calendar {
+	z-index: 30;
 }
 
 .block {
@@ -225,6 +234,7 @@ body {
 .value-block {
     width: 120px;
     display: inline-block;
+    
 }
 
 .value-block2 {
