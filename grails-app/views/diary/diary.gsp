@@ -26,7 +26,7 @@
 							<li class="nav-header">Recent Posts</li>
 							<g:each in="${UserDiaryInstanceList }" var="data">
 								<li>
-									<a href="/diary/diary/${data.diary_id }"> ${data.topic }
+									<a href="/phr/diary/diary/${data.diary_id }"> ${data.topic }
 									</a>
 								</li>
 							</g:each>
@@ -50,7 +50,6 @@
 							<p style="margin-top: 5px;">
 								${data.entry }
 							</p>
-							<%--<p><a class="btn" href="#">Edit »</a></p>--%>
 							<p>
 								${data.date }
 							</p>
