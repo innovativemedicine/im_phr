@@ -14,6 +14,8 @@ $(function() {
 			function() {
 				$(this).siblings('.block-text').children('.form-hidden')
 						.children('.add-section').slideToggle();
+				$(this).siblings('.block-text').children('.wellness-info')
+						.children('.block-text').slideToggle();
 			});
 
 	$('#bmi-tooltip').tooltip();
