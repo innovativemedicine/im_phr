@@ -4,7 +4,7 @@
 
     <g:set var="entityName" value="${message(code: 'diary.label', default: 'Diary')}" />
     <title><g:message code="default.create.label" args="[entityName]" /></title>
-    <calendar:resources lang="en" theme="tiger"/>
+    <calendar:resources lang="en" theme="aqua"/>
 </head>
 <%@ page import="phr.UserDiary" %>
 
@@ -29,8 +29,8 @@
 				<g:render template="form"/>
 			</fieldset>
 			<fieldset class="buttons">
-				<g:actionSubmit class="save" action="update" value="${message(code: 'default.button.update.label', default: 'Update')}" />
-				<g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" formnovalidate="" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
+				<g:actionSubmit class="btn btn-primary save" action="update" value="${message(code: 'default.button.update.label', default: 'Update')}" />
+				<g:actionSubmit class="btn delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" formnovalidate="" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
 			</fieldset>
 		</g:form>
 	</div>
