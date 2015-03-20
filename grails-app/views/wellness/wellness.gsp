@@ -8,8 +8,7 @@
 
 </head>
 <body>
-	<content tag="header" style="display: none;"> <%--        <h1>Wellness</h1>--%> </content>
-
+	
 	<div class="container home-body">
 
 		<div id="main-body" style="clear: both">
