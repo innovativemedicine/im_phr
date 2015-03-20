@@ -1,10 +1,11 @@
 <div class="navbar navbar-static-top">
 	<div class="navbar-inner">
 		<div class="container">
-			<a class="brand" href="/phr">myHealth</a>
+			<a class="brand" href="#">myHealth</a>
 
 			<ul class="nav">
 
+				<g:if test="${session.userRole == 'PATIENT'}">
 				<li class="${g.activePageClass(pageTitle:'Summary') }">
 					<g:link mapping="summary">Summary</g:link>
 				</li>
@@ -47,9 +48,14 @@
                     </ul>
                 </li>
                 -->
-
+			</g:if>
+			<g:if test="${session.userRole == 'DOCTOR'}">
+				<li class="${g.activePageClass(pageTitle:'Patient') }">
+					<g:link controller="patient" action="index">Patient</g:link>
+				</li>
+			</g:if>
 			</ul>
-
+			
 			<g:if test="${session.user != null}">
 
 				<g:img dir="images/custom" file="mshlogo_new.gif" style="width: 13%; float: right;" />
@@ -59,7 +65,7 @@
 						<g:link mapping="profile">My Profile</g:link>
 					</li>
 					<li>
-						<a href="/login/logout">Logout</a>
+						<a href="${createLink(action: 'logout', controller: 'login')}">Logout</a>
 					</li>
 
 
