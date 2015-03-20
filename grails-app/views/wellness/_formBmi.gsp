@@ -19,7 +19,7 @@
 		<h1 class="block-header span4" style="margin-left: 0px;">Weight</h1>
 
 		<h1 class="block-header" style="margin-left: 0px;">Height</h1>
-		<div class="block-text" style="height: 90px; position: relative"">
+		<div class="block-text" style="height: 85px; position: relative"">
 			<div class="wellness-info">
 
 				<ul class="block-text span3" style="margin-left: 25px;">

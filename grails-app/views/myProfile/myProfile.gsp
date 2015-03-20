@@ -11,7 +11,7 @@
 	<div class="container">
 		<div class="row-fluid">
 			<div class="span3">
-				<div class="block span12s" style="margin-top: 0px;">
+				<div class="block span12s" style="height: 590px; margin-top: 0px;">
 
 					<g:if test="${UserProfileInstanceList}">
 						<g:link class="btn btn-primary wellness-button" action="edit"
@@ -57,24 +57,20 @@
 								${data.last_name }
 							</h4>
 							<g:if test="${data.address_one}">
-								<span><b>Address:</b></span>
-								<br>
-							</g:if>
-							<g:if test="${data.address_one}">
-								<span> ${data.address_one }
-								</span>
-								<br>
-							</g:if>
-							<g:if test="${data.address_two}">
-								<span> ${data.address_two }
-								</span>
-								<br>
-							</g:if>
-							<g:if test="${data.city}">
-								<span> ${data.city }, ${data.province }, ${data.country }&nbsp;&nbsp;${data.postal_code }
-								</span>
-								<br>
-							</g:if>
+											<span><b>Address: </b></span>
+											<br>
+											<span> ${data.address_one }
+											</span>
+											<br>
+										</g:if>
+										<g:if test="${data.city}">
+											<span> ${data.city }, ${data.province }
+											</span>
+											<br>
+											<span> ${data.country }&nbsp;&nbsp;${data.postal_code }
+											</span>
+											<br>
+										</g:if>
 							<g:if test="${data.home_phone}">
 								<span><b>Home #:</b> ${data.home_phone }</span>
 								<br>
@@ -95,20 +91,12 @@
 								<span><b>Blood:</b> ${data.blood_type }</span>
 								<br>
 							</g:if>
-							<g:if test="${data.height}">
-								<span><b>Height:</b> ${data.height } inches</span>
-								<br>
-							</g:if>
 							<g:if test="${data.marital_status}">
 								<span><b>Marital Status:</b> ${data.marital_status }</span>
 								<br>
 							</g:if>
 							<g:if test="${data.primary_language}">
 								<span><b>Primary Language:</b> ${data.primary_language }</span>
-								<br>
-							</g:if>
-							<g:if test="${data.weight}">
-								<span><b>Weight:</b> ${data.weight } pounds</span>
 								<br>
 							</g:if>
 							<g:if test="${data.race}">
@@ -124,7 +112,7 @@
 				<div class="row-fluid">
 
 
-					<div class="block span6" style="margin-top: 0px; height: 270px;">
+					<div class="block span6" style="margin-top: 0px; height: 240px;">
 
 						<g:if test="${UserEmploymentInstanceList}">
 							<g:link class="wellness-button btn btn-primary" action="edit"
@@ -158,31 +146,27 @@
 										<br>
 									</g:if>
 									<g:if test="${data.address_one}">
-										<span><b>Address:</b></span>
-										<br>
-									</g:if>
-									<g:if test="${data.address_one}">
-										<span> ${data.address_one }
-										</span>
-										<br>
-									</g:if>
-									<g:if test="${data.address_two}">
-										<span> ${data.address_two }
-										</span>
-										<br>
-									</g:if>
-									<g:if test="${data.city}">
-										<span> ${data.city }, ${data.province }, ${data.country }&nbsp;&nbsp;${data.postal_code }
-										</span>
-										<br>
-									</g:if>
+											<span><b>Address: </b></span>
+											<br>
+											<span> ${data.address_one }
+											</span>
+											<br>
+										</g:if>
+										<g:if test="${data.city}">
+											<span> ${data.city }, ${data.province }
+											</span>
+											<br>
+											<span> ${data.country }&nbsp;&nbsp;${data.postal_code }
+											</span>
+											<br>
+										</g:if>
 								</div>
 							</g:if>
 						</g:each>
 
 					</div>
 
-					<div class="block span6" style="margin-top: 0px; height: 270px;">
+					<div class="block span6" style="margin-top: 0px; height: 240px;">
 
 						<g:if test="${UserContactsInstanceList}">
 							<g:link class="wellness-button btn btn-primary" action="edit"
@@ -214,30 +198,25 @@
 										<span><b>Phone #1: </b> ${data.phone_number_one }</span>
 										<br>
 									</g:if>
-									<g:if test="${data.phone_number_two}">
-										<span><b>Phone #2: </b> ${data.phone_number_two }</span>
-										<br>
-									</g:if>
+<%--									<g:if test="${data.phone_number_two}">--%>
+<%--										<span><b>Phone #2: </b> ${data.phone_number_two }</span>--%>
+<%--										<br>--%>
+<%--									</g:if>--%>
 									<g:if test="${data.address_one}">
-										<span><b>Address:</b></span>
-										<br>
-									</g:if>
-									<g:if test="${data.address_one}">
-										<span> ${data.address_one }
-										</span>
-										<br>
-									</g:if>
-									<g:if test="${data.address_two}">
-										<span> ${data.address_two }
-										</span>
-										<br>
-									</g:if>
-									<g:if test="${data.city}">
-										<span> ${data.city }, ${data.province }, ${data.country }&nbsp;&nbsp;${data.postal_code }
-										</span>
-										<br>
-									</g:if>
-
+											<span><b>Address: </b></span>
+											<br>
+											<span> ${data.address_one }
+											</span>
+											<br>
+										</g:if>
+										<g:if test="${data.city}">
+											<span> ${data.city }, ${data.province }
+											</span>
+											<br>
+											<span> ${data.country }&nbsp;&nbsp;${data.postal_code }
+											</span>
+											<br>
+										</g:if>
 								</div>
 							</g:if>
 						</g:each>
@@ -247,19 +226,19 @@
 
 				<div class="row-fluid">
 
-					<div class="block span12" style="height: 320px;">
+					<div class="block span12" style="height: 330px;">
 
 						<g:link class="wellness-button btn btn-primary" action="create" params='[id: "${session.user.id }", page: "physician"]'>
                 Add
             </g:link>
 
 
-						<h1 class="block-header">Physicians</h1>
+						<h1 class="block-header" style="margin-bottom: 0px;">Physicians</h1>
 
 						<div class="physician-list" style="max-height: 235px; overflow: auto;">
 							<g:each in="${UserPhysicianInstanceList }" var="data">
 								<g:if test="${data.size() > 0 }">
-									<hr>
+									<hr style="margin-top:10px; margin-bottom: 10px;">
 
 									<g:link class="btn btn-primary wellness-button" action="edit"
 										params='[id: "${data.physician_id }", page: "physician"]'>
@@ -281,26 +260,22 @@
 											<span><b>Phone #1: </b> ${data.phone_number_one }</span>
 											<br>
 										</g:if>
-										<g:if test="${data.phone_number_two}">
-											<span><b>Phone #2: </b> ${data.phone_number_two }</span>
-											<br>
-										</g:if>
+<%--										<g:if test="${data.phone_number_two}">--%>
+<%--											<span><b>Phone #2: </b> ${data.phone_number_two }</span>--%>
+<%--											<br>--%>
+<%--										</g:if>--%>
 										<g:if test="${data.address_one}">
 											<span><b>Address: </b></span>
 											<br>
-										</g:if>
-										<g:if test="${data.address_one}">
 											<span> ${data.address_one }
 											</span>
 											<br>
 										</g:if>
-										<g:if test="${data.address_two}">
-											<span> ${data.address_two }
+										<g:if test="${data.city}">
+											<span> ${data.city }, ${data.province }
 											</span>
 											<br>
-										</g:if>
-										<g:if test="${data.city}">
-											<span> ${data.city }, ${data.province }, ${data.country }&nbsp;&nbsp;${data.postal_code }
+											<span> ${data.country }&nbsp;&nbsp;${data.postal_code }
 											</span>
 											<br>
 										</g:if>
@@ -308,7 +283,7 @@
 									</div>
 								</g:if>
 							</g:each>
-							<hr>
+									<hr style="margin-top:10px; margin-bottom: 10px;">
 
 						</div>
 					</div>

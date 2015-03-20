@@ -1,40 +1,48 @@
 <%@ page import="phr.UserAllergies" %>
 
-
+<div class="row">
+<div class="span3">
 <div class="fieldcontain ${hasErrors(bean: userAllergiesInstance, field: 'name', 'error')} required">
 	<label for="name">
 		<g:message code="userAllergies.name.label" default="Allergy Name" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:textField name="name" value="${userAllergiesInstance?.name}"/>
+	<g:textField class="span2" name="name" value="${userAllergiesInstance?.name}"/>
+</div>
+</div>
 </div>
 
-
+<div class="row">
+<div class="span3">
 <div class="fieldcontain ${hasErrors(bean: userAllergiesInstance, field: 'reaction', 'error')} ">
     <label for="reaction">
         <g:message code="userAllergies.reaction.label" default="Reaction" />
     </label>
-    <g:textField name="reaction" value="${userAllergiesInstance?.reaction}"/>
+    <g:textField class="span2" name="reaction" value="${userAllergiesInstance?.reaction}"/>
+</div>
+</div>
 </div>
 
-
+<div class="row">
+<div class="span3">
 <div class="fieldcontain ${hasErrors(bean: userAllergiesInstance, field: 'severity', 'error')} ">
 	<label for="severity">
 		<g:message code="userAllergies.severity.label" default="Severity" />
 	</label>
-    <g:select name="severity" from="${UserAllergies?.constraints.severity.inList}" keys="${UserAllergies?.constraints.severity.inList}" 
-        noSelection="['null':'Select a Resource']" optionKey="severity" value="${userAllergiesInstance?.severity}"/>
+    <g:select class="span2" name="severity" from="${UserAllergies?.constraints.severity.inList}" keys="${UserAllergies?.constraints.severity.inList}" 
+        noSelection="['null':'Select a value']" optionKey="severity" value="${userAllergiesInstance?.severity}"/>
+</div>
 </div>
 
-
+<div class="span3">
 <div class="fieldcontain ${hasErrors(bean: userAllergiesInstance, field: 'severityValue', 'error')} ">
     <label for="severityValue">
         <g:message code="userAllergies.severityValue.label" default="Severity Value" />
     </label>
-    <g:select name="severityValue" from="${UserAllergies?.constraints.severityValue.inList}" keys="${UserAllergies?.constraints.severityValue.inList}" 
-        noSelection="['null':'Select a Resource']" optionKey="severityValue" value="${userAllergiesInstance?.severityValue}"/>
+    <g:select class="span2" name="severityValue" from="${UserAllergies?.constraints.severityValue.inList}" keys="${UserAllergies?.constraints.severityValue.inList}" 
+        noSelection="['null':'Select a value']" optionKey="severityValue" value="${userAllergiesInstance?.severityValue}"/>
 </div>
-
+</div></div>
 
 <div class="fieldcontain ${hasErrors(bean: userAllergiesInstance, field: 'onsetDate', 'error')} required">
     <label for="onsetDate">

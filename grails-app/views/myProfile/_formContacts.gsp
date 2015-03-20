@@ -34,15 +34,15 @@
 			<g:textField class="span2" name="phoneNumberOne" value="${userContactsInstance?.phoneNumberOne}" />
 		</div>
 	</div>
-	<div class="span3">
-		<div class="fieldcontain ${hasErrors(bean: userContactsInstance, field: 'phoneNumberTwo', 'error')} required">
-			<label for="phoneNumberTwo">
-				<g:message code="userContacts.phoneNumberTwo.label" default="Phone Number Two" />
-				<span class="required-indicator">*</span>
-			</label>
-			<g:textField class="span2" name="phoneNumberTwo" value="${userContactsInstance?.phoneNumberTwo}" />
-		</div>
-	</div>
+<%--	<div class="span3">--%>
+<%--		<div class="fieldcontain ${hasErrors(bean: userContactsInstance, field: 'phoneNumberTwo', 'error')} required">--%>
+<%--			<label for="phoneNumberTwo">--%>
+<%--				<g:message code="userContacts.phoneNumberTwo.label" default="Phone Number Two" />--%>
+<%--				<span class="required-indicator">*</span>--%>
+<%--			</label>--%>
+<%--			<g:textField class="span2" name="phoneNumberTwo" value="${userContactsInstance?.phoneNumberTwo}" />--%>
+<%--		</div>--%>
+<%--	</div>--%>
 </div>
 
 <div class="row">
@@ -56,17 +56,17 @@
 	</div>
 </div>
 
-<div class="row">
-	<div class="span6">
-		<div class="fieldcontain ${hasErrors(bean: userContactsInstance, field: 'addressTwo', 'error')} required">
-			<label for="addressTwo">
-				<g:message code="userContacts.addressTwo.label" default="Address Two" />
-				<span class="required-indicator">*</span>
-			</label>
-			<g:textField class="span5" name="addressTwo" value="${userContactsInstance?.addressTwo}" />
-		</div>
-	</div>
-</div>
+<%--<div class="row">--%>
+<%--	<div class="span6">--%>
+<%--		<div class="fieldcontain ${hasErrors(bean: userContactsInstance, field: 'addressTwo', 'error')} required">--%>
+<%--			<label for="addressTwo">--%>
+<%--				<g:message code="userContacts.addressTwo.label" default="Address Two" />--%>
+<%--				<span class="required-indicator">*</span>--%>
+<%--			</label>--%>
+<%--			<g:textField class="span5" name="addressTwo" value="${userContactsInstance?.addressTwo}" />--%>
+<%--		</div>--%>
+<%--	</div>--%>
+<%--</div>--%>
 
 <div class="row">
 	<div class="span3">

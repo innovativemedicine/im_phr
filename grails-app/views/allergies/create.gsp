@@ -12,9 +12,8 @@
 
 	<div id="create-userAllergies" class="content scaffold-create" role="main">
 		<h1><g:message code="default.create.label" args="[entityName]" /></h1>
-		<g:if test="${flash.message}">
-		<div class="message" role="status">${flash.message}</div>
-		</g:if>
+	
+
 		<g:hasErrors bean="${userAllergiesInstance}">
 		<ul class="errors" role="alert">
 			<g:eachError bean="${userAllergiesInstance}" var="error">
@@ -27,7 +26,7 @@
 				<g:render template="form"/>
 			</fieldset>
 			<fieldset class="buttons">
-				<g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />
+				<g:submitButton name="create" class="btn btn-primary save" value="${message(code: 'default.button.create.label', default: 'Create')}" />
 			</fieldset>
 		</g:form>
 	</div>

@@ -21,7 +21,7 @@
                     <g:render template="form"/>
                 </fieldset>
                 <fieldset class="buttons">
-                    <g:actionSubmit class="save" action="saveNewUser" value="Create User" />
+                    <g:actionSubmit class="btn save" action="saveNewUser" value="Create User" />
                 </fieldset>
             </g:form>
         </div>

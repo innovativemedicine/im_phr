@@ -24,6 +24,17 @@
 </div>
 
 <div class="row">
+<div class="span3">
+<div class="fieldcontain ${hasErrors(bean: userEmploymentInstance, field: 'phoneNumber', 'error')} required">
+	<label for="phoneNumber">
+		<g:message code="userEmployment.phoneNumber.label" default="Phone Number" />
+		<span class="required-indicator">*</span>
+	</label>
+	<g:textField class="span2" name="phoneNumber" value="${userEmploymentInstance?.phoneNumber}" />
+</div>
+</div></div>
+
+<div class="row">
 	<div class="span6">
 		<div class="fieldcontain ${hasErrors(bean: userEmploymentInstance, field: 'addressOne', 'error')}">
 			<label for="addressOne">
@@ -34,16 +45,16 @@
 	</div>
 </div>
 
-<div class="row">
-	<div class="span6">
-<div class="fieldcontain ${hasErrors(bean: userEmploymentInstance, field: 'addressTwo', 'error')} required">
-	<label for="addressTwo">
-		<g:message code="userEmployment.addressTwo.label" default="Address Two" />
-		<span class="required-indicator">*</span>
-	</label>
-	<g:textField class="span5" name="addressTwo" value="${userEmploymentInstance?.addressTwo}" />
-</div>
-</div></div>
+<%--<div class="row">--%>
+<%--	<div class="span6">--%>
+<%--<div class="fieldcontain ${hasErrors(bean: userEmploymentInstance, field: 'addressTwo', 'error')} required">--%>
+<%--	<label for="addressTwo">--%>
+<%--		<g:message code="userEmployment.addressTwo.label" default="Address Two" />--%>
+<%--		<span class="required-indicator">*</span>--%>
+<%--	</label>--%>
+<%--	<g:textField class="span5" name="addressTwo" value="${userEmploymentInstance?.addressTwo}" />--%>
+<%--</div>--%>
+<%--</div></div>--%>
 
 <div class="row">
 <div class="span3">
@@ -86,14 +97,6 @@
 	<g:textField class="span2" name="postalCode" value="${userEmploymentInstance?.postalCode}" />
 </div>
 </div>
-</div>
-
-<div class="fieldcontain ${hasErrors(bean: userEmploymentInstance, field: 'phoneNumber', 'error')} required">
-	<label for="phoneNumber">
-		<g:message code="userEmployment.phoneNumber.label" default="Phone Number" />
-		<span class="required-indicator">*</span>
-	</label>
-	<g:textField name="phoneNumber" value="${userEmploymentInstance?.phoneNumber}" />
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: userConditionsInstance, field: 'user', 'error')} required hidden">

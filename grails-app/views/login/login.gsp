@@ -34,11 +34,11 @@
                         </div>
                     </fieldset>
                     <fieldset class="buttons">
-                        <g:actionSubmit name="login" class="save" action="authenticate" value="Login" />
+	                        <g:actionSubmit name="login" class="btn save" action="authenticate" value="Login" />
                         
                     </fieldset>
-                    <g:link class="" action="createUser">
-                        Register new user
+                    <br><g:link class="" action="createUser">
+                        &nbsp;Register new user
                     </g:link>
                 </g:form>
             </div>

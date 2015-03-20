@@ -7,7 +7,7 @@
     <h1 class="block-header">
         Cholestrol
     </h1>
-    <div class="block-text" style="height:90px; position: relative">
+    <div class="block-text" style="height:85px; position: relative">
         <div class="wellness-info">
         <ul class="block-text">
             <g:if test="${UserCholestrolInstanceList.size == 0 }">
