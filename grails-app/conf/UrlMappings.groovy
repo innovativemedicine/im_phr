@@ -8,7 +8,7 @@ class UrlMappings {
 			} }
 		//   name about:"/"{view='/index.gsp'}
 
-		name home:          "/"             (view:"/index")
+		//		name home:          "/"             (controller:"summary")
 		name summary:       "/summary"      (controller:"summary")
 		name information:   "/information"  (controller:"healthInformation")
 
@@ -30,7 +30,7 @@ class UrlMappings {
 		//        name login:"/login"(controller:"login")
 		//        name logout:"/logout"(controller:"login", action:"logout")
 
-		"/"(view:"/home")
+		"/"(controller:'summary')
 		"500"(view:'/error')
 		"404"(view:'/404')
 	}
