@@ -29,10 +29,29 @@
 			<div class="row-fluid">
 				<div class="block span3" style="height: 480px;">
 
-					<ul class="nav nav-pills nav-stacked">
+					<ul class="nav nav-pills nav-stacked nav-pills-custom">
 						<li class="active">
 							<a href="#profile" data-toggle="tab">Profile</a>
 						</li>
+
+
+						<li class="nav-header">Medical</li>
+						<li>
+							<a href="#meds" data-toggle="tab">Medications</a>
+						</li>
+						<li>
+							<a href="#imms" data-toggle="tab">Immunizations</a>
+						</li>
+						<li>
+							<a href="#cons" data-toggle="tab">Conditions</a>
+						</li>
+						<li>
+							<a href="#alls" data-toggle="tab">Allergies</a>
+						</li>
+
+
+						<li class="nav-header">Wellness</li>
+
 						<li>
 							<a href="#cal" data-toggle="tab">Calories</a>
 						</li>
@@ -48,17 +67,23 @@
 						<li>
 							<a href="#bmi" data-toggle="tab">Height & Weight</a>
 						</li>
+
+
+						<li class="nav-header">Survey</li>
 						<li>
-							<a href="#meds" data-toggle="tab">Medications</a>
+							<a href="#basdai" data-toggle="tab">BASDAI</a>
 						</li>
-						<li>
-							<a href="#imms" data-toggle="tab">Immunizations</a>
+						
+												<li>
+							<a href="#basfi" data-toggle="tab">BASFI</a>
 						</li>
-						<li>
-							<a href="#cons" data-toggle="tab">Conditions</a>
+						
+												<li>
+							<a href="#healthassessment" data-toggle="tab">Health Assessment</a>
 						</li>
-						<li>
-							<a href="#alls" data-toggle="tab">Allergies</a>
+						
+												<li>
+							<a href="#pga" data-toggle="tab">PGA</a>
 						</li>
 					</ul>
 				</div>
@@ -66,11 +91,11 @@
 				<div class="block span9" style="height: 480px; overflow-y: auto;">
 					<div class="tab-content" style="padding: 0px;">
 						<div class="tab-pane active" id="profile">
-						
+
 							<h3 style="margin-top: 0px;">Patient Info</h3>
 
 							<g:if test="${UserProfileInstance}">
-								
+
 								<g:if test="${UserProfileInstance.addressOne}">
 									<span><b>Address: </b></span>
 									<br>
@@ -303,6 +328,7 @@
 								</g:else>
 							</div>
 						</div>
+
 						<div class="tab-pane" id="alls">
 							<h3 style="margin-top: 0px;">Allergies</h3>
 							<div class="block-text">
@@ -325,8 +351,105 @@
 								</g:else>
 							</div>
 						</div>
-					</div>
 
+						<div class="tab-pane" id="basdai">
+							<h3 style="margin-top: 0px;">BASDAI</h3>
+
+							<b>Survey Completed: ${BasdaiQuestionsInstanceList.date[0]}</b> <br> <i>Note: Only the most recently
+								completed survey is shown</i>
+
+							<p>
+
+								<g:set var="counter" value="${	1}" />
+
+								<g:each in="${BasdaiQuestionsInstanceList }" var="basdaiQ">
+									<div>
+										${counter}.&nbsp;&nbsp;${basdaiQ.question_text }
+									</div>
+
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Response: <b>
+										${basdaiQ.answer_value}
+									</b>
+									<br>
+									<br />
+									<g:set var="counter" value="${counter + 1}" />
+								</g:each>
+						</div>
+
+
+						<div class="tab-pane" id="basfi">
+							<h3 style="margin-top: 0px;">BASFI</h3>
+
+							<b>Survey Completed: ${BasfiQuestionsInstanceList.date[0]}</b> <br> <i>Note: Only the most recently
+								completed survey is shown</i>
+							<p>
+
+								<g:set var="counter" value="${	1}" />
+
+								<g:each in="${BasfiQuestionsInstanceList}" var="basfiQ">
+									<div>
+										${counter}.&nbsp;&nbsp;${basfiQ.question_text }
+									</div>
+
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Response: <b>
+										${basfiQ.answer_value}
+									</b>
+									<br>
+									<br />
+									<g:set var="counter" value="${counter + 1}" />
+								</g:each>
+						</div>
+
+
+						<div class="tab-pane" id="healthassessment">
+							<h3 style="margin-top: 0px;">Health Assessment</h3>
+
+							<b>Survey Completed: ${HealthQuestionsInstanceList.date[0]}</b> <br> <i>Note: Only the most recently
+								completed survey is shown</i>
+
+							<p>
+
+								<g:set var="counter" value="${	1}" />
+
+								<g:each in="${HealthQuestionsInstanceList }" var="healthQ">
+									<div>
+										${counter}.&nbsp;&nbsp;${healthQ.question_text }
+									</div>
+
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Response: <b>
+										${healthQ.answer_value}
+									</b>
+									<br>
+									<br />
+									<g:set var="counter" value="${counter + 1}" />
+								</g:each>
+						</div>
+
+
+						<div class="tab-pane" id="pga">
+							<h3 style="margin-top: 0px;">PGA</h3>
+
+							<b>Survey Completed: ${PgaQuestionsInstanceList.date[0]}</b> <br> <i>Note: Only the most recently
+								completed survey is shown</i>
+
+							<p>
+
+								<g:set var="counter" value="${1}" />
+
+								<g:each in="${PgaQuestionsInstanceList }" var="pgaQ">
+									<div>
+										${counter}.&nbsp;&nbsp;${pgaQ.question_text }
+									</div>
+
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Response: <b>
+										${pgaQ.answer_value}
+									</b>
+									<br>
+									<br />
+									<g:set var="counter" value="${counter + 1}" />
+								</g:each>
+						</div>
+					</div>
 
 				</div>
 
