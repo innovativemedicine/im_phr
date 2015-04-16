@@ -7,7 +7,6 @@ import groovy.sql.Sql
 
 class QuestionsController {
 
-
 	static allowedMethods = [save: "POST", update: "POST", delete: ["GET", "POST"]]
 
 	def dataSource // the Spring-Bean "dataSource" is auto-injected
