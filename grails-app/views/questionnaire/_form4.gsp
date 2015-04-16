@@ -10,12 +10,7 @@
             
             
             <table>
-	            <tr>
-	                <td colspan="5" valign="bottom" style="font-size: 18; font-weight: bold; border-bottom-style: 1px solid navy;">
-	                    &nbsp;<b>*</b>
-	                    ${data.question_text }
-	                </td>
-	            </tr>
+	           
 	            <tr>
 	                <td colspan="5">
 	                    <table class="reg1">

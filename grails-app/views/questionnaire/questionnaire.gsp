@@ -70,7 +70,7 @@
 	                </fieldset>
 	                
 	                <fieldset class="buttons">
-	                    <g:submitButton name="create" class="save" value="${message(code: 'default.button.save.label', default: 'Save')}" />
+	                    <g:submitButton name="create" class="btn btn-primary ave" value="${message(code: 'default.button.save.label', default: 'Save')}" />
 	                </fieldset>
 	            </g:form>
 	            
