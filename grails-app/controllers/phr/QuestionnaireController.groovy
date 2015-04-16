@@ -67,21 +67,59 @@ class QuestionnaireController {
 		def lastId = db.rows("SELECT LAST_INSERT_ID() AS 'id';")
 		long qaId = lastId.get(0).id   //lastId.id
 
+		//println params
+
 		// Save the data into the QuestionAnswers Table that links the userId with the Questions and Answers
-		def arr1 = []
 		for (e in params) {
-			if (e.key.contains("Q")) {
-				arr1.add(e)
+			if (e.key.contains("_"))
+			{
+				// Do nothing
+			}
+			else if (e.key.contains("Q")) {
 
 				def questionId = e.key.substring(1)
 				def answerId = e.value
+				def answerValue = e.value
 				def other = 0;
 
-				// Questions with "other, specify" fields
-				if (e.key == "Q33") {
-					other = params.other33b
-					answerId = 23
+				// Health Questionaires
+				if (e.key == "Q26" || e.key == "Q34" || e.key == "Q49" || e.key == "Q56" )
+				{
+
+					if(answerValue.size() >= 1)
+					{
+						answerValue = answerValue.toString()
+					}
+					else
+					{
+						answerValue = answerValue.join(",")
+					}
+
+					answerId = 18
+
+					if (answerValue.contains("Other"))
+					{
+						if (e.key == "Q26")
+						{
+							answerValue = answerValue.replaceAll("Other", params.other26b)
+						}
+						else if (e.key == "Q49")
+						{
+							answerValue = answerValue.replaceAll("Other", params.other49b)
+						}
+					}
+
 				}
+				// Health Questionaiers
+				else if (questionId.toInteger() >= 17 && questionId.toInteger() <= 59 )
+				{
+					answerValue = answerValue.toString().replaceAll('0','Without any difficulty').replaceAll('1','With some difficulty').replaceAll('2', 'With much difficulty').replaceAll('3', 'Unable to do')
+				}
+				// Questions with "other, specify" fields
+				//				else if (e.key == "Q33") {
+				//					other = params.other33b
+				//					answerId = 23
+				//				}
 				else if (e.key == "Q55") {
 					other = params.other55b
 					answerId = 23
@@ -92,7 +130,10 @@ class QuestionnaireController {
 					answerId = 44
 				}
 
-				def QuestionsAnswersInstance = new QuestionsAnswers(qaId: qaId, questionId: questionId, answerId: answerId, other: other)
+				def QuestionsAnswersInstance = new QuestionsAnswers(qaId: qaId, questionId: questionId, answerId: answerId, other: other, answerValue: answerValue)
+
+
+				//println qaId + " " + questionId + " " + answerId + " " + other + " " + answerValue
 
 				if (!QuestionsAnswersInstance.save(flush: true)) {
 					render(action: "questionnaire", params: params)
@@ -100,40 +141,6 @@ class QuestionnaireController {
 				}
 			}
 		}
-
-		/* The following query gets the latest entry in the Questionnaires tables. Thus, it will check 
-		 the corresponding question and answer of the user. */
-		/*
-		 SELECT
-		 uqa.qa_id AS 'qaID', uqa.date AS 'dateAdded', uqa.user_id AS 'userID', 
-		 q.question_id AS 'questionID', q.page_name AS 'page', q.question_text AS 'question',
-		 a.answer_id AS 'answerId', a.answer_text AS 'answer', qa.other AS 'other', 
-		 l.user_name AS 'username'
-		 FROM user_questions_answers uqa
-		 JOIN questions_answers qa
-		 ON qa.qa_id = uqa.qa_id
-		 JOIN questions q
-		 ON q.question_id = qa.question_id
-		 JOIN answers a
-		 ON a.answer_id = qa.answer_id
-		 JOIN login l
-		 ON l.user_id = uqa.user_id
-		 RIGHT JOIN (
-		 SELECT MAX(date) AS 'date' FROM user_questions_answers WHERE user_id = 1
-		 ) z ON z.date = uqa.date
-		 WHERE uqa.user_id = 1
-		 ORDER BY q.question_id ASC
-		 */
-
-		//        //TODO Redirect to the next questionnaire
-		//        println("params = " + params.dump())
-		//        if (params.var1 == "BASDAI") {
-		//            params.var1 = "BASFI"
-		//            println("BASFI = " + params.var1)
-		//        } else if (params.var1 == "BASFI") {
-		//            params.var1 = "Health Assessment Questionnaire"
-		//            println("Health Assessment Questionnaire = " + params.var1)
-		//        }
 
 		redirect(action: "questionnaire", params: params)
 	}

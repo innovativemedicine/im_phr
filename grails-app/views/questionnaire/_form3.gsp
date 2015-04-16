@@ -197,38 +197,43 @@
 					<table class="reg">
 						<tbody>
 							<tr>
-								<td>&nbsp;&nbsp;&nbsp;<input type="checkbox" class="reg"
-									name="Q26" value="1"> Cane
+								<td>&nbsp;&nbsp;&nbsp;
+									<g:checkBox id="cane" name="Q26" checked="${false}" value="Cane" /> 
+									Cane
 								</td>
-								<td>&nbsp;<input type="checkbox" class="reg" name="Q27"
-									value="1"> Devices used for dressing ( button hook,
-									zipper pull, long-handed shoe horn, etc )
-								</td>
-							</tr>
-							<tr>
-								<td>&nbsp;&nbsp;&nbsp;<input type="checkbox" class="reg"
-									name="Q28" value="1"> Walker
-								</td>
-								<td>&nbsp;<input type="checkbox" class="reg" name="Q29"
-									value="1"> Specially adapted utensils ( such as for
-									eating, cooking )
+								<td>&nbsp;
+									<g:checkBox id="cane" name="Q26" checked="${false}" value="Devices used for dressing ( button hook, zipper pull, long-handed shoe horn, etc )" /> 
+									Devices used for dressing ( button hook, zipper pull, long-handed shoe horn, etc )
 								</td>
 							</tr>
 							<tr>
-								<td>&nbsp;&nbsp;&nbsp;<input type="checkbox" class="reg"
-									name="Q30" value="1"> Crutches
+								<td>&nbsp;&nbsp;&nbsp;
+									<g:checkBox id="cane" name="Q26" checked="${false}" value="Walker" /> 
+									Walker
 								</td>
-								<td>&nbsp;<input type="checkbox" class="reg" name="Q31"
-									value="1"> Specially adapted chair
+								<td>&nbsp;
+									<g:checkBox id="cane" name="Q26" checked="${false}" value="Specially adapted utensils ( such as for eating, cooking )" /> 
+									Specially adapted utensils ( such as for eating, cooking )
 								</td>
 							</tr>
 							<tr>
-								<td>&nbsp;&nbsp;&nbsp;<input type="checkbox" class="reg"
-									name="Q32" value="1"> Wheelchair
+								<td>&nbsp;&nbsp;&nbsp;
+									<g:checkBox id="cane" name="Q26" checked="${false}" value="Crutches" /> 
+									Crutches
 								</td>
-								<td>&nbsp;<input type="checkbox" class="reg" name="Q33"
-									value="1"> Other, specify <input type="text"
-									class="reg" name="other33b">
+								<td>&nbsp;
+									<g:checkBox id="cane" name="Q26" checked="${false}" value="Specially adapted chair" /> 
+									Specially adapted chair
+								</td>
+							</tr>
+							<tr>
+								<td>&nbsp;&nbsp;&nbsp;
+									<g:checkBox id="cane" name="Q26" checked="${false}" value="Wheelchair" />
+									Wheelchair
+								</td>
+								<td>&nbsp;
+									<g:checkBox id="cane" name="Q26" checked="${false}" value="Other" />
+									Other, specify <input type="text" class="reg" name="other26b">
 								</td>
 							</tr>
 						</tbody>
@@ -254,19 +259,23 @@
 					<table class="reg">
 						<tbody>
 							<tr>
-								<td>&nbsp;&nbsp;<input type="checkbox" class="reg"
-									name="Q34" value="1"> Dressing &amp; Grooming
+								<td>&nbsp;&nbsp;
+									<g:checkBox id="cane" name="Q34" checked="${false}" value="Dressing and Grooming" /> 
+									Dressing and Grooming
 								</td>
-								<td>&nbsp;&nbsp;<input type="checkbox" class="reg"
-									name="Q35" value="1"> Eating
+								<td>&nbsp;&nbsp;
+									<g:checkBox id="cane" name="Q34" checked="${false}" value="Eating" /> 
+									Eating
 								</td>
 							</tr>
 							<tr>
-								<td>&nbsp;&nbsp;<input type="checkbox" class="reg"
-									name="Q36" value="1"> Arising
+								<td>&nbsp;&nbsp;
+									<g:checkBox id="cane" name="Q34" checked="${false}" value="Arising" /> 
+									Arising
 								</td>
-								<td>&nbsp;&nbsp;<input type="checkbox" class="reg"
-									name="Q37" value="1"> Walking
+								<td>&nbsp;&nbsp;
+									<g:checkBox id="cane" name="Q34" checked="${false}" value="Walking" />
+									Walking
 								</td>
 							</tr>
 						</tbody>
@@ -498,35 +507,40 @@
 					<table class="reg">
 						<tbody>
 							<tr>
-								<td>&nbsp;&nbsp;<input type="checkbox" class="reg"
-									name="Q49" value="1"> Raised toilet seat
+								<td>&nbsp;&nbsp;
+									<g:checkBox id="cane" name="Q49" checked="${false}" value="Raised toilet seat" />
+									Raised toilet seat
 								</td>
-								<td>&nbsp;&nbsp;<input type="checkbox" class="reg"
-									name="Q50" value="1"> Bathtub bar
-								</td>
-							</tr>
-							<tr>
-								<td>&nbsp;&nbsp;<input type="checkbox" class="reg"
-									name="Q51" value="1"> Bathtub seat
-								</td>
-								<td>&nbsp;&nbsp;<input type="checkbox" class="reg"
-									name="Q52" value="1"> Long-handed appliances to reach
+								<td>&nbsp;&nbsp;
+									<g:checkBox id="cane" name="Q49" checked="${false}" value="Bathtub bar" />
+									Bathtub bar
 								</td>
 							</tr>
 							<tr>
-								<td>&nbsp;&nbsp;<input type="checkbox" class="reg"
-									name="Q53" value="1"> Jar opener ( for jars previously
-									opened )
+								<td>&nbsp;&nbsp;
+									<g:checkBox id="cane" name="Q49" checked="${false}" value="Bathtub seat" />
+									Bathtub seat
 								</td>
-								<td>&nbsp;&nbsp;<input type="checkbox" class="reg"
-									name="Q54" value="1"> Long-handed appliances in
-									bathroom ( such as brush for washing yourself )
+								<td>&nbsp;&nbsp;
+									<g:checkBox id="cane" name="Q49" checked="${false}" value="Long-handed appliances to reach" />
+									 Long-handed appliances to reach
 								</td>
 							</tr>
 							<tr>
-								<td colspan="2">&nbsp;&nbsp;<input type="checkbox"
-									class="reg" name="Q55" value="1"> Other, specify <input
-									type="text" class="reg" size="50" name="other55b" value="">
+								<td>&nbsp;&nbsp;
+									<g:checkBox id="cane" name="Q49" checked="${false}" value="Jar opener ( for jars previously opened )" />
+									Jar opener ( for jars previously opened )
+								</td>
+								<td>&nbsp;&nbsp;
+									<g:checkBox id="cane" name="Q49" checked="${false}" value="Long-handed appliances in bathroom ( such as brush for washing yourself )" /> 
+									Long-handed appliances in bathroom ( such as brush for washing yourself )
+								</td>
+							</tr>
+							<tr>
+								<td colspan="2">&nbsp;&nbsp;
+									<g:checkBox id="cane" name="Q49" checked="${false}" value="Other" />
+									Other, specify 
+									<input type="text" class="reg" size="50" name="other49b" value="">
 								</td>
 							</tr>
 						</tbody>
@@ -552,19 +566,23 @@
 					<table class="reg">
 						<tbody>
 							<tr>
-								<td>&nbsp;&nbsp;<input type="checkbox" class="reg"
-									name="Q56" value="1"> Hygiene
+								<td>&nbsp;&nbsp;
+									<g:checkBox id="cane" name="Q56" checked="${false}" value="Hygiene" /> 
+									Hygiene
 								</td>
-								<td>&nbsp;&nbsp;<input type="checkbox" class="reg"
-									name="Q57" value="1"> Gripping and opening things
+								<td>&nbsp;&nbsp;
+									<g:checkBox id="cane" name="Q56" checked="${false}" value="Gripping and opening things" /> 
+									Gripping and opening things
 								</td>
 							</tr>
 							<tr>
-								<td>&nbsp;&nbsp;<input type="checkbox" class="reg"
-									name="Q58" value="1"> Reach
+								<td>&nbsp;&nbsp;
+									<g:checkBox id="cane" name="Q56" checked="${false}" value="Reach" /> 
+									Reach
 								</td>
-								<td>&nbsp;&nbsp;<input type="checkbox" class="reg"
-									name="Q59" value="1"> Errands and chores
+								<td>&nbsp;&nbsp;
+									<g:checkBox id="cane" name="Q56" checked="${false}" value="Errands and chores" /> 
+									Errands and chores
 								</td>
 							</tr>
 						</tbody>
